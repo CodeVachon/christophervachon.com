@@ -1,0 +1,14 @@
+{
+  "name": "ChristopherVachon.com",
+  "version": "0.0.1",
+  "description": "Christopher Vachon's Website",
+  "homepage": "https://github.com/liaodrake/christophervachon.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liaodrake/christophervachon.com.git"
+  },
+  "developer": "Christopher Vachon",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+  }
+}
