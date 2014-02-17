@@ -1,0 +1,8 @@
+body {
+  background-color: #eeeeee;
+  color: #336633;
+}
+.container {
+  margin: 1em 2em;
+  display: block;
+}
