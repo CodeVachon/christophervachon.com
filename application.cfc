@@ -12,9 +12,6 @@ component extends="frameworks.org.corfield.framework" {
 	this.sessionManagement = true;
 	this.sessionTimeout = CreateTimespan(0,0,20,0);
 
-	//this.datasource = "christophervachon";
-
-
 	VARIABLES.framework = {
 		generateSES = true,
 		SESOmitIndex = true,
