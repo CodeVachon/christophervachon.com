@@ -30,6 +30,13 @@ module.exports = function(grunt) {
 				src: ['src/css/*.css']
 			}
 		},
+		cssmin: {
+			minify: {
+				files: {
+					'includes/css/christophervachon.min.css':['src/css/*.css','!src/css/*.min.css']
+				}
+			}
+		},
 		watch: {
 			scripts: {
 				files: ['lib/js/*.js','gruntfile.js'],
@@ -40,7 +47,7 @@ module.exports = function(grunt) {
 			},
 			less: {
 				files: ['src/less/*.less'],
-				tasks: ['less:build','csslint:strict'],
+				tasks: ['less:build','csslint:strict','cssmin:minify'],
 				options: {
 					spawn: false,
 				}
@@ -52,4 +59,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 }; // close module.exports
