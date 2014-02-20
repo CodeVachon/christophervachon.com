@@ -10,6 +10,7 @@ component output="false" displayname="template" extends="base" {
 
 	VARIABLES.siteName = "";
 	VARIABLES.pageCrumb = [];
+	VARIABLES.files = {};
 
 	public template function init(){
 		return super.init(ARGUMENTS);
@@ -58,5 +59,30 @@ component output="false" displayname="template" extends="base" {
 		}
 
 		return _title & this.getSiteName();
+	}
+
+
+	public void function addFile(required string file) {
+		var _ext = trim(ListLast(ARGUMENTS.file,"."));
+		if (arrayFind(["css","js","ico","png"],_ext)) {
+			if (find("/",ARGUMENTS.file) > 0) {
+				addFileToArray(_ext,trim(ARGUMENTS.file));
+			} else {
+				addFileToArray(_ext,"/includes/" & _ext & "/" & trim(ARGUMENTS.file));
+			}
+		} else {
+			throw("unknown file type [#_ext#]");
+		}
+	}
+
+
+	public void function dumpFiles() {
+		writeDump(VARIABLES.files);
+	}
+
+
+	private void function addFileToArray(required string arrayName, required string filepath) {
+		if (!structKeyExists(VARIABLES.files, ARGUMENTS.arrayName)) { VARIABLES.files[ARGUMENTS.arrayName] = []; }
+		arrayAppend(VARIABLES.files[ARGUMENTS.arrayName],ARGUMENTS.filepath);
 	}
 }

@@ -35,6 +35,9 @@ component extends="frameworks.org.corfield.framework" {
 	public void function setupRequest() {
 		REQUEST.CONTEXT.template = new models.template();
 		REQUEST.CONTEXT.template.setSiteName("Christopher Vachon");
+		REQUEST.CONTEXT.template.addFile("christophervachon.min.css");
+		REQUEST.CONTEXT.template.addFile("/favicon.ico");
+		REQUEST.CONTEXT.template.addFile("//code.jquery.com/jquery-1.10.2.min.js");
 	}
 
 
