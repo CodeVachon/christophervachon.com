@@ -15,7 +15,8 @@ component extends="frameworks.org.corfield.framework" {
 	VARIABLES.framework = {
 		generateSES = true,
 		SESOmitIndex = true,
-		applicationKey = 'fw1'
+		applicationKey = 'fw1',
+		reloadApplicationOnEveryRequest = true
 	};
 
 
@@ -31,7 +32,10 @@ component extends="frameworks.org.corfield.framework" {
 	public void function setupApplication() {}
 
 
-	public void function setupRequest() {}
+	public void function setupRequest() {
+		REQUEST.CONTEXT.template = new models.template();
+		REQUEST.CONTEXT.template.setSiteName("Christopher Vachon");
+	}
 
 
 	public string function onMissingView( required struct rc ) {}
