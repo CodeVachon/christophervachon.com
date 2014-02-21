@@ -76,8 +76,20 @@ component output="false" displayname="template" extends="base" {
 	}
 
 
-	public void function dumpFiles() {
-		writeDump(VARIABLES.files);
+	public array function getFiles(string key = "") {
+		if (len(ARGUMENTS.key) == 0) {
+			var _returnArray = [];
+			for (var _key in VARIABLES.files) {
+				for (var _file in VARIABLES.files[_key]) {
+					arrayAppend(_returnArray, _file);
+				}
+			}
+			return _returnArray;
+		} else if (structKeyExists(VARIABLES.files,ARGUMENTS.key)) {
+			return VARIABLES.files[ARGUMENTS.key];
+		} else {
+			throw("no files exists for key [#ARGUMENTS.key#]");
+		}
 	}
 
 
