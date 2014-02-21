@@ -1,8 +1,10 @@
 body {
   background-color: #eeeeee;
   color: #334433;
+  font-family: 'Maven Pro', sans-serif;
 }
 .container {
-  margin: 1em 2em;
+  max-width: 1100px;
+  margin: 1em auto;
   display: block;
 }
