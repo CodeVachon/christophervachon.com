@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				options: {
 				},
 				files: {
-					"src/css/christophervachon.css": "src/less/christophervachon.less"
+					"src/css/christophervachon.css": "src/less/bootstrap.less"
 				}
 			}
 		}, // close less
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 			}, // close gruntfile
 			less: {
 				files: ['src/less/*.less'],
-				tasks: ['less:build','csslint:strict','cssmin:minify'],
+				tasks: ['less:build','cssmin:minify'], //,'csslint:strict' -- csslint dosnt play well with bootstrap
 				options: {
 					spawn: false
 				}
