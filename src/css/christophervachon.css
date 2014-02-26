@@ -5,7 +5,8 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+  margin: 70px 0 0 0;
+  /* Changed for Fixed Navigation */
 }
 article,
 aside,
