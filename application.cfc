@@ -12,6 +12,17 @@ component extends="frameworks.org.corfield.framework" {
 	this.sessionManagement = true;
 	this.sessionTimeout = CreateTimespan(0,0,20,0);
 
+	this.datasource = "cmv";
+	this.ormEnabled = true;
+	this.ormSettings = {
+		dbcreate = ((this.getEnvironment() == "dev")?"update":"none"),
+		eventHandling = true,
+		cfclocation = 'models',
+		flushatrequestend = false,
+		namingstrategy = "smart",
+		dialect = "MySQL"
+	};
+
 	VARIABLES.framework = {
 		generateSES = true,
 		SESOmitIndex = true,
