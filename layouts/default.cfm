@@ -37,6 +37,9 @@
 					<div class="collapse navbar-collapse" id="fixed-navigation">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href='/'>Home</a></li>
+							<li class=""><a href='/'>About Me</a></li>
+							<li class=""><a href='/'>Blog</a></li>
+							<li class=""><a href='/'>Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
