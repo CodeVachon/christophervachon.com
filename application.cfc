@@ -44,6 +44,10 @@ component extends="frameworks.org.corfield.framework" {
 
 
 	public void function setupRequest() {
+		if (isFrameworkReloadRequest()) {
+			ORMClearSession();
+			ORMReload();
+		}
 
 		REQUEST.CONTEXT.security = new services.security();
 		REQUEST.CONTEXT.validation = new services.validationService();
