@@ -60,6 +60,13 @@
 			</header>
 			<div class='row'>
 				<section class='col-xs-12 col-md-8'>
+					<cfif RC.template.getPageCrumbCount() GT 1>
+						<ol class="breadcrumb">
+							<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
+								<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+							</cfloop>
+						</ol>
+					</cfif>
 					#body#
 				</section>
 				<section class='col-xs-12 col-md-offset-1 col-md-3 well'>
