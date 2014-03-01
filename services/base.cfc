@@ -1,5 +1,5 @@
-component extends="services.object" displayname="baseService" hint="I am the base of all services" {
-	public baseService function init(){ return super.init(); }
+component displayname="baseService" hint="I am the base of all services" {
+	public baseService function init(){ return this; }
 
 
 	public any function saveObject(required any objectToSave) {
