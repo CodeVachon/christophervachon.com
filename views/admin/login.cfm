@@ -15,6 +15,6 @@
 		<div class="checkbox">
 			<label for="rememberMe"><input type="checkbox" name="rememberMe"> Persistant Login</label>
 		</div>
-		<button type="submit" class="btn btn-primary">Log In</button>
+		<button type="submit" class="btn btn-primary" name='btnSave'>Log In</button>
 	</form>
 </cfoutput>
