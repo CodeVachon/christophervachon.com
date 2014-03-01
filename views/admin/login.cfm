@@ -12,8 +12,10 @@
 			<label for="loginPassword">Password</label>
 			<input type="password" class="form-control" id="loginPassword" name='loginPassword' placeholder="Password" />
 		</div>
-		<div class="checkbox">
-			<label for="rememberMe"><input type="checkbox" name="rememberMe"> Persistant Login</label>
+		<div class="form-group">
+			<div class="checkbox">
+				<label><input type="checkbox" name="rememberMe"> Persistant Login</label>
+			</div>
 		</div>
 		<button type="submit" class="btn btn-primary" name='btnSave'>Log In</button>
 	</form>
