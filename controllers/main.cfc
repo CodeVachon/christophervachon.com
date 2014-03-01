@@ -13,7 +13,11 @@ component output="false" displayname=""  {
 	}
 
 
-	public void function default( required struct rc ) {
+	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Home","/");
+	}
+
+
+	public void function default( required struct rc ) {
 	}
 }
