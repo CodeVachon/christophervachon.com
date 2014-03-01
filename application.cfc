@@ -46,6 +46,7 @@ component extends="frameworks.org.corfield.framework" {
 	public void function setupRequest() {
 
 		REQUEST.CONTEXT.security = new services.security();
+		REQUEST.CONTEXT.validation = new services.validationService();
 
 		REQUEST.CONTEXT.template = new models.template();
 		REQUEST.CONTEXT.template.setSiteName("Christopher Vachon");

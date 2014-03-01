@@ -27,6 +27,13 @@ component output="false" displayname=""  {
 	}
 
 
+	public void function startLogin( required struct rc ) {
+		if (structKeyExists(RC,"btnSave")) {
+			if (!structKeyExists(RC,"emailAddress") || !RC.validation.doesEmailValidate(RC.emailAddress)) {
+				RC.validationError = "Invalid Email Address [#RC.emailAddress#]";
+			}
+		}
+	}
 	public void function login( required struct rc ) {
 		RC.template.addPageCrumb("Login","/Admin/Login");
 	}

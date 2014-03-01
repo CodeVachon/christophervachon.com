@@ -3,14 +3,14 @@
 	<div class="alert alert-danger">
 		<cfif isSimpleValue(RC.validationError)>
 			#RC.validationError#
-		<cfelse isStruct(RC.validationError)>
+		<cfelseif isStruct(RC.validationError)>
 			<h3>#((structKeyExists(RC.validationError,"label"))?RC.validationError.label:"Oops!")#</h3>
 			<ul>
 				<cfloop array="#RC.validationError.values#" index="LOCAL.error">
 					<li>#LOCAL.error#</li>
 				</cfloop>
 			</ul>
-		<cfelse isArray(RC.validationError)>
+		<cfelseif isArray(RC.validationError)>
 			<h3>Oops!</h3>
 			<ul>
 				<cfloop array="#RC.validationError#" index="LOCAL.error">

@@ -11,7 +11,7 @@ component output="false" displayname=""  {
 
 	VARIABLES.REGEX = {
 		emailAddress = "^[a-zA-Z][a-zA-Z0-9\+\._-]{2,}@[a-zA-Z0-9\._-]{2,}\.[a-zA-Z]{2,6}$"
-	}
+	};
 
 
 	public function init() { return this; }
