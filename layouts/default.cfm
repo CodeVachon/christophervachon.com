@@ -62,7 +62,7 @@
 				<section class='col-xs-12 col-md-8'>
 					#body#
 				</section>
-				<section class='col-xs-12 col-md-offset-1 col-md-3'>
+				<section class='col-xs-12 col-md-offset-1 col-md-3 well'>
 					sidebar
 				</section>
 			</div>
