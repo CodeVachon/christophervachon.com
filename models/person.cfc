@@ -12,6 +12,7 @@ component output="false" displayname="person" extends="ormbase" persistent="true
 	property name="firstName" type="string";
 	property name="lastName" type="string";
 	property name="password" type="string" sqltype="varchar(1000)" setter="false";
+	property name="contactInformation" type="array" fieldtype="one-to-many" cfc="contactInformation" fkcolumn="personID" cascade="all";
 
 
 	public function init(){
