@@ -4421,7 +4421,9 @@ a.thumbnail.active {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+.alert h3,
 .alert h4 {
+  font-size: 28px;
   margin-top: 0;
   color: inherit;
 }

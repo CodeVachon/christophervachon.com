@@ -16,11 +16,20 @@ component output="false" displayname=""  {
 
 	public function init() { return this; }
 
-	public function doesEmailValidate(required string emailAddress) {
-		if (len(ARGUMENTS.emailAddress) > 0) {
-			if (len(reReplace(ARGUMENTS.emailAddress,VARIABLES.REGEX.emailAddress,"","one")) == 0) {
+
+	public boolean function doesEmailValidate(required string value) {
+		if (len(ARGUMENTS.value) > 0) {
+			if (len(reReplace(ARGUMENTS.value,VARIABLES.REGEX.emailAddress,"","one")) == 0) {
 				return true;
 			}
+		}
+		return false;
+	}
+
+
+	public boolean function doesPasswordValidate(required string value) {
+		if (len(ARGUMENTS.value) > 4) {
+			return true;
 		}
 		return false;
 	}
