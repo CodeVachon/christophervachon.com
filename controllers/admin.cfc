@@ -10,7 +10,7 @@ component output="false" displayname=""  {
 	public any function init( fw ) {
 		VARIABLES.fw = fw;
 		return this;
-	}
+	} //  close init
 
 
 	public void function before( required struct rc) {
@@ -19,17 +19,17 @@ component output="false" displayname=""  {
 		if ((RC.action != "admin.login") && !RC.security.checkPermission("siteAdmin")) {
 			VARIABLES.fw.redirect(action='admin.login');
 		}
-	}
+	} // close before
 
 
 	public void function default( required struct rc ) {
-	}
+	} // close default
 
 
 	public void function listPeople( required struct rc ) {
 		RC.template.addPageCrumb("List People","/admin/listPeople");
 		VARIABLES.fw.service( 'personService.getPeople', 'people');
-	}
+	} // close listPeople
 
 
 	public void function startEditPerson( required struct rc ) {
@@ -61,9 +61,45 @@ component output="false" displayname=""  {
 	}
 	public void function endEditPerson( required struct rc ) {
 		for (var property in RC.person.getPropertyStruct()) {
-			RC[property] = RC.person.getProperty(property);
+			if (!structKeyExists(RC,property)) {
+				RC[property] = RC.person.getProperty(property);
+			}
+		}
+	} // close editPerson
+
+
+	public void function startEditEmailAddress( required struct rc ) {
+		if (structKeyExists(RC,"btnSave")) {
+			var errors = [];
+			if (!structKeyExists(RC,"emailAddress") || !RC.validation.doesEmailValidate(RC.emailAddress)) {
+				arrayAppend(errors,"Invalid Email Address [#RC.emailAddress#]");
+			}
+			if (arrayLen(errors) > 0) {
+				RC.validationError = errors;
+				VARIABLES.fw.service( 'personService.getEmailAddress', 'emailAddressObj');
+			} else {
+				VARIABLES.fw.service( 'personService.editEmailAddressAndSave', 'emailAddressObj');
+			}
+		} else {
+			VARIABLES.fw.service( 'personService.getEmailAddress', 'emailAddressObj');
 		}
 	}
+	public void function editEmailAddress( required struct rc ) {
+		RC.template.addPageCrumb("List People","/admin/listPeople");
+		RC.template.addPageCrumb("Edit Person","/admin/editPerson");
+		RC.template.addPageCrumb("Edit Email Address","/admin/editEmailAddress");
+	}
+	public void function endEditEmailAddress( required struct rc ) {
+		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
+			VARIABLES.fw.redirect(action='admin');
+		} else {
+			for (var property in RC.emailAddressObj.getPropertyStruct()) {
+				if (!structKeyExists(RC,property)) {
+					RC[property] = RC.emailAddressObj.getProperty(property);
+				}
+			}
+		}
+	} // close editEmailAddress
 
 
 	public void function startLogin( required struct rc ) {
@@ -97,5 +133,5 @@ component output="false" displayname=""  {
 	}
 	public void function endLogout( required struct rc ) {
 		VARIABLES.fw.redirect(action='admin');
-	}
+	} // close logout
 }

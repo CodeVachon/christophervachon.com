@@ -20,6 +20,17 @@
 	</div>
 
 	<div class='well'>
+		<h3>Email Address</h3>
+		<cfscript>
+			for (LOCAL.emailAddress in RC.person.getContactInformation()) {
+				RC.emailAddressID = LOCAL.emailAddress.getId();
+				RC.emailAddress = LOCAL.emailAddress.getEmailAddress();
+				writeOutput(view('admin/editEmailAddress'));
+			}
+		</cfscript>
+	</div>
+
+	<div class='well'>
 		<h3>Password</h3>
 		<form name='editPassword' method='post' action="#buildURL('admin.editPerson')#">
 			<input type='hidden' name="personID" value="#((structKeyExists(RC,"personID"))?RC.personID:"")#">
