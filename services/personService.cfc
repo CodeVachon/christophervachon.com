@@ -22,7 +22,14 @@ component output="false" displayname="personService" extends="base"  {
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
-		return ORMExecuteQuery("SELECT DISTINCT p FROM person p WHERE p.isDeleted=:isDeleted ORDER BY p.#ARGUMENTS.orderBy# ASC", {isDeleted=ARGUMENTS.isDeleted,}, false, {maxResults=_maxResults,offset=_offset});
+		return ORMExecuteQuery("SELECT DISTINCT p FROM person p WHERE p.isDeleted=:isDeleted ORDER BY p.#ARGUMENTS.orderBy# ASC", {isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+	}
+
+
+	public boolean function doesPersonExist() {
+		var _object = ORMExecuteQuery("FROM person p JOIN p.contactInformation c WHERE c.emailAddress=:emailAddress",{emailAddress=ARGUMENTS["emailAddress"]},true); 
+
+		return ((isNull(_object))?false:true);
 	}
 
 
