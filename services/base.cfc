@@ -35,4 +35,15 @@ component displayname="baseService" hint="I am the base of all services" {
 		}
 		return ARGUMENTS.objectToInsertInto;
 	} // close setValuesInObject()
+
+
+	private struct function reduceStructLevel(required struct structToCovert) {
+		var tempStruct = structNew();
+		for (var key in ARGUMENTS.structToCovert) { 
+			if (structKeyExists(ARGUMENTS.structToCovert,key)) {
+				tempStruct[key] = ARGUMENTS.structToCovert[key]; 
+			}
+		}
+		return tempStruct;
+	}
 }
