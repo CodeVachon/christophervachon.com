@@ -136,3 +136,4 @@ component output="false" displayname=""  {
 		VARIABLES.fw.redirect(action='admin');
 	} // close logout
 }
+

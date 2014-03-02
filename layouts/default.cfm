@@ -72,7 +72,7 @@
 					</cfif>
 					#body#
 				</section>
-				<section class='col-xs-12 col-md-4 well'>
+				<section class='col-xs-12 col-md-offset-1 col-md-3 well'>
 					sidebar
 				</section>
 			</div>
