@@ -20,4 +20,9 @@ component output="false" displayname="contactInformation" extends="ormbase" pers
 		super.refreshProperties();
 		if (!structKeyExists(VARIABLES,"isActive")) { VARIABLES["isActive"] = true; }
 	}
+
+
+	public models.person function getPerson() {
+		return ORMExecuteQuery("SELECT DISTINCT p FROM person p JOIN p.contactInformation c WHERE c.id=:id",{id=this.getID()},true);
+	}
 }
