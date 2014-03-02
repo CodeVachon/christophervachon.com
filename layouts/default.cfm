@@ -59,7 +59,7 @@
 		</div>
 		<div class='container'>
 			<header>
-				<h1>#RC.template.getSiteName()#</h1>
+				<h1>Blog of #RC.template.getSiteName()#</h1>
 			</header>
 			<div class='row'>
 				<section class='col-xs-12 col-md-8'>
@@ -72,7 +72,7 @@
 					</cfif>
 					#body#
 				</section>
-				<section class='col-xs-12 col-md-offset-1 col-md-3 well'>
+				<section class='col-xs-12 col-md-4 well'>
 					sidebar
 				</section>
 			</div>

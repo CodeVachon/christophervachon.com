@@ -24,7 +24,7 @@
 		<form name='editPassword' method='post' action="#buildURL('admin.editPerson')#">
 			<input type='hidden' name="personID" value="#((structKeyExists(RC,"personID"))?RC.personID:"")#">
 			<div class="form-group">
-				<label for="password">Password</label>
+				<label for="password">New Password</label>
 				<input type="password" class="form-control" id="password" name='password' placeholder="Password" />
 			</div>
 			<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
