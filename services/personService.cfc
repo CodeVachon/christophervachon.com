@@ -59,6 +59,10 @@ component output="false" displayname="personService" extends="base"  {
 			}
 		}
 
+		if (structKeyExists(ARGUMENTS,"password")) {
+			_object.setPassword(ARGUMENTS.password);
+		}
+
 		return _object;
 	}
 
