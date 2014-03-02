@@ -28,7 +28,7 @@ component output="false" displayname=""  {
 
 
 	public boolean function doesPasswordValidate(required string value) {
-		if (len(ARGUMENTS.value) > 4) {
+		if (len(ARGUMENTS.value) >= 2) {
 			return true;
 		}
 		return false;

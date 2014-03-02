@@ -3,17 +3,14 @@ component displayname="baseService" hint="I am the base of all services" {
 
 
 	public any function saveObject(required any objectToSave) {
-		// writeDump(ARGUMENTS.objectToSave.doesValidate()); abort;
-		if (ARGUMENTS.objectToSave.doesValidate()) {
-			try {
-				transaction {
-					entitySave(ARGUMENTS.objectToSave);
-					transaction action="commit";
-				}
-			} catch (any e) {
-				//writeDump(e); abort;
-				throw("Error while trying to save [#ARGUMENTS.objectToSave.getClassName()#]")
+		try {
+			transaction {
+				entitySave(ARGUMENTS.objectToSave);
+				transaction action="commit";
 			}
+		} catch (any e) {
+			//writeDump(e); abort;
+			throw("Error while trying to save [#ARGUMENTS.objectToSave.getClassName()#]")
 		}
 		return ARGUMENTS.objectToSave;
 	} // close saveObject()

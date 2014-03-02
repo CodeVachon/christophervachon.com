@@ -37,9 +37,9 @@ component output="false" displayname="personService" extends="base"  {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 
 		var _object = javaCast("null","");
-		if (structKeyExists(ARGUMENTS,"personId")) { _object = ORMExecuteQuery("FROM person p WHERE p.id=:id",{id=ARGUMENTS["personId"]},true); }
-		else if (structKeyExists(ARGUMENTS,"emailAddress")) { _object = ORMExecuteQuery("FROM person p JOIN p.contactInformation c WHERE c.emailAddress=:emailAddress",{emailAddress=ARGUMENTS["emailAddress"]},true); }
-		else if (structKeyExists(ARGUMENTS,"id")) { _object = ORMExecuteQuery("FROM person p WHERE p.id=:id",{id=ARGUMENTS["id"]},true); }
+		if (structKeyExists(ARGUMENTS,"personId")) { _object = ORMExecuteQuery("SELECT DISTINCT p FROM person p WHERE p.id=:id",{id=ARGUMENTS["personId"]},true); }
+		else if (structKeyExists(ARGUMENTS,"emailAddress")) { _object = ORMExecuteQuery("SELECT DISTINCT p FROM person p JOIN p.contactInformation c WHERE c.emailAddress=:emailAddress",{emailAddress=ARGUMENTS["emailAddress"]},true); }
+		else if (structKeyExists(ARGUMENTS,"id")) { _object = ORMExecuteQuery("SELECT DISTINCT p FROM person p WHERE p.id=:id",{id=ARGUMENTS["id"]},true); }
 
 		if (isNull(_object)) { _object = entityNew("person"); }
 

@@ -17,7 +17,7 @@ component output="false" displayname=""  {
 		RC.template.addPageCrumb("Home","/");
 		RC.template.addPageCrumb("Admin","/Admin");
 
-		if ((RC.action != "admin.login") && !RC.security.checkPermission("isAdmin")) {
+		if ((RC.action != "admin.login") && !RC.security.checkPermission("siteAdmin")) {
 			VARIABLES.fw.redirect(action='admin.login');
 		}
 	}
@@ -38,10 +38,17 @@ component output="false" displayname=""  {
 			}
 			if (arrayLen(errors) > 0) {
 				RC.validationError = errors;
+			} else {
+				VARIABLES.fw.service( 'security.signIn', 'didSignIn');
 			}
 		}
 	}
 	public void function login( required struct rc ) {
 		RC.template.addPageCrumb("Login","/Admin/Login");
+	}
+	public void function endLogin ( required struct rc ) {
+		if (structKeyExists(RC,"didSignIn") && RC.didSignIn) {
+			VARIABLES.fw.redirect(action='admin');
+		}
 	}
 }

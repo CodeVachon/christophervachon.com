@@ -11,7 +11,7 @@
 	LOCAL.personService = new services.personService();
 
 	if (!LOCAL.personService.doesPersonExist(emailAddress=LOCAL.emailAddress)) {
-		LOCAL.person = LOCAL.personService.editPerson({
+		LOCAL.person = LOCAL.personService.editPersonAndSave({
 			firstName = "Site",
 			lastName = "Administrator",
 			emailAddress = LOCAL.emailAddress,

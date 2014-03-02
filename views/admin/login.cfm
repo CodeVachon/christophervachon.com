@@ -10,7 +10,7 @@
 		</div>
 		<div class="form-group">
 			<label for="loginPassword">Password</label>
-			<input type="password" class="form-control" id="loginPassword" name='loginPassword' placeholder="Password" />
+			<input type="password" class="form-control" id="loginPassword" name='password' placeholder="Password" />
 		</div>
 		<div class="form-group">
 			<div class="checkbox">
