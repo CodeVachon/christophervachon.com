@@ -41,15 +41,17 @@
 							<li class=""><a href='/'>Blog</a></li>
 							<li class=""><a href='/'>Contact</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
-								<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li class="divider"></li>
-									<li><a href="##">Logout</a></li>
-								</ul>
-							</li>
-						</ul>
+						<cfif RC.security.checkPermission("siteAdmin")>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li class="divider"></li>
+										<li><a href="##">Logout</a></li>
+									</ul>
+								</li>
+							</ul>
+						</cfif>
 					</div>
 				</div>
 			</nav>
