@@ -1,8 +1,11 @@
 <cfoutput>
 	<h2>Edit Person</h2>
+	<cfif structKeyExists(RC,"validationError")>
+		#view('main/validationError')#
+	</cfif>
 	<div class='well'>
 		<h3>Details</h3>
-		<form>
+		<form name='editName' method='post' action="#buildURL('admin.editPerson')#">
 			<input type='hidden' name="personID" value="#((structKeyExists(RC,"personID"))?RC.personID:"")#">
 			<div class="form-group">
 				<label for="firstName">First Name</label>
@@ -18,11 +21,11 @@
 
 	<div class='well'>
 		<h3>Password</h3>
-		<form>
+		<form name='editPassword' method='post' action="#buildURL('admin.editPerson')#">
 			<input type='hidden' name="personID" value="#((structKeyExists(RC,"personID"))?RC.personID:"")#">
 			<div class="form-group">
-				<label for="loginPassword">Password</label>
-				<input type="password" class="form-control" id="loginPassword" name='password' placeholder="Password" />
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name='password' placeholder="Password" />
 			</div>
 			<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
 		</form>

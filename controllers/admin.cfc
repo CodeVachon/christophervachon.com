@@ -56,15 +56,12 @@ component output="false" displayname=""  {
 		}
 	}
 	public void function editPerson( required struct rc ) {
+		RC.template.addPageCrumb("List People","/admin/listPeople");
 		RC.template.addPageCrumb("Edit Person","/admin/editPerson");
 	}
 	public void function endEditPerson( required struct rc ) {
-		if (structKeyExists(rc,"btnSave")) {
-
-		} else {
-			for (var property in RC.person.getPropertyStruct()) {
-				RC[property] = RC.person.getProperty(property);
-			}
+		for (var property in RC.person.getPropertyStruct()) {
+			RC[property] = RC.person.getProperty(property);
 		}
 	}
 
