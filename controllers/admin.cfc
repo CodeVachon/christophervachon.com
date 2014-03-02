@@ -90,4 +90,12 @@ component output="false" displayname=""  {
 			VARIABLES.fw.redirect(action='admin');
 		}
 	} // close login
+
+
+	public void function startLogout( required struct rc ) {
+		VARIABLES.fw.service( 'security.signOut', 'didSignIn');
+	}
+	public void function endLogout( required struct rc ) {
+		VARIABLES.fw.redirect(action='admin');
+	}
 }

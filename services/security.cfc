@@ -48,4 +48,9 @@ component output="false" displayname="security"  {
 			}
 		};
 	} // close loadPersonIntoSession
+
+
+	public void function signOut() {
+		structDelete(SESSION,"member");
+	}
 }
