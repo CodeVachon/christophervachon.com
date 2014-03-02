@@ -33,4 +33,12 @@ component output="false" displayname=""  {
 		}
 		return false;
 	}
+
+
+	public boolean function doesMatchMinStringRequirements(required string value) {
+		if (len(ARGUMENTS.value) > 0) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -16,7 +16,7 @@ component output="false" displayname="personService" extends="base"  {
 
 		if (!structKeyExists(ARGUMENTS,"page")) { ARGUMENTS.page = 1; }
 		if (!structKeyExists(ARGUMENTS,"itemsPerPage")) { ARGUMENTS.itemsPerPage = 25; }
-		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "LastName"; }
+		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "lastName"; }
 		if (!structKeyExists(ARGUMENTS,"isDeleted")) { ARGUMENTS.isDeleted = false; }
 
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
