@@ -63,4 +63,9 @@ component extends="frameworks.org.corfield.framework" {
 
 
 	public string function onMissingView( required struct rc ) {}
+
+
+	public void function before( required struct rc) {
+		RC.template.addPageCrumb("Home","/");
+	}
 }

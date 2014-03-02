@@ -14,8 +14,7 @@ component output="false" displayname=""  {
 
 
 	public void function before( required struct rc) {
-		RC.template.addPageCrumb("Home","/");
-		RC.template.addPageCrumb("Admin","/Admin");
+		RC.template.addPageCrumb("Admin","/admin");
 
 		if ((RC.action != "admin.login") && !RC.security.checkPermission("siteAdmin")) {
 			VARIABLES.fw.redirect(action='admin.login');
@@ -24,6 +23,11 @@ component output="false" displayname=""  {
 
 
 	public void function default( required struct rc ) {
+	}
+
+
+	public void function editPerson( required struct rc ) {
+		RC.template.addPageCrumb("Edit Person","/admin/editPerson");
 	}
 
 
@@ -44,11 +48,11 @@ component output="false" displayname=""  {
 		}
 	}
 	public void function login( required struct rc ) {
-		RC.template.addPageCrumb("Login","/Admin/Login");
+		RC.template.addPageCrumb("Login","/admin/login");
 	}
 	public void function endLogin ( required struct rc ) {
 		if (structKeyExists(RC,"didSignIn") && RC.didSignIn) {
 			VARIABLES.fw.redirect(action='admin');
 		}
-	}
+	} // close login
 }

@@ -14,7 +14,6 @@ component output="false" displayname=""  {
 
 
 	public void function before( required struct rc) {
-		RC.template.addPageCrumb("Home","/");
 	}
 
 
