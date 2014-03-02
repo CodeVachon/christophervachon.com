@@ -91,7 +91,8 @@ component output="false" displayname=""  {
 	}
 	public void function endEditEmailAddress( required struct rc ) {
 		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
-			VARIABLES.fw.redirect(action='admin');
+			RC.personID = RC.emailAddressObj.getPerson().getID();
+			VARIABLES.fw.redirect(action='admin.editPerson',append='personID');
 		} else {
 			for (var property in RC.emailAddressObj.getPropertyStruct()) {
 				if (!structKeyExists(RC,property)) {
