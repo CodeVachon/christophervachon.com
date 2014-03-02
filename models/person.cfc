@@ -33,6 +33,26 @@ component output="false" displayname="person" extends="ormbase" persistent="true
 	}
 
 
+	public boolean function hasEmailAddress() {
+		if (structCount(ARGUMENTS) == 1) {
+			var _emailAddress = ARGUMENTS[1];
+			var validate = new services.validationService();
+			if (validate.doesEmailValidate(_emailAddress)) {
+				for (var _info in this.getContactInformation()) {
+					if ((_info.getType() == "emailAddress") && (_info.getEmailAddress() == _emailAddress)) { return true; }
+				}
+			} else {
+				throw("invalid Email Address [#_emailAddress#]");
+			}
+		} else {
+			for (var _info in this.getContactInformation()) {
+				if (_info.getType() == "emailAddress") { return true; }
+			}
+			return false;
+		}
+	}
+
+
 	public void function setPassword(required string value) {
 		VARIABLES.password = hash(ARGUMENTS.value,"md5");
 	}
