@@ -14,6 +14,7 @@ component output="false" displayname="person" extends="ormbase" persistent="true
 	property name="password" type="string" sqltype="varchar(1000)" setter="false";
 	property name="contactInformation" type="array" fieldtype="one-to-many" cfc="contactInformation" fkcolumn="personID" cascade="all";
 
+	property name="siteAdmin" type="boolean";
 
 	public function init(){
 		return super.init();
@@ -27,6 +28,7 @@ component output="false" displayname="person" extends="ormbase" persistent="true
 		if (!structKeyExists(VARIABLES,"password")) { VARIABLES["password"] = javaCast("null",""); }
 
 		if (!structKeyExists(VARIABLES,"contactInformation")) { VARIABLES["contactInformation"] = []; }
+		if (!structKeyExists(VARIABLES,"siteAdmin")) { VARIABLES["siteAdmin"] = false; }
 	}
 
 
