@@ -23,14 +23,15 @@ component output="false" displayname="personService" extends="base"  {
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
 		return ORMExecuteQuery("SELECT DISTINCT p FROM person p WHERE p.isDeleted=:isDeleted ORDER BY p.#ARGUMENTS.orderBy# ASC", {isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
-	}
+	} // close getPeople
 
 
 	public boolean function doesPersonExist() {
+		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		var _object = ORMExecuteQuery("FROM person p JOIN p.contactInformation c WHERE c.emailAddress=:emailAddress",{emailAddress=ARGUMENTS["emailAddress"]},true); 
 
 		return ((isNull(_object))?false:true);
-	}
+	} // close doesPersonExist
 
 
 	public models.person function getPerson() {
@@ -64,17 +65,17 @@ component output="false" displayname="personService" extends="base"  {
 		}
 
 		return _object;
-	}
+	} // close editPerson
 
 
 	public models.person function editPersonAndSave() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		return this.saveObject(this.editPerson(ARGUMENTS));
-	}
+	} // close editPersonAndSave
 
 
 	public void function removePerson() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		this.removeObject(this.getPerson(ARGUMENTS));
-	}
+	} // close removePerson
 }
