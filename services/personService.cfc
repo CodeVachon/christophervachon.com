@@ -42,7 +42,17 @@ component output="false" displayname="personService" extends="base"  {
 
 	public models.person function editPerson() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
-		return this.setValuesInObject(this.getPerson(ARGUMENTS),ARGUMENTS);
+		var _object = this.setValuesInObject(this.getPerson(ARGUMENTS),ARGUMENTS);
+
+		if (structKeyExists(ARGUMENTS,"emailAddress")) {
+			if (!_object.hasEmailAddress(ARGUMENTS.emailAddress)) {
+				var _emailAddress = entityNew("emailaddress");
+				_emailAddress.setEmailAddress(ARGUMENTS.emailaddress);
+				_object.addContactInformation(_emailAddress);
+			}
+		}
+
+		return _object;
 	}
 
 
