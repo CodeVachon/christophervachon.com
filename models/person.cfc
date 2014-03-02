@@ -25,6 +25,8 @@ component output="false" displayname="person" extends="ormbase" persistent="true
 		if (!structKeyExists(VARIABLES,"firstName")) { VARIABLES["firstName"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"lastName")) { VARIABLES["lastName"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"password")) { VARIABLES["password"] = javaCast("null",""); }
+
+		if (!structKeyExists(VARIABLES,"contactInformation")) { VARIABLES["contactInformation"] = []; }
 	}
 
 
@@ -41,6 +43,7 @@ component output="false" displayname="person" extends="ormbase" persistent="true
 				for (var _info in this.getContactInformation()) {
 					if ((_info.getType() == "emailAddress") && (_info.getEmailAddress() == _emailAddress)) { return true; }
 				}
+				return false;
 			} else {
 				throw("invalid Email Address [#_emailAddress#]");
 			}

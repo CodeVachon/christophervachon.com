@@ -44,8 +44,8 @@ component output="false" displayname="ormbase" extends="base" mappedSuperClass="
 	public any function getProperty(required string propertyName) hint="returns the value of the specified property" {
 		// I provide functionality to dynamically get a property value 
 		if (this.hasProperty(ARGUMENTS.propertyName)) {
-			if (isDefined("variables.#ARGUMENTS.propertyName#")) {
-				return variables[ARGUMENTS.propertyName];
+			if (isDefined("VARIABLES.#ARGUMENTS.propertyName#")) {
+				return VARIABLES[ARGUMENTS.propertyName];
 			} else {
 				return javaCast("null","");
 			}
@@ -61,9 +61,9 @@ component output="false" displayname="ormbase" extends="base" mappedSuperClass="
 		}
 		if (this.hasProperty(ARGUMENTS.propertyName)) {
 			if (!len(ARGUMENTS.value)) {
-				variables[ARGUMENTS.propertyName] =  javaCast("null", 0);
+				VARIABLES[ARGUMENTS.propertyName] =  javaCast("null", 0);
 			} else {
-				variables[ARGUMENTS.propertyName] = ARGUMENTS.value;
+				VARIABLES[ARGUMENTS.propertyName] = ARGUMENTS.value;
 			}
 		} else {
 			throw("Property [#ARGUMENTS.propertyName#] does not exists");
