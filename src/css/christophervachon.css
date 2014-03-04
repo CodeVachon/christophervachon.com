@@ -4421,7 +4421,9 @@ a.thumbnail.active {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+.alert h3,
 .alert h4 {
+  font-size: 28px;
   margin-top: 0;
   color: inherit;
 }
@@ -5038,6 +5040,9 @@ a.list-group-item-danger.active:focus {
 .well blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
+}
+.well h3:first-child {
+  margin-top: 0;
 }
 .well-lg {
   padding: 24px;
