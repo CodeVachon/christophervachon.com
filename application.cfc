@@ -27,7 +27,10 @@ component extends="frameworks.org.corfield.framework" {
 		generateSES = true,
 		SESOmitIndex = true,
 		applicationKey = 'fw1',
-		reloadApplicationOnEveryRequest = true
+		reloadApplicationOnEveryRequest = true,
+		routes = [
+			{"/blog/:year/:month/:day/:title"="/blog/view/articleDate/:year-:month-:day/title/:title"}
+		]
 	};
 
 
@@ -64,7 +67,7 @@ component extends="frameworks.org.corfield.framework" {
 	}
 
 
-	public string function onMissingView( required struct rc ) {}
+	//public string function onMissingView( required struct rc ) {}
 
 
 	public void function before( required struct rc) {

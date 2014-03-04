@@ -33,8 +33,22 @@ component output="false" displayname="article" extends="ormbase" table="articles
 	}
 
 
+	public string function getEncodedTitle() {
+		return urlEncodeValue(VARIABLES.title);
+	}
+
+
+	public string function getURI() {
+		if (arrayLen(VARIABLES["uriStrings"]) == 0) {
+			return "";
+		} else {
+			return VARIABLES["uriStrings"][arrayLen(VARIABLES["uriStrings"])];
+		}
+	}
+
+
 	public void function preInsert() hint="call before this being inserted" {
-		arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#month(VARIABLES.publicationDate)#/#urlEncodeValue(VARIABLES.title)#");
+		arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#dateFormat(VARIABLES.publicationDate,"mm")#/#dateFormat(VARIABLES.publicationDate,"dd")#/#this.getEncodedTitle()#");
 	}
 	public void function preUpdate(Struct oldData) hint="call before this being updated" {
 		super.preUpdate(ARGUMENTS.oldData);
@@ -43,7 +57,7 @@ component output="false" displayname="article" extends="ormbase" table="articles
 			(VARIABLES.publicationDate != ARGUMENTS.oldData.publicationDate) ||
 			(VARIABLES.title != ARGUMENTS.oldData.title)
 		) {
-			arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#month(VARIABLES.publicationDate)#/#urlEncodeValue(VARIABLES.title)#");
+			arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#dateFormat(VARIABLES.publicationDate,"mm")#/#dateFormat(VARIABLES.publicationDate,"dd")#/#this.getEncodedTitle()#");
 		}
 	}
 }

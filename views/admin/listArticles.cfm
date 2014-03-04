@@ -20,7 +20,7 @@
 		<tbody>
 			<cfloop array="#RC.articles#" index="LOCAL.article">
 				<tr>
-					<td>#LOCAL.article.getTitle()#</td>
+					<td><a href='/blog/#LOCAL.article.getURI()#'>#LOCAL.article.getTitle()#</a></td>
 					<td>#dateFormat(LOCAL.article.getPublicationDate(),"mmm d yyyy")#</td>
 					<td>
 						<div class='btn-group btn-group-xs pull-right'>

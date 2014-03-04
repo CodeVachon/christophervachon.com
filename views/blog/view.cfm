@@ -1,0 +1,12 @@
+<cfoutput>
+	<article>
+		<header>
+			<h2>#RC.article.getTitle()#</h2>
+		</header>
+		<section>
+			#RC.article.getBody()#
+		</section>
+		<footer>
+		</footer>
+	</article>
+</cfoutput>
