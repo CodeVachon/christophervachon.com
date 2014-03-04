@@ -12,6 +12,17 @@ component extends="frameworks.org.corfield.framework" {
 	this.sessionManagement = true;
 	this.sessionTimeout = CreateTimespan(0,0,20,0);
 
+	this.datasource = "cmv";
+	this.ormEnabled = true;
+	this.ormSettings = {
+		dbcreate = ((this.getEnvironment() == "dev")?"update":"none"),
+		eventHandling = true,
+		cfclocation = 'models',
+		flushatrequestend = false,
+		namingstrategy = "smart",
+		dialect = "MySQL"
+	};
+
 	VARIABLES.framework = {
 		generateSES = true,
 		SESOmitIndex = true,
@@ -33,6 +44,16 @@ component extends="frameworks.org.corfield.framework" {
 
 
 	public void function setupRequest() {
+		if (isFrameworkReloadRequest()) {
+			ORMClearSession();
+			ORMReload();
+		}
+
+		REQUEST.CONTEXT.security = new services.security();
+		REQUEST.CONTEXT.validation = new services.validationService();
+
+		REQUEST.CONTEXT.security.cookieSignIn();
+
 		REQUEST.CONTEXT.template = new models.template();
 		REQUEST.CONTEXT.template.setSiteName("Christopher Vachon");
 		REQUEST.CONTEXT.template.addFile("christophervachon.min.css");
@@ -44,4 +65,9 @@ component extends="frameworks.org.corfield.framework" {
 
 
 	public string function onMissingView( required struct rc ) {}
+
+
+	public void function before( required struct rc) {
+		RC.template.addPageCrumb("Home","/");
+	}
 }

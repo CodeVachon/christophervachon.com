@@ -36,33 +36,43 @@
 					</div>
 					<div class="collapse navbar-collapse" id="fixed-navigation">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href='/'>Home</a></li>
+							<li<cfif RC.action EQ 'main.default'> class="active"</cfif>><a href='/'>Home</a></li>
 							<li class=""><a href='/'>About Me</a></li>
 							<li class=""><a href='/'>Blog</a></li>
 							<li class=""><a href='/'>Contact</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
-								<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li class="divider"></li>
-									<li><a href="##">Logout</a></li>
-								</ul>
-							</li>
-						</ul>
+						<cfif RC.security.checkPermission("siteAdmin")>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="#buildURL('admin.editPerson')#/personID/#SESSION.member.personID#">Edit Details</a></li>
+										<li class="divider"></li>
+										<li><a href="#buildURL('admin.logout')#">Logout</a></li>
+									</ul>
+								</li>
+							</ul>
+						</cfif>
 					</div>
 				</div>
 			</nav>
 		</div>
 		<div class='container'>
-			<header>
+			<header class='sr-only'>
 				<h1>#RC.template.getSiteName()#</h1>
 			</header>
 			<div class='row'>
-				<section class='col-xs-12 col-md-8'>
+				<section class='col-xs-12 col-sm-8'>
+					<cfif RC.template.getPageCrumbCount() GT 1>
+						<ol class="breadcrumb">
+							<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
+								<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+							</cfloop>
+						</ol>
+					</cfif>
 					#body#
 				</section>
-				<section class='col-xs-12 col-md-offset-1 col-md-3'>
+				<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
 					sidebar
 				</section>
 			</div>
