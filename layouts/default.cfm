@@ -46,6 +46,7 @@
 								<li class="dropdown">
 									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
 									<ul class="dropdown-menu">
+										<li><a href="#buildURL('admin')#">Admin</a></li>
 										<li><a href="#buildURL('admin.editPerson')#/personID/#SESSION.member.personID#">Edit Details</a></li>
 										<li class="divider"></li>
 										<li><a href="#buildURL('admin.logout')#">Logout</a></li>
