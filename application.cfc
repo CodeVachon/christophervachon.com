@@ -52,6 +52,8 @@ component extends="frameworks.org.corfield.framework" {
 		REQUEST.CONTEXT.security = new services.security();
 		REQUEST.CONTEXT.validation = new services.validationService();
 
+		REQUEST.CONTEXT.security.cookieSignIn();
+
 		REQUEST.CONTEXT.template = new models.template();
 		REQUEST.CONTEXT.template.setSiteName("Christopher Vachon");
 		REQUEST.CONTEXT.template.addFile("christophervachon.min.css");

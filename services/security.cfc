@@ -31,11 +31,30 @@ component output="false" displayname="security"  {
 
 		if (_person.getPassword() == hash(ARGUMENTS.password,"md5")) {
 			this.loadPersonIntoSession(_person);
+
+			if (structKeyExists(ARGUMENTS,"rememberMe") && ARGUMENTS.rememberMe) {
+				COOKIE["signIn1"] = _person.getID();
+				COOKIE["signIn2"] = _person.getContactInformation()[1].getID();
+			}
+
 			return true;
 		} else {
 			return false;
 		}
 	} // close signIn
+
+
+	public void function cookieSignIn() {
+		if (structKeyExists(COOKIE,"signIn1") && structKeyExists(COOKIE,"signIn2")) {
+			var personService = new services.personService();
+			var _person = personService.getPerson(personID=COOKIE["signIn1"]);
+			for (var _contactInfo in _person.getContactInformation()) {
+				if (_contactInfo.getID() == COOKIE["signIn2"]) {
+					this.loadPersonIntoSession(_person);
+				}
+			}
+		}
+	}
 
 
 	public void function loadPersonIntoSession(required models.person user) {

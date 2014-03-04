@@ -115,6 +115,8 @@ component output="false" displayname=""  {
 			if (arrayLen(errors) > 0) {
 				RC.validationError = errors;
 			} else {
+				param name="RC.rememberMe" default="off";
+				RC.rememberMe = ((RC.rememberMe == "on")?true:false);
 				VARIABLES.fw.service( 'security.signIn', 'didSignIn');
 			}
 		}

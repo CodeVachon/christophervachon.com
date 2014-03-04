@@ -36,7 +36,7 @@
 					</div>
 					<div class="collapse navbar-collapse" id="fixed-navigation">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href='/'>Home</a></li>
+							<li<cfif RC.action EQ 'main.default'> class="active"</cfif>><a href='/'>Home</a></li>
 							<li class=""><a href='/'>About Me</a></li>
 							<li class=""><a href='/'>Blog</a></li>
 							<li class=""><a href='/'>Contact</a></li>
@@ -58,11 +58,11 @@
 			</nav>
 		</div>
 		<div class='container'>
-			<header>
-				<h1>Blog of #RC.template.getSiteName()#</h1>
+			<header class='sr-only'>
+				<h1>#RC.template.getSiteName()#</h1>
 			</header>
 			<div class='row'>
-				<section class='col-xs-12 col-md-8'>
+				<section class='col-xs-12 col-sm-8'>
 					<cfif RC.template.getPageCrumbCount() GT 1>
 						<ol class="breadcrumb">
 							<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
@@ -72,7 +72,7 @@
 					</cfif>
 					#body#
 				</section>
-				<section class='col-xs-12 col-md-offset-1 col-md-3 well'>
+				<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
 					sidebar
 				</section>
 			</div>
