@@ -26,7 +26,7 @@ component output="false" displayname="articleService" extends="base"  {
 	} // close getArticles
 
 
-	public models.person function getArticle() {
+	public models.article function getArticle() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 
 		var _object = javaCast("null","");
@@ -39,13 +39,13 @@ component output="false" displayname="articleService" extends="base"  {
 	} // close getArticle
 
 
-	public models.emailAddress function editArticle() {
+	public models.article function editArticle() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		return this.setValuesInObject(this.getArticle(ARGUMENTS),ARGUMENTS);
 	} // close editArticle
 
 
-	public models.emailAddress function editArticleAndSave() {
+	public models.article function editArticleAndSave() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		return this.saveObject(this.editArticle(ARGUMENTS));
 	} // close editArticle

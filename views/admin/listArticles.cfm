@@ -10,19 +10,18 @@
 		</thead>
 		<tfoot>
 			<tr>
-				<td>
+				<td colspan='3'>
 					<div class='btn-group'>
 						<a href='#buildURL('admin.editArticle')#' class='btn btn-default'>Add New</a>
 					</div>
 				</td>
-				<td></td>
 			</tr>
 		</tfoot>
 		<tbody>
 			<cfloop array="#RC.articles#" index="LOCAL.article">
 				<tr>
 					<td>#LOCAL.article.getTitle()#</td>
-					<td></td>
+					<td>#dateFormat(LOCAL.article.getPublicationDate(),"mmm d yyyy")#</td>
 					<td>
 						<div class='btn-group btn-group-xs pull-right'>
 							<a href='#buildURL('admin.editArticle')#/articleID/#LOCAL.article.getID()#' class='btn btn-default'>Edit</a>

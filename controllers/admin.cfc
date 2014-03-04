@@ -143,5 +143,43 @@ component output="false" displayname=""  {
 		RC.template.addPageCrumb("List Articles","/admin/listArticles");
 		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
 	} // listArticles
+
+
+	public void function startEditArticle( required struct rc ) {
+		if (structKeyExists(RC,"btnSave")) {
+			var errors = [];
+			if (!structKeyExists(RC,"title") || !RC.validation.doesMatchMinStringRequirements(RC.title)) {
+				arrayAppend(errors,"Invalid Title [#RC.title#]");
+			}
+			if (!structKeyExists(RC,"summary") || !RC.validation.doesMatchMinStringRequirements(RC.summary)) {
+				arrayAppend(errors,"Invalid Summary [#RC.summary#]");
+			}
+			if (!structKeyExists(RC,"body") || !RC.validation.doesMatchMinStringRequirements(RC.body)) {
+				arrayAppend(errors,"Invalid Body [#RC.body#]");
+			}
+			if (arrayLen(errors) > 0) {
+				RC.validationError = errors;
+			} else {
+				VARIABLES.fw.service( 'articleService.editArticleAndSave', 'article');
+			}
+		} else if (structKeyExists(RC,"articleID")) {
+			VARIABLES.fw.service( 'articleService.getArticle', 'article');
+		}
+	}
+	public void function editArticle( required struct rc ) {
+		RC.template.addPageCrumb("List Articles","/admin/listArticles");
+		RC.template.addPageCrumb("Edit Article","/admin/editArticle");
+	}
+	public void function endEditArticle( required struct rc ) {
+		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
+			VARIABLES.fw.redirect(action='admin.listArticles');
+		} else if (structKeyExists(RC,"article")) {
+			for (var property in RC.article.getPropertyStruct()) {
+				if (!structKeyExists(RC,property)) {
+					RC[property] = RC.article.getProperty(property);
+				}
+			}
+		}
+	} // close editArticle
 }
 
