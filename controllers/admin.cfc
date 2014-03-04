@@ -141,6 +141,7 @@ component output="false" displayname=""  {
 
 	public void function listArticles( required struct rc ) {
 		RC.template.addPageCrumb("List Articles","/admin/listArticles");
+		RC.notBeforeDate = dateAdd("y",5,now());
 		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
 	} // listArticles
 
