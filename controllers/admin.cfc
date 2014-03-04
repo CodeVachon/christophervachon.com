@@ -137,5 +137,11 @@ component output="false" displayname=""  {
 	public void function endLogout( required struct rc ) {
 		VARIABLES.fw.redirect(action='admin');
 	} // close logout
+
+
+	public void function listArticles( required struct rc ) {
+		RC.template.addPageCrumb("List Articles","/admin/listArticles");
+		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
+	} // listArticles
 }
 
