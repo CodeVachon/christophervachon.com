@@ -37,8 +37,13 @@ component output="false" displayname="article" extends="ormbase" table="articles
 		arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#month(VARIABLES.publicationDate)#/#urlEncodeValue(VARIABLES.title)#");
 	}
 	public void function preUpdate(Struct oldData) hint="call before this being updated" {
-		// this automatcially sets the lastUpdated timestamp before updating the object 
 		super.preUpdate(ARGUMENTS.oldData);
-		arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#month(VARIABLES.publicationDate)#/#urlEncodeValue(VARIABLES.title)#");
+
+		if (
+			(VARIABLES.publicationDate != ARGUMENTS.oldData.publicationDate) ||
+			(VARIABLES.title != ARGUMENTS.oldData.title)
+		) {
+			arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#month(VARIABLES.publicationDate)#/#urlEncodeValue(VARIABLES.title)#");
+		}
 	}
 }
