@@ -70,7 +70,9 @@ component extends="frameworks.org.corfield.framework" {
 	}
 
 
-	//public string function onMissingView( required struct rc ) {}
+	public string function onMissingView( required struct rc ) {
+		return view( 'main/404' );
+	}
 
 
 	public void function before( required struct rc) {
