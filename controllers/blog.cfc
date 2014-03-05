@@ -18,6 +18,38 @@ component output="false" displayname="blog"  {
 	} // close before
 
 
+	public void function default( required struct rc ) {
+		if (structKeyExists(RC,"year")) { 
+			RC.template.addPageCrumb(RC.year,"/blog/#RC.year#"); 
+		}
+		if (structKeyExists(RC,"month")) { 
+			RC.template.addPageCrumb(monthAsString(RC.month),"/blog/#RC.year#/#RC.month#"); 
+		}
+
+		if (structKeyExists(RC,"year")) {
+			if (structKeyExists(RC,"month")) {
+				if (structKeyExists(RC,"day")) {
+					RC.startDateRange = createDate(RC.year,RC.month,RC.day);
+					RC.endDateRange = createDate(RC.year,RC.month,RC.day);
+				} else {
+					RC.startDateRange = createDate(RC.year,RC.month,1);
+					RC.endDateRange = createDate(RC.year,RC.month,daysInMonth(RC.startDateRange));
+				}
+			} else {
+				RC.startDateRange = createDate(RC.year,1,1);
+				RC.endDateRange = createDate(RC.year,12,31);
+			}
+		} else {
+			RC.startDateRange = createDate(year(now())-5,1,1);
+			RC.endDateRange = createDate(year(now()),12,31);
+		}
+
+		if (RC.endDateRange > now()) { RC.endDateRange = now(); }
+
+		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
+	}
+
+
 	public void function startView( required struct rc ) {
 		VARIABLES.fw.service( 'articleService.getArticle', 'article');
 	}

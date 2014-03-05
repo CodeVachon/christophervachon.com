@@ -29,7 +29,10 @@ component extends="frameworks.org.corfield.framework" {
 		applicationKey = 'fw1',
 		reloadApplicationOnEveryRequest = true,
 		routes = [
-			{"/blog/:year/:month/:day/:title"="/blog/view/articleDate/:year-:month-:day/title/:title"}
+			{"/blog/:year/:month/:day/:title"="/blog/view/articleDate/:year-:month-:day/title/:title"},
+			{"/blog/:year/:month/:day"="/blog/default/year/:year/month/:month/day/:day"},
+			{"/blog/:year/:month"="/blog/default/year/:year/month/:month"},
+			{"/blog/:year"="/blog/default/year/:year"}
 		]
 	};
 

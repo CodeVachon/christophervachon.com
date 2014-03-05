@@ -23,7 +23,11 @@ component output="false" displayname="articleService" extends="base"  {
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
-		return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+		if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
+			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate >= :startDateRange AND a.publicationDate <= :endDateRange AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {startDateRange=dateFormat(ARGUMENTS.startDateRange,"yyyy-mm-dd 00:00:00.0000"), endDateRange=dateFormat(ARGUMENTS.endDateRange,"yyyy-mm-dd 23:59:59.9999"), isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+		} else {
+			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+		}
 	} // close getArticles
 
 
