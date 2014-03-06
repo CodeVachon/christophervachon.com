@@ -1,0 +1,35 @@
+@import "datepicker-build";
+@import "datepicker";
+@import "timepicker";
+
+.page-content {
+	h2:first-child {
+		margin-top: 0;
+	}
+
+	.blog-post {
+		&.blog-summary {
+			margin: 1em 0;
+			border-top: 1px #ccc solid;
+			padding-top: 1em;
+			&:first-of-type {
+				border-top: none;
+				padding-top: 0;
+			}
+		}
+		header {
+			margin-bottom: 0.7em;
+			h2 { margin-bottom: 0; }
+			p { 
+				margin: 0; 
+				&.title {
+					font-size: 1.3em;
+				}
+				&.date {
+					font-size: 0.8em;
+					color: @breadcrumb-active-color;
+				}
+			}
+		}
+	}
+}

@@ -16,11 +16,11 @@
 		</div>
 		<div class="form-group">
 			<label for="body">Article Body</label>
-			<textarea name="body" placeholder="Article Body" class="form-control" rows="5">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
+			<textarea name="body" placeholder="Article Body" class="form-control" data-wysiwyg="full" rows="5">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
 		</div>
 		<div class="form-group">
 			<label for="publicationDate">Publication Date</label>
-			<input type="text" class="form-control" name="publicationDate" placeholder="#dateFormat(now(),"mmm d yyyy")#" value="#((structKeyExists(RC,"publicationDate"))?dateFormat(RC.publicationDate,"mmm d yyyy"):"")#" />
+			<input type="text" class="form-control" name="publicationDate" placeholder="#dateFormat(now(),"yyyy/mm/dd")#" data-datepicker='' value="#((structKeyExists(RC,"publicationDate"))?dateFormat(RC.publicationDate,"yyyy/mm/dd"):"")#" />
 		</div>
 		<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
 	</form>

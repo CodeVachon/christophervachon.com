@@ -63,7 +63,7 @@
 				<h1>#RC.template.getSiteName()#</h1>
 			</header>
 			<div class='row'>
-				<section class='col-xs-12 col-sm-8'>
+				<section class='col-xs-12 col-sm-8 page-content'>
 					<cfif RC.template.getPageCrumbCount() GT 1>
 						<ol class="breadcrumb">
 							<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">

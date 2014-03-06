@@ -170,10 +170,11 @@ component output="false" displayname=""  {
 	public void function editArticle( required struct rc ) {
 		RC.template.addPageCrumb("List Articles","/admin/listArticles");
 		RC.template.addPageCrumb("Edit Article","/admin/editArticle");
+		RC.template.addFile('/includes/js/formOptions.js');
 	}
 	public void function endEditArticle( required struct rc ) {
 		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
-			VARIABLES.fw.redirect(action='admin.listArticles');
+			location(url='/blog/#RC.article.getURI()#',addToken=false);
 		} else if (structKeyExists(RC,"article")) {
 			for (var property in RC.article.getPropertyStruct()) {
 				if (!structKeyExists(RC,property)) {
