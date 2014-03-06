@@ -650,6 +650,9 @@
     width: 100%;
   }
 }
+.page-content {
+  margin-bottom: 2em;
+}
 .page-content h2:first-child {
   margin-top: 0;
 }
