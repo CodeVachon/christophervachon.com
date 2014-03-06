@@ -74,7 +74,7 @@
 					#body#
 				</section>
 				<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
-					sidebar
+					#view('blog/articleCountByDate')#
 				</section>
 			</div>
 			<footer>

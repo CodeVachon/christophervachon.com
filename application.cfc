@@ -77,5 +77,11 @@ component extends="frameworks.org.corfield.framework" {
 
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Home","/");
+		service( 'articleService.getArticlePublishedBookMarks', 'blogArticleDateCounts');
+	}
+
+
+	public void function after( required struct rc ) {
+		
 	}
 }

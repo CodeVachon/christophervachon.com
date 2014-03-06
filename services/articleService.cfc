@@ -67,4 +67,43 @@ component output="false" displayname="articleService" extends="base"  {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
 		return this.saveObject(this.editArticle(ARGUMENTS));
 	} // close editArticle
+
+
+	public numeric function getArticleCountInTimeSpan(required date startDate, required date endDate) {
+		var _startDate = createDateTime(year(ARGUMENTS.startDate),month(ARGUMENTS.startDate),day(ARGUMENTS.startDate),0,0,0);
+		var _endDate = createDateTime(year(ARGUMENTS.endDate),month(ARGUMENTS.endDate),day(ARGUMENTS.endDate),23,59,59);
+		return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a WHERE a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{startDate=_startDate,endDate=_endDate},true);
+	}
+
+
+	public array function getArticlePublishedBookMarks() {
+		var _bookmarks = [];
+		var _datesMinAndMAx = ORMExecuteQuery("SELECT DISTINCT min(a.publicationDate) AS minDate, max(a.publicationDate) AS maxDate FROM article a WHERE a.isDeleted=false",{},true);
+		var _startDate = _datesMinAndMAx[1];
+		var _endDate = _datesMinAndMAx[2];
+
+		for (var _year = year(_endDate); _year >= year(_startDate); _year--) {
+			var _months = [];
+			var _thisYearStart = createDate(_year,1,1);
+			var _thisYearEnd = createDate(_year,12,31);
+
+			if (_thisYearStart < _startDate) { _thisYearStart = _startDate; }
+			if (_thisYearEnd > _endDate) { _thisYearEnd = _endDate; }
+
+			for (var _month = month(_thisYearEnd); _month >= month(_thisYearStart); _month--) {
+				var _monthStart = createDate(_year, _month, 1);
+				var _monthEnd = createDate(_year, _month, daysInMonth(_monthStart));
+				if (_monthEnd > now()) { _monthEnd = now(); }
+
+				var _articleCount = this.getArticleCountInTimeSpan(_monthStart,_monthEnd);
+				arrayAppend(_months,{month = dateFormat(_monthStart,"mmmm"), articleCount = _articleCount, date=_monthStart});
+			}
+
+			if (_thisYearEnd > now()) { _thisYearEnd = now(); }
+			var _articleCount = this.getArticleCountInTimeSpan(_thisYearStart,_thisYearEnd);
+			arrayAppend(_bookmarks,{year=_year,months=_months,articleCount = _articleCount,date=_thisYearStart});
+		}
+
+		return _bookmarks;
+	}
 }

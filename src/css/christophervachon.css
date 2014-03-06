@@ -678,6 +678,36 @@
   font-size: 0.8em;
   color: #999999;
 }
+h1:first-of-type,
+h2:first-of-type,
+h3:first-of-type,
+h4:first-of-type,
+h5:first-of-type,
+h6:first-of-type {
+  margin-top: 0;
+}
+.archives {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.archives li {
+  margin-bottom: 1em;
+}
+.archives li a {
+  font-size: 1.3em;
+  color: #333333;
+}
+.archives li ul {
+  list-style: none;
+}
+.archives li ul li {
+  margin-bottom: 0;
+}
+.archives li ul li a {
+  font-size: 1em;
+  color: #428bca;
+}
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
