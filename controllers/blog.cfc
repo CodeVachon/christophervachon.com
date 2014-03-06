@@ -19,6 +19,10 @@ component output="false" displayname="blog"  {
 
 
 	public void function default( required struct rc ) {
+
+		RC.itemsPerPage = 2;
+		param name="RC.page" default="1";
+
 		if (structKeyExists(RC,"year")) { 
 			RC.template.addPageCrumb(RC.year,"/blog/#RC.year#"); 
 		}
@@ -47,6 +51,7 @@ component output="false" displayname="blog"  {
 		if (RC.endDateRange > now()) { RC.endDateRange = now(); }
 
 		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
+		VARIABLES.fw.service( 'articleService.getArticleCountInTimeSpan', 'articleCount', {startDate=RC.startDateRange,endDate=RC.endDateRange});
 	}
 
 
