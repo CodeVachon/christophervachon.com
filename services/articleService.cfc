@@ -37,7 +37,12 @@ component output="false" displayname="articleService" extends="base"  {
 		var _object = javaCast("null","");
 		if (structKeyExists(ARGUMENTS,"articleId")) { _object = ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.id=:id",{id=ARGUMENTS["articleId"]},true); }
 		else if (structKeyExists(ARGUMENTS,"articleDate")) {
-			var _articles = ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate=:articleDate",{articleDate=createDate(listGetAt(ARGUMENTS.articleDate,1,"-"),listGetAt(ARGUMENTS.articleDate,2,"-"),listGetAt(ARGUMENTS.articleDate,3,"-"))},false);
+			var _uriString = "#listGetAt(ARGUMENTS.articleDate,1,"-")#/#listGetAt(ARGUMENTS.articleDate,2,"-")#/#listGetAt(ARGUMENTS.articleDate,3,"-")#/#ARGUMENTS.title#";
+			var _articles = ORMExecuteQuery("SELECT DISTINCT a FROM article a JOIN a.uriStrings s WHERE s=:uriString",{uriString=_uriString},false);
+			if (arrayLen(_articles) == 0) {
+				_articles = ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate=:articleDate",{articleDate=createDate(listGetAt(ARGUMENTS.articleDate,1,"-"),listGetAt(ARGUMENTS.articleDate,2,"-"),listGetAt(ARGUMENTS.articleDate,3,"-"))},false);
+			}
+
 			for (var _artcile in _articles) {
 				if (_artcile.getEncodedTitle() == ARGUMENTS.title) {
 					_object = _artcile;
