@@ -24,11 +24,14 @@ component output="false" displayname="blog"  {
 
 		var cause404 = false;
 
-		if (structKeyExists(RC,"page") && isNumeric(RC.page)) { 
-			if (RC.page < 1) { RC.page = 1; }
-			RC.page = int(RC.page);
-			if (RC.page > 1) {
-				RC.template.addPageCrumb("Page #RC.page#",""); 
+		if (structKeyExists(RC,"page")) { 
+			if (isNumeric(RC.page) && (RC.page >= 1)) {
+				RC.page = int(RC.page);
+				if (RC.page > 1) {
+					RC.template.addPageCrumb("Page #RC.page#",""); 
+				}
+			} else {
+				cause404 = true;
 			}
 		} else { 
 			RC.page = 1; 
@@ -74,7 +77,15 @@ component output="false" displayname="blog"  {
 			VARIABLES.fw.service( 'articleService.getArticles', 'articles');
 			VARIABLES.fw.service( 'articleService.getArticleCountInTimeSpan', 'articleCount', {startDate=RC.startDateRange,endDate=RC.endDateRange});
 		}
-	} // close default
+	} 
+	public void function endDefault( required struct rc ) {
+		if (structKeyExists(RC,"articleCount")) {
+			var pageCount = ceiling(RC.articleCount/RC.itemsPerPage);
+			if (RC.page > pageCount) {
+				VARIABLES.fw.setView("main.404");
+			}
+		}
+	}// close default
 
 
 	public void function startView( required struct rc ) {
