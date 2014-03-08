@@ -1,0 +1,58 @@
+@import "datepicker-build";
+@import "datepicker";
+@import "timepicker";
+
+.page-content {
+	margin-bottom: 2em;
+
+	h2:first-child {
+		margin-top: 0;
+	}
+
+	.blog-post {
+		&.blog-summary {
+			margin: 1em 0;
+			border-top: 1px #ccc solid;
+			padding-top: 1em;
+			&:first-of-type {
+				border-top: none;
+				padding-top: 0;
+			}
+		}
+		header {
+			margin-bottom: 0.7em;
+			h2 { margin-bottom: 0; }
+			p { 
+				margin: 0; 
+				&.title {
+					font-size: 1.3em;
+				}
+				&.date {
+					font-size: 0.8em;
+					color: @breadcrumb-active-color;
+				}
+			}
+		}
+	}
+}
+
+h1,h2,h3,h4,h5,h6 {
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+
+.archives {
+	ul {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		box-shadow: none;
+		font-size: 0.8em;
+		li {
+			margin: 0;
+			padding: 0.2em 0;
+			border: none;
+		}
+	}
+}

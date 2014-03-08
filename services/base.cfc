@@ -9,7 +9,7 @@ component displayname="baseService" hint="I am the base of all services" {
 				transaction action="commit";
 			}
 		} catch (any e) {
-			//writeDump(e); abort;
+			writeDump(e); abort;
 			throw("Error while trying to save [#ARGUMENTS.objectToSave.getClassName()#]")
 		}
 		return ARGUMENTS.objectToSave;

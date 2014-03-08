@@ -38,7 +38,7 @@
 						<ul class="nav navbar-nav">
 							<li<cfif RC.action EQ 'main.default'> class="active"</cfif>><a href='/'>Home</a></li>
 							<li class=""><a href='/'>About Me</a></li>
-							<li class=""><a href='/'>Blog</a></li>
+							<li<cfif listGetAt(RC.action,1,".") EQ 'blog'> class="active"</cfif>><a href='#buildURL('blog')#'>Blog</a></li>
 							<li class=""><a href='/'>Contact</a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
@@ -46,6 +46,7 @@
 								<li class="dropdown">
 									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
 									<ul class="dropdown-menu">
+										<li><a href="#buildURL('admin')#">Admin</a></li>
 										<li><a href="#buildURL('admin.editPerson')#/personID/#SESSION.member.personID#">Edit Details</a></li>
 										<li class="divider"></li>
 										<li><a href="#buildURL('admin.logout')#">Logout</a></li>
@@ -62,7 +63,7 @@
 				<h1>#RC.template.getSiteName()#</h1>
 			</header>
 			<div class='row'>
-				<section class='col-xs-12 col-sm-8'>
+				<section class='col-xs-12 col-sm-8 page-content'>
 					<cfif RC.template.getPageCrumbCount() GT 1>
 						<ol class="breadcrumb">
 							<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
@@ -73,7 +74,7 @@
 					#body#
 				</section>
 				<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
-					sidebar
+					#view('blog/articleCountByDate')#
 				</section>
 			</div>
 			<footer>
