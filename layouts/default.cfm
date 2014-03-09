@@ -1,4 +1,4 @@
-<cfcontent reset="true" type="text/html" /><cfoutput><!DOCTYPE html>
+<cfcontent reset="true" type="text/html" /><!DOCTYPE html><cfoutput>
 <html lang="en">
 	<head>
 		<title>#RC.template.getSiteTitle()#</title>
