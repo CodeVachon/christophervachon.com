@@ -24,19 +24,6 @@ component output="false" displayname="blog"  {
 
 		var cause404 = false;
 
-		if (structKeyExists(RC,"page")) { 
-			if (isNumeric(RC.page) && (RC.page >= 1)) {
-				RC.page = int(RC.page);
-				if (RC.page > 1) {
-					RC.template.addPageCrumb("Page #RC.page#",""); 
-				}
-			} else {
-				cause404 = true;
-			}
-		} else { 
-			RC.page = 1; 
-		}
-
 		if (structKeyExists(RC,"year")) {
 			if (isNumeric(RC.year) && (RC.year <= year(now()))) {
 				RC.template.addPageCrumb(RC.year,"/blog/#RC.year#"); 
@@ -67,6 +54,19 @@ component output="false" displayname="blog"  {
 		} else {
 			RC.startDateRange = createDate(year(now())-5,1,1);
 			RC.endDateRange = createDate(year(now()),12,31);
+		}
+
+		if (structKeyExists(RC,"page")) { 
+			if (isNumeric(RC.page) && (RC.page >= 1)) {
+				RC.page = int(RC.page);
+				if (RC.page > 1) {
+					RC.template.addPageCrumb("Page #RC.page#",""); 
+				}
+			} else {
+				cause404 = true;
+			}
+		} else { 
+			RC.page = 1; 
 		}
 
 		if (cause404) {
