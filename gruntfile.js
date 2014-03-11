@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
+		path: require('path'),
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
 			options: {
@@ -13,7 +14,7 @@ module.exports = function(grunt) {
 				src: ['gruntfile.js'],
 			},
 			sourceFiles: {
-				src: ['src/js/*.js'],
+				src: ['src<%= path.sep %>js<%= path.sep %>*.js'],
 			}
 		}, // close jshint
 		less: {
@@ -21,7 +22,7 @@ module.exports = function(grunt) {
 				options: {
 				},
 				files: {
-					"src/css/christophervachon.css": "src/less/bootstrap.less"
+					"src<%= path.sep %>css<%= path.sep %>christophervachon.css": "src<%= path.sep %>less<%= path.sep %>bootstrap.less"
 				}
 			}
 		}, // close less
@@ -30,13 +31,13 @@ module.exports = function(grunt) {
 				options: {
 					import: 2
 				},
-				src: ['src/css/*.css']
+				src: ['src<%= path.sep %>css<%= path.sep %>*.css']
 			}
 		}, // close csslint
 		cssmin: {
 			minify: {
 				files: {
-					'includes/css/christophervachon.min.css':['src/css/*.css','!src/css/*.min.css']
+					'includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>*.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
 				}
 			}
 		}, // close cssmin
@@ -44,9 +45,9 @@ module.exports = function(grunt) {
 			sourceFiles: {
 				files: [{
 					expand: true,
-					cwd: 'src/js/',
-					src: '**/*.js',
-					dest: 'includes/js'
+					cwd: 'src<%= path.sep %>js<%= path.sep %>',
+					src: '**<%= path.sep %>*.js',
+					dest: 'includes<%= path.sep %>js'
 				}]
 			}
 		}, // close uglify
@@ -59,14 +60,14 @@ module.exports = function(grunt) {
 				}
 			}, // close gruntfile
 			less: {
-				files: ['src/less/*.less'],
+				files: ['src<%= path.sep %>less<%= path.sep %>*.less'],
 				tasks: ['less:build','cssmin:minify'], //,'csslint:strict' -- csslint dosnt play well with bootstrap
 				options: {
 					spawn: false
 				}
 			}, // close less
 			jsfiles: {
-				files: ['src/js/*.js'],
+				files: ['src<%= path.sep %>js<%= path.sep %>*.js'],
 				tasks: ['jshint:sourceFiles','uglify:sourceFiles'],
 				options: {
 					spawn: false
