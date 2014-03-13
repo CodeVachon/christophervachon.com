@@ -19,11 +19,14 @@ component output="false" displayname="articleService" extends="base"  {
 		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "publicationDate DESC"; }
 		if (!structKeyExists(ARGUMENTS,"isDeleted")) { ARGUMENTS.isDeleted = false; }
 		if (!structKeyExists(ARGUMENTS,"notBeforeDate")) { ARGUMENTS.notBeforeDate = now(); }
+		if (!structKeyExists(ARGUMENTS,"tags")) { ARGUMENTS.tags = ""; }
 
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
-		if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
+ 		if (listLen(ARGUMENTS.tags) > 0) {
+			return ORMExecuteQuery("SELECT DISTINCT a FROM article a JOIN a.tags t WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted AND t.name IN (:tags) ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted, tags=listToArray(ARGUMENTS.tags)}, false, {maxResults=_maxResults,offset=_offset});
+		} else if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
 			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate >= :startDateRange AND a.publicationDate <= :endDateRange AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {startDateRange=dateFormat(ARGUMENTS.startDateRange,"yyyy-mm-dd 00:00:00.0000"), endDateRange=dateFormat(ARGUMENTS.endDateRange,"yyyy-mm-dd 23:59:59.9999"), isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
 		} else {
 			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
@@ -79,10 +82,17 @@ component output="false" displayname="articleService" extends="base"  {
 	} // close editArticle
 
 
-	public numeric function getArticleCountInTimeSpan(required date startDate, required date endDate) {
+	public numeric function getArticleCountInTimeSpan(required date startDate, required date endDate, string tags = "") {
+		if (!structKeyExists(ARGUMENTS,"tags")) { ARGUMENTS.tags = ""; }
+
 		var _startDate = createDateTime(year(ARGUMENTS.startDate),month(ARGUMENTS.startDate),day(ARGUMENTS.startDate),0,0,0);
 		var _endDate = createDateTime(year(ARGUMENTS.endDate),month(ARGUMENTS.endDate),day(ARGUMENTS.endDate),23,59,59);
-		return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a WHERE a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{startDate=_startDate,endDate=_endDate},true);
+
+		if (listLen(ARGUMENTS.tags) > 0) {
+			return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a JOIN a.tags t WHERE t.name in (:tags) AND a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{tags=listToArray(ARGUMENTS.tags),startDate=_startDate,endDate=_endDate},true);
+		} else {
+			return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a WHERE a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{startDate=_startDate,endDate=_endDate},true);
+		}
 	} // close getArticleCountInTimeSpan
 
 
@@ -126,13 +136,13 @@ component output="false" displayname="articleService" extends="base"  {
 
 		if (!structKeyExists(ARGUMENTS,"page")) { ARGUMENTS.page = 1; }
 		if (!structKeyExists(ARGUMENTS,"itemsPerPage")) { ARGUMENTS.itemsPerPage = 25; }
-		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "name"; }
+		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "name ASC"; }
 		if (!structKeyExists(ARGUMENTS,"isDeleted")) { ARGUMENTS.isDeleted = false; }
 
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
-		return ORMExecuteQuery("SELECT DISTINCT t FROM tag t WHERE t.isDeleted=:isDeleted ORDER BY t.#ARGUMENTS.orderBy# ASC", {isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+		return ORMExecuteQuery("SELECT DISTINCT t FROM tag t WHERE t.isDeleted=:isDeleted ORDER BY t.#ARGUMENTS.orderBy#", {isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
 	} // close getTags
 
 

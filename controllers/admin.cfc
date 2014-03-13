@@ -187,5 +187,44 @@ component output="false" displayname=""  {
 			}
 		}
 	} // close editArticle
+
+
+	public void function listTags( required struct rc ) {
+		RC.template.addPageCrumb("List Tags","/admin/listTags");
+		VARIABLES.fw.service( 'articleService.getTags', 'tags');
+	} // close listTags
+
+
+	public void function startEditTag( required struct rc ) {
+		if (structKeyExists(RC,"btnSave")) {
+			var errors = [];
+			if (!structKeyExists(RC,"name") || !RC.validation.doesMatchMinStringRequirements(RC.name)) {
+				arrayAppend(errors,"Invalid Tag Name [#RC.name#]");
+			}
+			if (arrayLen(errors) > 0) {
+				RC.validationError = errors;
+			} else {
+				VARIABLES.fw.service( 'articleService.editTagAndSave', 'tag');
+			}
+		} else if (structKeyExists(RC,"tagID")) {
+			VARIABLES.fw.service( 'articleService.getTag', 'tag');
+		}
+	}
+	public void function editTag( required struct rc ) {
+		RC.template.addPageCrumb("List Tags","/admin/listTags");
+		RC.template.addPageCrumb("Edit Tag","/admin/editTag");
+		RC.template.addFile('/includes/js/formOptions.js');
+	}
+	public void function endEditTag( required struct rc ) {
+		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
+			location(url='/admin/listTags',addToken=false);
+		} else if (structKeyExists(RC,"tag")) {
+			for (var property in RC.tag.getPropertyStruct()) {
+				if (!structKeyExists(RC,property)) {
+					RC[property] = RC.tag.getProperty(property);
+				}
+			}
+		}
+	} // close editTag
 }
 
