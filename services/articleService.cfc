@@ -42,12 +42,15 @@ component output="false" displayname="articleService" extends="base"  {
 			qryParts.clause &= "AND a.id NOT IN (:notArticleID) ";
 			qryParts.args.notArticleID = listToArray(ARGUMENTS.notArticleID);
 		}
-		if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
+		if (
+			(structKeyExists(ARGUMENTS,"startDateRange") && isDate(ARGUMENTS.startDateRange)) && 
+			(structKeyExists(ARGUMENTS,"endDateRange") && isDate(ARGUMENTS.endDateRange))
+		) {
 			qryParts.clause &= "AND a.publicationDate >= :startDateRange AND a.publicationDate <= :endDateRange ";
 			qryParts.args.startDateRange=dateFormat(ARGUMENTS.startDateRange,"yyyy-mm-dd 00:00:00.0000");
 			qryParts.args.endDateRange=dateFormat(ARGUMENTS.endDateRange,"yyyy-mm-dd 23:59:59.9999");
 		} else {
-			qryParts.clause &= "a.publicationDate <= :notBeforeDate ";
+			qryParts.clause &= "AND a.publicationDate <= :notBeforeDate ";
 			qryParts.args.notBeforeDate = ARGUMENTS.notBeforeDate;
 		}
 

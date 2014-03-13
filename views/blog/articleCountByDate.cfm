@@ -36,7 +36,7 @@
 				<cfloop array="#RC.mostUsedTags#" index="LOCAL.tag">
 					<li class='list-group-item'>
 						<span class="badge">#LOCAL.tag.getArticleCount()#</span>
-						<a href='/blog/tags/#LOCAL.tag.getName()#'>#LOCAL.tag.getName()#</a>
+						<a href='/blog/tags/#lcase(LOCAL.tag.getName())#'>#LOCAL.tag.getName()#</a>
 					</li>
 				</cfloop>
 			</ul>
