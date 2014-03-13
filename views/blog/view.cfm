@@ -9,7 +9,7 @@
 		</section>
 		<footer>
 			<cfif RC.security.checkPermission("siteAdmin")>
-				<div class='btn-group pull-right'>
+				<div class='btn-group btn-group-xs pull-right'>
 					<a href='#buildURL('admin.editArticle')#/articleID/#RC.article.getID()#' class='btn btn-default'>Edit</a>
 				</div>
 			</cfif>
@@ -19,8 +19,11 @@
 
 	<h2>Related Posts</h2>
 	<div class='row'>
+		<cfscript>
+			LOCAL.colspan = int(12/arrayLen(RC.relatedArticles));
+		</cfscript>
 		<cfloop array="#RC.relatedArticles#" index="RC.article">
-			<div class='col-sm-12 col-md-4'>
+			<div class='col-sm-12 col-md-#LOCAL.colspan#'>
 				#view("blog/summary")#
 			</div>
 		</cfloop>
