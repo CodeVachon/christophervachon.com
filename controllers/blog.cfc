@@ -56,6 +56,10 @@ component output="false" displayname="blog"  {
 			RC.endDateRange = createDate(year(now()),12,31);
 		}
 
+		if (structKeyExists(RC,"tags") && (listLen(RC.tags) > 0)) {
+			RC.template.addPageCrumb("Tags: #RC.tags#","/blog/tags/#RC.tags#"); 
+		}
+
 		if (structKeyExists(RC,"page")) { 
 			if (isNumeric(RC.page) && (RC.page >= 1)) {
 				RC.page = int(RC.page);

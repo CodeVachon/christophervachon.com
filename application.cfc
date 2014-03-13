@@ -29,6 +29,7 @@ component extends="frameworks.org.corfield.framework" {
 		applicationKey = 'fw1',
 		reloadApplicationOnEveryRequest = (this.getEnvironment() == "dev"),
 		routes = [
+			{"/blog/tags/:tags"="/blog/default/tags/:tags"},
 			{"/blog/:year/:month/:day/:title"="/blog/view/articleDate/:year-:month-:day/title/:title"},
 			{"/blog/:year/:month/:day"="/blog/default/year/:year/month/:month/day/:day"},
 			{"/blog/:year/:month"="/blog/default/year/:year/month/:month"},
@@ -78,6 +79,7 @@ component extends="frameworks.org.corfield.framework" {
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Home","/");
 		service( 'articleService.getArticlePublishedBookMarks', 'blogArticleDateCounts');
+		service( 'articleService.getTags', 'mostUsedTags', {page=1,itemsPerPage=10,orderBy="articleCount DESC, name ASC"});
 	}
 
 
