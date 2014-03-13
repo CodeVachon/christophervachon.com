@@ -49,6 +49,15 @@ component output="false" displayname="article" extends="ormbase" table="articles
 	}
 
 
+	public string function getTagNamesAsList() {
+		var _tagList = "";
+		for (var _tag in this.getTags()) {
+			_tagList = listAppend(_tagList,_tag.getName());
+		}
+		return _tagList;
+	}
+
+
 	public void function preInsert() hint="call before this being inserted" {
 		arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#dateFormat(VARIABLES.publicationDate,"mm")#/#dateFormat(VARIABLES.publicationDate,"dd")#/#this.getEncodedTitle()#");
 	}

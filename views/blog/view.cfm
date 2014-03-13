@@ -16,4 +16,13 @@
 			<p><cfif RC.article.hasTag()>Tags: <cfloop array="#RC.article.getTags()#" index="LOCAL.tag"><a href='/blog/tags/#LOCAL.tag.getName()#'><span class="label label-default">#LOCAL.tag.getName()#</span></a> </cfloop></cfif></p>
 		</footer>
 	</article>
+
+	<h2>Related Posts</h2>
+	<div class='row'>
+		<cfloop array="#RC.relatedArticles#" index="RC.article">
+			<div class='col-sm-12 col-md-4'>
+				#view("blog/summary")#
+			</div>
+		</cfloop>
+	</div>
 </cfoutput>
