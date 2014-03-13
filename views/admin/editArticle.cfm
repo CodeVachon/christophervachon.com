@@ -22,6 +22,10 @@
 			<label for="publicationDate">Publication Date</label>
 			<input type="text" class="form-control" name="publicationDate" placeholder="#dateFormat(now(),"yyyy/mm/dd")#" data-datepicker='' value="#((structKeyExists(RC,"publicationDate"))?dateFormat(RC.publicationDate,"yyyy/mm/dd"):"")#" />
 		</div>
+		<div class="form-group">
+			<label for="articleTags">Tags</label>
+			<input type="text" class="form-control" name="articleTags" placeholder="Article Tags" value="#((structKeyExists(RC,"articleTags"))?RC.articleTags:"")#" />
+		</div>
 		<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
 	</form>
 </cfoutput>

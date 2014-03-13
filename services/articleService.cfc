@@ -19,11 +19,14 @@ component output="false" displayname="articleService" extends="base"  {
 		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "publicationDate DESC"; }
 		if (!structKeyExists(ARGUMENTS,"isDeleted")) { ARGUMENTS.isDeleted = false; }
 		if (!structKeyExists(ARGUMENTS,"notBeforeDate")) { ARGUMENTS.notBeforeDate = now(); }
+		if (!structKeyExists(ARGUMENTS,"tags")) { ARGUMENTS.tags = ""; }
 
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
-		if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
+ 		if (listLen(ARGUMENTS.tags) > 0) {
+			return ORMExecuteQuery("SELECT DISTINCT a FROM article a JOIN a.tags t WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted AND t.name IN (:tags) ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted, tags=listToArray(ARGUMENTS.tags)}, false, {maxResults=_maxResults,offset=_offset});
+		} else if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
 			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate >= :startDateRange AND a.publicationDate <= :endDateRange AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {startDateRange=dateFormat(ARGUMENTS.startDateRange,"yyyy-mm-dd 00:00:00.0000"), endDateRange=dateFormat(ARGUMENTS.endDateRange,"yyyy-mm-dd 23:59:59.9999"), isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
 		} else {
 			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
@@ -59,7 +62,17 @@ component output="false" displayname="articleService" extends="base"  {
 
 	public models.article function editArticle() {
 		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
-		return this.setValuesInObject(this.getArticle(ARGUMENTS),ARGUMENTS);
+		var _article = this.setValuesInObject(this.getArticle(ARGUMENTS),ARGUMENTS);
+
+		// Set Article Tags
+		if (structKeyExists(ARGUMENTS,"articleTags")) {
+			_article.getTags().clear();
+			for (var _tagName in listToArray(ARGUMENTS.articleTags)) {
+				_article.addTag(this.editTag(name=_tagName));
+			}
+		}
+
+		return _article;
 	} // close editArticle
 
 
@@ -69,11 +82,18 @@ component output="false" displayname="articleService" extends="base"  {
 	} // close editArticle
 
 
-	public numeric function getArticleCountInTimeSpan(required date startDate, required date endDate) {
+	public numeric function getArticleCountInTimeSpan(required date startDate, required date endDate, string tags = "") {
+		if (!structKeyExists(ARGUMENTS,"tags")) { ARGUMENTS.tags = ""; }
+
 		var _startDate = createDateTime(year(ARGUMENTS.startDate),month(ARGUMENTS.startDate),day(ARGUMENTS.startDate),0,0,0);
 		var _endDate = createDateTime(year(ARGUMENTS.endDate),month(ARGUMENTS.endDate),day(ARGUMENTS.endDate),23,59,59);
-		return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a WHERE a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{startDate=_startDate,endDate=_endDate},true);
-	}
+
+		if (listLen(ARGUMENTS.tags) > 0) {
+			return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a JOIN a.tags t WHERE t.name in (:tags) AND a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{tags=listToArray(ARGUMENTS.tags),startDate=_startDate,endDate=_endDate},true);
+		} else {
+			return ORMExecuteQuery("SELECT DISTINCT count(a.id) FROM article a WHERE a.publicationDate BETWEEN :startDate AND :endDate AND a.isDeleted=false",{startDate=_startDate,endDate=_endDate},true);
+		}
+	} // close getArticleCountInTimeSpan
 
 
 	public array function getArticlePublishedBookMarks() {
@@ -105,5 +125,50 @@ component output="false" displayname="articleService" extends="base"  {
 		}
 
 		return _bookmarks;
-	}
+	} // close getArticlePublishedBookMarks
+
+
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* -=- Tags =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+	public array function getTags() {
+		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+
+		if (!structKeyExists(ARGUMENTS,"page")) { ARGUMENTS.page = 1; }
+		if (!structKeyExists(ARGUMENTS,"itemsPerPage")) { ARGUMENTS.itemsPerPage = 25; }
+		if (!structKeyExists(ARGUMENTS,"orderBy")) { ARGUMENTS.orderBy = "name ASC"; }
+		if (!structKeyExists(ARGUMENTS,"isDeleted")) { ARGUMENTS.isDeleted = false; }
+
+		var _maxResults = int(ARGUMENTS.itemsPerPage);
+		var _offset=((ARGUMENTS.page-1)*_maxResults);
+
+		return ORMExecuteQuery("SELECT DISTINCT t FROM tag t WHERE t.isDeleted=:isDeleted ORDER BY t.#ARGUMENTS.orderBy#", {isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+	} // close getTags
+
+
+	public models.tag function getTag() {
+		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+
+		var _object = javaCast("null","");
+		if (structKeyExists(ARGUMENTS,"tagId")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM tag o WHERE o.id=:id",{id=ARGUMENTS["tagId"]},true); }
+		else if (structKeyExists(ARGUMENTS,"tagName")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM tag o WHERE o.name=:name",{name=ARGUMENTS["tagName"]},true); }
+		else if (structKeyExists(ARGUMENTS,"name")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM tag o WHERE o.name=:name",{name=ARGUMENTS["name"]},true); }
+		else if (structKeyExists(ARGUMENTS,"id")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM tag o WHERE o.id=:id",{id=ARGUMENTS["id"]},true); }
+
+		if (isNull(_object)) { _object = entityNew("tag"); }
+
+		return _object;
+	} // close getTag
+
+
+	public models.tag function editTag() {
+		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+		return this.setValuesInObject(this.getTag(ARGUMENTS),ARGUMENTS);
+	} // close editTag
+
+
+	public models.tag function editTagAndSave() {
+		if ((structCount(ARGUMENTS) == 1) && isStruct(ARGUMENTS[1])) { ARGUMENTS = reduceStructLevel(ARGUMENTS[1]); }
+		return this.saveObject(this.editTag(ARGUMENTS));
+	} // close editTagAndSave
 }

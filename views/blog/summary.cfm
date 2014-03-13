@@ -13,7 +13,7 @@
 					<a href='#buildURL('admin.editArticle')#/articleID/#RC.article.getID()#' class='btn btn-default'>Edit</a>
 				</div>
 			</cfif>
-			<p>Tags: </p>
+			<p><cfif RC.article.hasTag()>Tags: <cfloop array="#RC.article.getTags()#" index="LOCAL.tag"><a href='/blog/tags/#LOCAL.tag.getName()#'><span class="label label-default">#LOCAL.tag.getName()#</span></a> </cfloop></cfif></p>
 		</footer>
 	</article>
 </cfoutput>
