@@ -62,10 +62,10 @@ component output="false" displayname="articleService" extends="base"  {
 		var _article = this.setValuesInObject(this.getArticle(ARGUMENTS),ARGUMENTS);
 
 		// Set Article Tags
-		if (structKeyExists(ARGUMENTS,"tags")) {
+		if (structKeyExists(ARGUMENTS,"articleTags")) {
 			_article.getTags().clear();
-			for (var _tagName in listToArray(ARGUMENTS.tags)) {
-				_article.addTag(this.editTag(tagName=_tagName));
+			for (var _tagName in listToArray(ARGUMENTS.articleTags)) {
+				_article.addTag(this.editTag(name=_tagName));
 			}
 		}
 

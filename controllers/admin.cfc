@@ -181,6 +181,10 @@ component output="false" displayname=""  {
 					RC[property] = RC.article.getProperty(property);
 				}
 			}
+			RC.articleTags = "";
+			for (var _tag in RC.article.getTags()) {
+				RC.articleTags = listAppend(RC.articleTags,_tag.getName());
+			}
 		}
 	} // close editArticle
 }

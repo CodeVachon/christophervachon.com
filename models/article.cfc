@@ -15,7 +15,7 @@ component output="false" displayname="article" extends="ormbase" table="articles
 
 	property name="uriStrings" setter="false" fieldtype="collection" type="array" table="articles_uris" fkcolumn="fk_articleID" elementColumn="OGValue" elementtype="string";
 
-	property name="tags" singularname="tag" cfc="tag" fieldtype="many-to-many" type="array" linktable="article_tags" fkColumn="fk_articleID" inversejoincolumn="fk_tagID";
+	property name="tags" singularname="tag" cfc="tag" fieldtype="many-to-many" type="array" linktable="article_tags" fkColumn="fk_articleID" inversejoincolumn="fk_tagID" cascade="all";
 
 	public function init() {
 		return super.init();
