@@ -111,10 +111,14 @@ component output="false" displayname="blog"  {
 			RC.template.addPageCrumb(dateFormat(RC.article.getPublicationDate(),"yyyy"),"/blog/#dateFormat(RC.article.getPublicationDate(),"yyyy")#");
 			RC.template.addPageCrumb(dateFormat(RC.article.getPublicationDate(),"mmmm"),"/blog/#dateFormat(RC.article.getPublicationDate(),"yyyy")#/#dateFormat(RC.article.getPublicationDate(),"mm")#");
 			RC.template.addPageCrumb(RC.article.getTitle(),"/blog/#RC.article.getURI()#");
-
-			VARIABLES.fw.setView("blog.view");
 		} else {
 			VARIABLES.fw.setView("main.404");
 		}
-	}
+	} // close view
+
+
+	public void function search( required struct rc ) {
+		if (!structKeyExists(RC,"search_for")) { VARIABLES.fw.redirect(action='blog'); }
+		RC.template.addPageCrumb("Search: " & RC.search_for,"/blog/search?search_for=#RC.search_for#");
+	} // close search
 }
