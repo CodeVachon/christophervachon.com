@@ -229,5 +229,14 @@ component output="false" displayname=""  {
 			}
 		}
 	} // close editTag
-}
 
+
+	public void function rebuildSearchIndex( required struct rc ) {
+		RC.template.addPageCrumb("Rebuild Search Index","/admin/rebuildSearchIndex");
+
+		var articleService = new services.articleService();
+		RC.articles = articleService.getArticles(itemsPerPage=2500);
+		var searchService = new services.searchService(APPLICATION.blogCollectionName);
+		RC.searchResults = searchService.loadIndex(entityToQuery(RC.articles));
+	}
+}
