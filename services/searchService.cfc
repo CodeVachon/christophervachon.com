@@ -4,11 +4,19 @@
 
 	<cffunction name="init" output="false">
 		<cfargument name="collectionName">
+
 		<cfscript>
 			if (len(ARGUMENTS.collectionName) > 0) {
 				this.setCollectionName(ARGUMENTS.collectionName);
 			}
+		</cfscript>
 
+		<cfcollection action="list" name="collections" engine="solr">
+		<cfif not listFindNoCase(valueList(collections.name), VARIABLES.collectionName)>
+			<cfcollection action="create" collection="#VARIABLES.collectionName#" engine="solr" path="#VARIABLES.collectionName#">
+		</cfif>
+
+		<cfscript>
 			return this;
 		</cfscript>
 	</cffunction>
@@ -22,10 +30,6 @@
 
 	<cffunction name="loadIndex" output="false">
 		<cfargument name="query" type="query">
-		<cfcollection action="list" name="collections" engine="solr">
-		<cfif not listFindNoCase(valueList(collections.name), VARIABLES.collectionName)>
-			<cfcollection action="create" collection="#VARIABLES.collectionName#" engine="solr" path="#VARIABLES.collectionName#">
-		</cfif>
 		<cfindex collection="#VARIABLES.collectionName#" action="purge">
 		<cfindex collection="#VARIABLES.collectionName#" action="update" body="body,title" title="title" key="id" query="ARGUMENTS.query">
 	</cffunction>
@@ -42,7 +46,7 @@
 		<cfargument name="title">
 		<cfargument name="body">
 
-		<cfindex collection="#VARIABLES.collectionName#" action="update" key="#ARGUMENTS.id#" body="#ARGUMENTS.body#,#ARGUMENTS.title#" title="#RGUMENTS.title#" type="custom">
+		<cfindex collection="#VARIABLES.collectionName#" action="update" key="#ARGUMENTS.id#" body="#ARGUMENTS.body#,#ARGUMENTS.title#" title="#ARGUMENTS.title#" type="custom">
 	</cffunction>
 
 

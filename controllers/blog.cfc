@@ -93,7 +93,6 @@ component output="false" displayname="blog"  {
 
 
 	public void function startView( required struct rc ) {
-
 		var _articleService = new services.articleService();
 		RC.article = _articleService.getArticle(RC);
 		RC.relatedArticles = _articleService.getArticles(notArticleID=RC.article.getID(),tags=RC.article.getTagNamesAsList(),page=1,itemsPerPage=3);
@@ -120,5 +119,8 @@ component output="false" displayname="blog"  {
 	public void function search( required struct rc ) {
 		if (!structKeyExists(RC,"search_for")) { VARIABLES.fw.redirect(action='blog'); }
 		RC.template.addPageCrumb("Search: " & RC.search_for,"/blog/search?search_for=#RC.search_for#");
+
+		var searchService = new services.searchService(APPLICATION.blogCollectionName);
+		RC.searchResults = searchService.search(RC.search_for);
 	} // close search
 }

@@ -161,7 +161,10 @@ component output="false" displayname=""  {
 			if (arrayLen(errors) > 0) {
 				RC.validationError = errors;
 			} else {
-				VARIABLES.fw.service( 'articleService.editArticleAndSave', 'article');
+				var articleService = new services.articleService();
+				RC.article = articleService.editArticleAndSave(RC);
+				var searchService = new services.searchService(APPLICATION.blogCollectionName);
+				searchService.updateIndex(id=RC.article.getID(), title=RC.article.getTitle(), body=RC.article.getBody());
 			}
 		} else if (structKeyExists(RC,"articleID")) {
 			VARIABLES.fw.service( 'articleService.getArticle', 'article');
