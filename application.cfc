@@ -53,6 +53,7 @@ component extends="frameworks.org.corfield.framework" {
 
 	public void function setupRequest() {
 		if (isFrameworkReloadRequest()) {
+			APPLICATION.blogCollectionName = "blogArticles";
 			ORMClearSession();
 			ORMReload();
 		}
