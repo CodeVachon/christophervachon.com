@@ -6,10 +6,12 @@
 	<div class='panel panel-default'>
 		<div class='panel-heading'>Search</div>
 		<form class='panel-body' method="get" action='#buildURL('blog.search')#'>
-			<div class="form-group">
+			<div class="input-group">
 				<input type="text" class="form-control" name="search_for" placeholder="Search" value="#((structKeyExists(RC,"search_for"))?RC.search_for:"")#" />
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary"><span class='glyphicon glyphicon-search'></span></button>
+				</span>
 			</div>
-			<button type="submit" class="btn btn-primary">Search</button>
 		</form>
 	</div>
 

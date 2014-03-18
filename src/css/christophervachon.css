@@ -690,14 +690,11 @@ h6:first-of-type {
   margin-top: 0;
 }
 .archives ul {
-  margin: 0;
-  padding: 0;
+  margin: 0.1em 0;
   border: 0;
   box-shadow: none;
-  font-size: 0.8em;
 }
 .archives ul li {
-  margin: 0;
   padding: 0.2em 0;
   border: none;
 }
