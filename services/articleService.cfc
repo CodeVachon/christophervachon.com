@@ -20,17 +20,54 @@ component output="false" displayname="articleService" extends="base"  {
 		if (!structKeyExists(ARGUMENTS,"isDeleted")) { ARGUMENTS.isDeleted = false; }
 		if (!structKeyExists(ARGUMENTS,"notBeforeDate")) { ARGUMENTS.notBeforeDate = now(); }
 		if (!structKeyExists(ARGUMENTS,"tags")) { ARGUMENTS.tags = ""; }
+		if (!structKeyExists(ARGUMENTS,"notArticleID")) { ARGUMENTS.notArticleID = ""; }
 
 		var _maxResults = int(ARGUMENTS.itemsPerPage);
 		var _offset=((ARGUMENTS.page-1)*_maxResults);
 
- 		if (listLen(ARGUMENTS.tags) > 0) {
-			return ORMExecuteQuery("SELECT DISTINCT a FROM article a JOIN a.tags t WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted AND t.name IN (:tags) ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted, tags=listToArray(ARGUMENTS.tags)}, false, {maxResults=_maxResults,offset=_offset});
-		} else if (structKeyExists(ARGUMENTS,"startDateRange") && structKeyExists(ARGUMENTS,"endDateRange")) {
-			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate >= :startDateRange AND a.publicationDate <= :endDateRange AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {startDateRange=dateFormat(ARGUMENTS.startDateRange,"yyyy-mm-dd 00:00:00.0000"), endDateRange=dateFormat(ARGUMENTS.endDateRange,"yyyy-mm-dd 23:59:59.9999"), isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
-		} else {
-			return ORMExecuteQuery("SELECT DISTINCT a FROM article a WHERE a.publicationDate <= :notBeforeDate AND a.isDeleted=:isDeleted ORDER BY a.#ARGUMENTS.orderBy#", {notBeforeDate=ARGUMENTS.notBeforeDate, isDeleted=ARGUMENTS.isDeleted}, false, {maxResults=_maxResults,offset=_offset});
+		var qryParts = {
+			join = "",
+			clause = "",
+			args = {
+				isDeleted=ARGUMENTS.isDeleted
+			}
+		};
+
+		if (listLen(ARGUMENTS.tags) > 0) {
+			qryParts.join &= "JOIN a.tags t ";
+			qryParts.clause &= "AND t.name IN (:tags) ";
+			qryParts.args.tags = listToArray(ARGUMENTS.tags);
 		}
+		if (listLen(ARGUMENTS.notArticleID) > 0) {
+			qryParts.clause &= "AND a.id NOT IN (:notArticleID) ";
+			qryParts.args.notArticleID = listToArray(ARGUMENTS.notArticleID);
+		}
+		if (
+			(structKeyExists(ARGUMENTS,"startDateRange") && isDate(ARGUMENTS.startDateRange)) && 
+			(structKeyExists(ARGUMENTS,"endDateRange") && isDate(ARGUMENTS.endDateRange))
+		) {
+			qryParts.clause &= "AND a.publicationDate >= :startDateRange AND a.publicationDate <= :endDateRange ";
+			qryParts.args.startDateRange=dateFormat(ARGUMENTS.startDateRange,"yyyy-mm-dd 00:00:00.0000");
+			qryParts.args.endDateRange=dateFormat(ARGUMENTS.endDateRange,"yyyy-mm-dd 23:59:59.9999");
+		} else {
+			qryParts.clause &= "AND a.publicationDate <= :notBeforeDate ";
+			qryParts.args.notBeforeDate = ARGUMENTS.notBeforeDate;
+		}
+
+		return ORMExecuteQuery("
+			SELECT DISTINCT a 
+			FROM article a 
+			#qryParts.join#
+			WHERE a.isDeleted=:isDeleted
+			#qryParts.clause#
+			ORDER BY a.#ARGUMENTS.orderBy#
+		", 
+		qryParts.args, 
+		false, 
+		{
+			maxResults=_maxResults,
+			offset=_offset
+		});
 	} // close getArticles
 
 
@@ -68,7 +105,7 @@ component output="false" displayname="articleService" extends="base"  {
 		if (structKeyExists(ARGUMENTS,"articleTags")) {
 			_article.getTags().clear();
 			for (var _tagName in listToArray(ARGUMENTS.articleTags)) {
-				_article.addTag(this.editTag(name=_tagName));
+				_article.addTag(this.editTag(name=trim(_tagName)));
 			}
 		}
 

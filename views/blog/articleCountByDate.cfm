@@ -3,10 +3,19 @@
 	param name="RC.mostUsedTags" default=[];
 </cfscript>
 <cfoutput>
+	<div class='panel panel-default'>
+		<div class='panel-heading'>Search</div>
+		<form class='panel-body' method="get" action='#buildURL('blog.search')#'>
+			<div class="form-group">
+				<input type="text" class="form-control" name="search_for" placeholder="Search" value="#((structKeyExists(RC,"search_for"))?RC.search_for:"")#" />
+			</div>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+	</div>
+
 	<cfif arrayLen(RC.blogArticleDateCounts) GT 0>
 		<div class="panel panel-default">
 			<div class="panel-heading">Archives</div>
-
 			<ul class='list-group archives'>
 				<cfloop array="#RC.blogArticleDateCounts#" index="LOCAL.yearData">
 					<li class='list-group-item'>
@@ -28,7 +37,7 @@
 		</div>
 	</cfif>
 
-	<cfif arrayLen(RC.blogArticleDateCounts) GT 0>
+	<cfif arrayLen(RC.mostUsedTags) GT 0>
 		<div class="panel panel-default">
 			<div class="panel-heading">Most Used Tags</div>
 
@@ -36,7 +45,7 @@
 				<cfloop array="#RC.mostUsedTags#" index="LOCAL.tag">
 					<li class='list-group-item'>
 						<span class="badge">#LOCAL.tag.getArticleCount()#</span>
-						<a href='/blog/tags/#LOCAL.tag.getName()#'>#LOCAL.tag.getName()#</a>
+						<a href='/blog/tags/#lcase(LOCAL.tag.getName())#'>#LOCAL.tag.getName()#</a>
 					</li>
 				</cfloop>
 			</ul>

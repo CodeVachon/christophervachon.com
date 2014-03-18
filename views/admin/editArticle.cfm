@@ -12,7 +12,7 @@
 		</div>
 		<div class="form-group">
 			<label for="summary">Summary</label>
-			<textarea name="summary" placeholder="Article Summary" class="form-control" rows="3">#((structKeyExists(RC,"title"))?RC.title:"")#</textarea>
+			<textarea name="summary" placeholder="Article Summary" class="form-control" rows="3">#((structKeyExists(RC,"summary"))?RC.summary:"")#</textarea>
 		</div>
 		<div class="form-group">
 			<label for="body">Article Body</label>

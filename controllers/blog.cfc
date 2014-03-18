@@ -93,7 +93,10 @@ component output="false" displayname="blog"  {
 
 
 	public void function startView( required struct rc ) {
-		VARIABLES.fw.service( 'articleService.getArticle', 'article');
+		var _articleService = new services.articleService();
+		RC.article = _articleService.getArticle(RC);
+		RC.relatedArticles = _articleService.getArticles(notArticleID=RC.article.getID(),tags=RC.article.getTagNamesAsList(),page=1,itemsPerPage=3);
+		//VARIABLES.fw.service( 'articleService.getArticles', 'relatedArticles', {tags=RC.article.getTagNamesAsList(), page=1, itemsPerPage=3});
 	}
 	public void function view( required struct rc ) {
 	}
@@ -110,5 +113,14 @@ component output="false" displayname="blog"  {
 		} else {
 			VARIABLES.fw.setView("main.404");
 		}
-	}
+	} // close view
+
+
+	public void function search( required struct rc ) {
+		if (!structKeyExists(RC,"search_for")) { VARIABLES.fw.redirect(action='blog'); }
+		RC.template.addPageCrumb("Search: " & RC.search_for,"/blog/search?search_for=#RC.search_for#");
+
+		var searchService = new services.searchService(APPLICATION.blogCollectionName);
+		RC.searchResults = searchService.search(RC.search_for);
+	} // close search
 }
