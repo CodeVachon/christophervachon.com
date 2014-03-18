@@ -164,7 +164,7 @@ component output="false" displayname=""  {
 				var articleService = new services.articleService();
 				RC.article = articleService.editArticleAndSave(RC);
 				var searchService = new services.searchService(APPLICATION.blogCollectionName);
-				searchService.updateIndex(id=RC.article.getID(), title=RC.article.getTitle(), body=RC.article.getBody());
+				searchService.updateIndex(id=RC.article.getID(), title=RC.article.getTitle(), body=RC.article.getBody(), custom1=RC.article.getTagNamesAsList());
 			}
 		} else if (structKeyExists(RC,"articleID")) {
 			VARIABLES.fw.service( 'articleService.getArticle', 'article');
