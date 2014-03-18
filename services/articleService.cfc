@@ -105,7 +105,7 @@ component output="false" displayname="articleService" extends="base"  {
 		if (structKeyExists(ARGUMENTS,"articleTags")) {
 			_article.getTags().clear();
 			for (var _tagName in listToArray(ARGUMENTS.articleTags)) {
-				_article.addTag(this.editTag(name=_tagName));
+				_article.addTag(this.editTag(name=trim(_tagName)));
 			}
 		}
 
