@@ -1,3 +1,7 @@
+<cfscript>
+	param name="RC.article" default=entityNew("Article");
+	param name="RC.relatedArticles" default=arrayNew(1);
+</cfscript>
 <cfoutput>
 	<article class='blog-post'>
 		<header>
@@ -17,15 +21,17 @@
 		</footer>
 	</article>
 
-	<h2>Related Posts</h2>
-	<div class='row'>
-		<cfscript>
-			LOCAL.colspan = int(12/arrayLen(RC.relatedArticles));
-		</cfscript>
-		<cfloop array="#RC.relatedArticles#" index="RC.article">
-			<div class='col-sm-12 col-md-#LOCAL.colspan#'>
-				#view("blog/summary")#
-			</div>
-		</cfloop>
-	</div>
+	<cfif arrayLen(RC.relatedArticles) GT 0>
+		<h2>Related Posts</h2>
+		<div class='row'>
+			<cfscript>
+				LOCAL.colspan = int(12/arrayLen(RC.relatedArticles));
+			</cfscript>
+			<cfloop array="#RC.relatedArticles#" index="RC.article">
+				<div class='col-sm-12 col-md-#LOCAL.colspan#'>
+					#view("blog/summary")#
+				</div>
+			</cfloop>
+		</div>
+	</cfif>
 </cfoutput>
