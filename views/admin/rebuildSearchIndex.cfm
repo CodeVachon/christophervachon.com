@@ -1,0 +1,1 @@
+<h2>Rebuild Search Index</h2>

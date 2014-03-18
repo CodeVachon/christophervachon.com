@@ -29,6 +29,7 @@ component extends="frameworks.org.corfield.framework" {
 		applicationKey = 'fw1',
 		reloadApplicationOnEveryRequest = (this.getEnvironment() == "dev"),
 		routes = [
+			{"/blog/search"="/blog/search"},
 			{"/blog/tags/:tags"="/blog/default/tags/:tags"},
 			{"/blog/:year/:month/:day/:title"="/blog/view/articleDate/:year-:month-:day/title/:title"},
 			{"/blog/:year/:month/:day"="/blog/default/year/:year/month/:month/day/:day"},
@@ -52,6 +53,7 @@ component extends="frameworks.org.corfield.framework" {
 
 	public void function setupRequest() {
 		if (isFrameworkReloadRequest()) {
+			APPLICATION.blogCollectionName = "blogArticles";
 			ORMClearSession();
 			ORMReload();
 		}

@@ -161,7 +161,10 @@ component output="false" displayname=""  {
 			if (arrayLen(errors) > 0) {
 				RC.validationError = errors;
 			} else {
-				VARIABLES.fw.service( 'articleService.editArticleAndSave', 'article');
+				var articleService = new services.articleService();
+				RC.article = articleService.editArticleAndSave(RC);
+				var searchService = new services.searchService(APPLICATION.blogCollectionName);
+				searchService.updateIndex(id=RC.article.getID(), title=RC.article.getTitle(), body=RC.article.getBody());
 			}
 		} else if (structKeyExists(RC,"articleID")) {
 			VARIABLES.fw.service( 'articleService.getArticle', 'article');
@@ -226,5 +229,14 @@ component output="false" displayname=""  {
 			}
 		}
 	} // close editTag
-}
 
+
+	public void function rebuildSearchIndex( required struct rc ) {
+		RC.template.addPageCrumb("Rebuild Search Index","/admin/rebuildSearchIndex");
+
+		var articleService = new services.articleService();
+		RC.articles = articleService.getArticles(itemsPerPage=2500);
+		var searchService = new services.searchService(APPLICATION.blogCollectionName);
+		RC.searchResults = searchService.loadIndex(entityToQuery(RC.articles));
+	}
+}
