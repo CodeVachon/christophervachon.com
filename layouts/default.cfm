@@ -77,7 +77,7 @@
 					#view('blog/articleCountByDate')#
 				</section>
 			</div>
-			<footer>
+			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>
 			</footer>
 		</div>

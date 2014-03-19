@@ -19,7 +19,7 @@
 			<input type='text' name='lastName' id="lastName" class="form-control" value="#((structKeyExists(RC,"lastName"))?RC.lastName:"")#" />
 			<cfif structKeyExists(RC.validationErrors,"lastName")><span class="help-block">#RC.validationErrors["lastName"]#</span></cfif>
 		</div>
-		<div class='form-group col-xs-12 col-md-6<cfif structKeyExists(RC.validationErrors,"emailAddress")> has-error</cfif>'>
+		<div class='form-group col-xs-12 col-md-8<cfif structKeyExists(RC.validationErrors,"emailAddress")> has-error</cfif>'>
 			<label for="emailAddress" class='control-label'>E-Mail Address</label>
 			<input type='text' name='emailAddress' id="emailAddress" class="form-control" value="#((structKeyExists(RC,"emailAddress"))?RC.emailAddress:"")#" />
 			<cfif structKeyExists(RC.validationErrors,"emailAddress")><span class="help-block">#RC.validationErrors["emailAddress"]#</span></cfif>

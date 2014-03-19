@@ -2,6 +2,17 @@
 @import "datepicker";
 @import "timepicker";
 
+@gray-border: #ccc;
+
+.site-footer {
+	color: @gray-border;
+	border-top: 1px solid;
+	margin-top: 1em;
+	padding: 1em 0;
+	font-size: 0.8em;
+	text-align: right;
+}
+
 .page-content {
 	margin-bottom: 2em;
 
@@ -12,7 +23,7 @@
 	.blog-post {
 		&.blog-summary {
 			margin: 1em 0;
-			border-top: 1px #ccc solid;
+			border-top: 1px @gray-border solid;
 			padding-top: 1em;
 			&:first-of-type {
 				border-top: none;
