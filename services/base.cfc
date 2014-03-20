@@ -1,5 +1,5 @@
 component displayname="baseService" hint="I am the base of all services" {
-	public baseService function init(){ return this; }
+	public function init(){ return this; }
 
 
 	public any function saveObject(required any objectToSave) {

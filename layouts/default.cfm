@@ -39,7 +39,7 @@
 							<li<cfif RC.action EQ 'main.default'> class="active"</cfif>><a href='/'>Home</a></li>
 							<li class=""><a href='/'>About Me</a></li>
 							<li<cfif listGetAt(RC.action,1,".") EQ 'blog'> class="active"</cfif>><a href='#buildURL('blog')#'>Blog</a></li>
-							<li class=""><a href='/'>Contact</a></li>
+							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right">
@@ -77,7 +77,7 @@
 					#view('blog/articleCountByDate')#
 				</section>
 			</div>
-			<footer>
+			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>
 			</footer>
 		</div>

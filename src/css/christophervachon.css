@@ -650,6 +650,14 @@
     width: 100%;
   }
 }
+.site-footer {
+  color: #cccccc;
+  border-top: 1px solid;
+  margin-top: 1em;
+  padding: 1em 0;
+  font-size: 0.8em;
+  text-align: right;
+}
 .page-content {
   margin-bottom: 2em;
 }
@@ -658,7 +666,7 @@
 }
 .page-content .blog-post.blog-summary {
   margin: 1em 0;
-  border-top: 1px #ccc solid;
+  border-top: 1px #cccccc solid;
   padding-top: 1em;
 }
 .page-content .blog-post.blog-summary:first-of-type {
@@ -690,14 +698,11 @@ h6:first-of-type {
   margin-top: 0;
 }
 .archives ul {
-  margin: 0;
-  padding: 0;
+  margin: 0.1em 0;
   border: 0;
   box-shadow: none;
-  font-size: 0.8em;
 }
 .archives ul li {
-  margin: 0;
   padding: 0.2em 0;
   border: none;
 }

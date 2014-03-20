@@ -42,11 +42,27 @@
 
 
 	<cffunction name="updateIndex" output="false">
-		<cfargument name="id">
-		<cfargument name="title">
-		<cfargument name="body">
+		<cfargument name="id" required="true">
+		<cfargument name="title" required="true">
+		<cfargument name="body" required="true">
+		<cfargument name="author" default="">
+		<cfargument name="custom1" default="">
+		<cfargument name="custom2" default="">
+		<cfargument name="custom3" default="">
+		<cfargument name="custom4" default="">
 
-		<cfindex collection="#VARIABLES.collectionName#" action="update" key="#ARGUMENTS.id#" body="#ARGUMENTS.body#,#ARGUMENTS.title#" title="#ARGUMENTS.title#" type="custom">
+		<cfindex 
+			collection="#VARIABLES.collectionName#" 
+			action="update" 
+			key="#ARGUMENTS.id#" 
+			body="#ARGUMENTS.body#,#ARGUMENTS.title#" 
+			title="#ARGUMENTS.title#" 
+			type="custom"
+			custom1="#ARGUMENTS.custom1#"
+			custom2="#ARGUMENTS.custom2#"
+			custom3="#ARGUMENTS.custom3#"
+			custom4="#ARGUMENTS.custom4#"
+		>
 	</cffunction>
 
 

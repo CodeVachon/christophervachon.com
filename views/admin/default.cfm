@@ -10,5 +10,6 @@
 			</ul>
 		</li>
 		<li><a href='#buildURL('admin.listPeople')#'>List People</a></li>
+		<li><a href='#buildURL('admin.settings')#'>Website Settings</a></li>
 	</ul>
 </cfoutput>

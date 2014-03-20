@@ -164,7 +164,7 @@ component output="false" displayname=""  {
 				var articleService = new services.articleService();
 				RC.article = articleService.editArticleAndSave(RC);
 				var searchService = new services.searchService(APPLICATION.blogCollectionName);
-				searchService.updateIndex(id=RC.article.getID(), title=RC.article.getTitle(), body=RC.article.getBody());
+				searchService.updateIndex(id=RC.article.getID(), title=RC.article.getTitle(), body=RC.article.getBody(), custom1=RC.article.getTagNamesAsList());
 			}
 		} else if (structKeyExists(RC,"articleID")) {
 			VARIABLES.fw.service( 'articleService.getArticle', 'article');
@@ -238,5 +238,26 @@ component output="false" displayname=""  {
 		RC.articles = articleService.getArticles(itemsPerPage=2500);
 		var searchService = new services.searchService(APPLICATION.blogCollectionName);
 		RC.searchResults = searchService.loadIndex(entityToQuery(RC.articles));
+	} // close rebuildSearchIndex
+
+
+	public void function startSettings( required struct rc ) {
+		if (structKeyExists(RC,"btnSave")) {
+			VARIABLES.fw.service( 'websiteSettingsService.editWebsiteSettingsAndSave', 'websiteSettings');
+		}
 	}
+	public void function settings( required struct rc ) {
+		RC.template.addPageCrumb("Website Settings","/admin/settings");
+	}
+	public void function endSettings( required struct rc ) {
+		if (structKeyExists(RC,"btnSave")) {
+			APPLICATION.websiteSettings = RC.websiteSettings;
+		}
+		for (var property in APPLICATION.websiteSettings.getPropertyStruct()) {
+			if (!structKeyExists(RC,property)) {
+				RC[property] = APPLICATION.websiteSettings.getProperty(property);
+			}
+		}
+		RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
+	} // close settings
 }
