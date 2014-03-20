@@ -6,7 +6,7 @@
 *
 */
 
-component output="false" displayname="websiteSettingsService" extends="baseService" {
+component output="false" displayname="websiteSettingsService" extends="base" {
 
 	public function init(){
 		return super.init();
