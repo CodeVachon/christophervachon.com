@@ -252,12 +252,12 @@ component output="false" displayname=""  {
 	public void function endSettings( required struct rc ) {
 		if (structKeyExists(RC,"btnSave")) {
 			APPLICATION.websiteSettings = RC.websiteSettings;
-		} else {
-			for (var property in APPLICATION.websiteSettings.getPropertyStruct()) {
-				if (!structKeyExists(RC,property)) {
-					RC[property] = APPLICATION.websiteSettings.getProperty(property);
-				}
+		}
+		for (var property in APPLICATION.websiteSettings.getPropertyStruct()) {
+			if (!structKeyExists(RC,property)) {
+				RC[property] = APPLICATION.websiteSettings.getProperty(property);
 			}
 		}
+		RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
 	} // close settings
 }

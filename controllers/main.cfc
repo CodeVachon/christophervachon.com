@@ -41,7 +41,20 @@ component output="false" displayname=""  {
 			}
 
 			if (structIsEmpty(errors)) {
-				// Send Mail
+				RC.SMTPServer = APPLICATION.websiteSettings.getProperty("Mail_SMTPServer");
+				RC.SMTPPort = APPLICATION.websiteSettings.getProperty("Mail_Port");
+				RC.SMTPUsername = APPLICATION.websiteSettings.getProperty("Mail_Username");
+				RC.SMTPPassword = APPLICATION.websiteSettings.getProperty("Mail_Password");
+				RC.SMTPuseSSL = APPLICATION.websiteSettings.getProperty("Mail_UseSSL");
+
+				RC.SMTPFromName = APPLICATION.websiteSettings.getProperty("Mail_FromName");
+				RC.SMTPFromEmailAddress = APPLICATION.websiteSettings.getProperty("Mail_FromEmailAddress");
+				RC.toAddress = APPLICATION.websiteSettings.getProperty("Mail_SendToEmailAddress");
+
+				RC.content = "<h1>Website Message</h1><p>From: #RC.firstName# #RC.lastName# [<a href='mailto:#RC.emailAddress#'>#RC.emailAddress#</a>]<br/></p>#RC.body#";
+
+				var mailService = new services.mailService();
+				mailService.sendEmail(RC);
 			} else {
 				RC.validationErrors = errors;
 			}
@@ -50,4 +63,9 @@ component output="false" displayname=""  {
 	public void function contact( required struct rc ) {
 		RC.template.addPageCrumb("Contact","/contact");
 	}
+	public void function endContact( required struct rc ) {
+		if (structKeyExists(RC,"btnSave") && !structKeyExists(RC,"validationErrors")) {
+			VARIABLES.fw.redirect(action='message-sent');
+		}
+	} // close contact
 }

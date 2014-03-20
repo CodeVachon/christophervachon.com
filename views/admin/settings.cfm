@@ -5,12 +5,12 @@
 		<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
 			<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
 			<div class="form-group">
-				<label for="siteName">Site Name</label>
-				<input type="text" class="form-control" id="siteName" name="siteName" placeholder="Site Name" value="#((structKeyExists(RC,"siteName"))?RC.siteName:"")#" />
-			</div>
-			<div class="form-group">
 				<label for="domain">Site Domain</label>
 				<p class="form-control-static">#((structKeyExists(RC,"domain"))?RC.domain:"unknown")#</p>
+			</div>
+			<div class="form-group">
+				<label for="siteName">Site Name</label>
+				<input type="text" class="form-control" id="siteName" name="siteName" placeholder="Site Name" value="#((structKeyExists(RC,"siteName"))?RC.siteName:"")#" />
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
