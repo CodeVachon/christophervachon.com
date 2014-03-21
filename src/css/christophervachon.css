@@ -673,6 +673,16 @@
   border-top: none;
   padding-top: 0;
 }
+.page-content .blog-post.blog-summary footer {
+  padding-top: 1em;
+  color: #999999;
+}
+.page-content .blog-post.blog-summary footer p {
+  font-size: 0.8em;
+}
+.page-content .blog-post.blog-summary footer p:last-child {
+  margin-bottom: 0;
+}
 .page-content .blog-post header {
   margin-bottom: 0.7em;
 }
