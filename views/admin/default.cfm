@@ -9,7 +9,12 @@
 				<li><a href='#buildURL('admin.rebuildSearchIndex')#'>Rebuild Search Index</a></li>
 			</ul>
 		</li>
-		<li><a href="#buildURL('admin.listContentPages')#">List Content Pages</a></li>
+		<li>
+			<a href="#buildURL('admin.listContentPages')#">List Content Pages</a>
+			<ul>
+				<li><a href='#buildURL('admin.editContentPage')#'>Add New Content Page</a></li>
+			</ul>
+		</li>
 		<li><a href='#buildURL('admin.listPeople')#'>List People</a></li>
 		<li><a href='#buildURL('admin.settings')#'>Website Settings</a></li>
 	</ul>
