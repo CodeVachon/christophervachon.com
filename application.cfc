@@ -90,7 +90,7 @@ component extends="frameworks.org.corfield.framework" {
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Home","/");
 		service( 'articleService.getArticlePublishedBookMarks', 'blogArticleDateCounts');
-		service( 'articleService.getTags', 'mostUsedTags', {page=1,itemsPerPage=7,orderBy="articleCount DESC, name ASC"});
+		service( 'articleService.getTags', 'mostUsedTags', {page=1,itemsPerPage=5,orderBy="articleCount DESC, name ASC"});
 	}
 
 
