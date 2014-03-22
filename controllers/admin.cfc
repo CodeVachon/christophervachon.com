@@ -260,4 +260,10 @@ component output="false" displayname=""  {
 		}
 		RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
 	} // close settings
+
+
+	public void function listContentPages( required struct rc ) {
+		RC.template.addPageCrumb("List Content Pages","/admin/listContentPages");
+		VARIABLES.fw.service( 'contentService.getContents', 'contentPages');
+	} // close listContentPages
 }
