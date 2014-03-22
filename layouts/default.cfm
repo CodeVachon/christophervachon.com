@@ -37,7 +37,7 @@
 					<div class="collapse navbar-collapse" id="fixed-navigation">
 						<ul class="nav navbar-nav">
 							<li<cfif RC.action EQ 'main.default'> class="active"</cfif>><a href='/'>Home</a></li>
-							<li<cfif structKeyExists(RC,"pageName") AND (RC.pageName EQ "about")> class="active"</cfif>><a href='/about'>About Me</a></li>
+							<li<cfif structKeyExists(RC,"pageName") AND (RC.pageName EQ "about")> class="active"</cfif>><a href='/page/about-me'>About Me</a></li>
 							<li<cfif listGetAt(RC.action,1,".") EQ 'blog'> class="active"</cfif>><a href='#buildURL('blog')#'>Blog</a></li>
 							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>

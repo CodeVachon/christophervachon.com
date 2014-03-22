@@ -29,8 +29,7 @@ component extends="frameworks.org.corfield.framework" {
 		applicationKey = 'fw1',
 		reloadApplicationOnEveryRequest = (this.getEnvironment() == "dev"),
 		routes = [
-			{"/page/:pageName"="/page/view/name/:pageName"},
-			{"/about"="/page/view/name/about"},
+			{"/page/:pageName"="/page/view/nameuri/:pageName"},
 			{"/contact"="/main/contact"},
 			{"/message-sent"="/main/message-sent"},
 			{"/blog/search"="/blog/search"},

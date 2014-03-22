@@ -19,7 +19,7 @@
 		<tbody>
 			<cfloop array="#RC.contentPages#" index="LOCAL.contentPage">
 				<tr>
-					<td><a href="#buildURL('admin')#">#LOCAL.contentPage.getName()#</a></td>
+					<td><a href="#buildURL('page')#/#LOCAL.contentPage.getNameURI()#">#LOCAL.contentPage.getName()#</a></td>
 					<td>
 						<div class="btn-group btn-group-xs pull-right">
 							<a href="#buildURL('admin.editContentPage')#/contentId/#LOCAL.contentPage.getID()#" class='btn btn-default'>edit</a>

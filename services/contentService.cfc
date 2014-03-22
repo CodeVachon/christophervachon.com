@@ -53,6 +53,7 @@ component output="false" displayname="contentService" extends="base" {
 		var _object = javaCast("null","");
 		if (structKeyExists(ARGUMENTS,"contentId")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM content o WHERE o.id=:id",{id=ARGUMENTS["contentId"]},true); }
 		else if (structKeyExists(ARGUMENTS,"name")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM content o WHERE o.name=:name",{name=ARGUMENTS["name"]},true); }
+		else if (structKeyExists(ARGUMENTS,"nameURI")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM content o WHERE o.nameURI=:nameURI",{nameURI=ARGUMENTS["nameURI"]},true); }
 		else if (structKeyExists(ARGUMENTS,"id")) { _object = ORMExecuteQuery("SELECT DISTINCT o FROM content o WHERE o.id=:id",{id=ARGUMENTS["id"]},true); }
 
 		if (isNull(_object)) { _object = entityNew("content"); }
