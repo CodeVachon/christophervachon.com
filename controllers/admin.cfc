@@ -260,4 +260,41 @@ component output="false" displayname=""  {
 		}
 		RC.websiteSettingsID = APPLICATION.websiteSettings.getID();
 	} // close settings
+
+
+	public void function listContentPages( required struct rc ) {
+		RC.template.addPageCrumb("List Content Pages","/admin/listContentPages");
+		VARIABLES.fw.service( 'contentService.getContents', 'contentPages');
+	} // close listContentPages
+
+
+	public void function startEditContentPage( required struct rc ) {
+		var contentService = new services.contentService();
+		if (structKeyExists(RC,"btnSave")) {
+			var errors = [];
+			if (arrayLen(errors) > 0) {
+				RC.validationError = errors;
+			} else {
+				RC.content = contentService.editContentAndSave(RC);
+			}
+		} else if (structKeyExists(RC,"contentId")) {
+			RC.content = contentService.getContent(RC);
+		}
+	}
+	public void function editContentPage( required struct rc ) {
+		RC.template.addPageCrumb("List Content Pages","/admin/listContentPages");
+		RC.template.addPageCrumb("Edit Content Page","/admin/editContentPage");
+		RC.template.addFile('/includes/js/formOptions.js');
+	}
+	public void function endEditContentPage( required struct rc ) {
+		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
+			location(url='/admin/listContentPages',addToken=false);
+		} else if (structKeyExists(RC,"content")) {
+			for (var property in RC.content.getPropertyStruct()) {
+				if (!structKeyExists(RC,property)) {
+					RC[property] = RC.content.getProperty(property);
+				}
+			}
+		}
+	} // close editContentPage
 }

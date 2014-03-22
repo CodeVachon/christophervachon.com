@@ -33,8 +33,9 @@ component output="false" displayname="security"  {
 			this.loadPersonIntoSession(_person);
 
 			if (structKeyExists(ARGUMENTS,"rememberMe") && ARGUMENTS.rememberMe) {
-				COOKIE["signIn1"] = _person.getID();
-				COOKIE["signIn2"] = _person.getContactInformation()[1].getID();
+				var cookieMonster = new services.cookieMonster();
+				cookieMonster.setCookie("signIn1",_person.getID());
+				cookieMonster.setCookie("signIn2",_person.getContactInformation()[1].getID());
 			}
 
 			return true;
@@ -45,11 +46,13 @@ component output="false" displayname="security"  {
 
 
 	public void function cookieSignIn() {
-		if (structKeyExists(COOKIE,"signIn1") && structKeyExists(COOKIE,"signIn2")) {
+		var cookieMonster = new services.cookieMonster();
+
+		if (cookieMonster.doesExists("signIn1") && cookieMonster.doesExists("signIn2")) {
 			var personService = new services.personService();
-			var _person = personService.getPerson(personID=COOKIE["signIn1"]);
+			var _person = personService.getPerson(personID=cookieMonster.getValue("signIn1"));
 			for (var _contactInfo in _person.getContactInformation()) {
-				if (_contactInfo.getID() == COOKIE["signIn2"]) {
+				if (_contactInfo.getID() == cookieMonster.getValue("signIn2")) {
 					this.loadPersonIntoSession(_person);
 				}
 			}
@@ -70,6 +73,9 @@ component output="false" displayname="security"  {
 
 
 	public void function signOut() {
+		var cookieMonster = new services.cookieMonster();
+		cookieMonster.deleteCookie("signIn1");
+		cookieMonster.deleteCookie("signIn2");
 		structDelete(SESSION,"member");
 	}
 }

@@ -19,7 +19,7 @@ component output="false" displayname="blog"  {
 
 
 	public void function default( required struct rc ) {
-		RC.itemsPerPage = 2;
+		RC.itemsPerPage = 10;
 		param name="RC.page" default="1";
 
 		var cause404 = false;
