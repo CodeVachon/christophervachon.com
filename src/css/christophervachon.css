@@ -664,6 +664,9 @@
 .page-content h2:first-child {
   margin-top: 0;
 }
+.page-content .blog-post {
+  margin-bottom: 5em;
+}
 .page-content .blog-post.blog-summary {
   margin: 1em 0;
   border-top: 1px #cccccc solid;
