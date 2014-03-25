@@ -664,6 +664,9 @@
 .page-content h2:first-child {
   margin-top: 0;
 }
+.page-content .blog-post {
+  margin-bottom: 5em;
+}
 .page-content .blog-post.blog-summary {
   margin: 1em 0;
   border-top: 1px #cccccc solid;
@@ -672,16 +675,6 @@
 .page-content .blog-post.blog-summary:first-of-type {
   border-top: none;
   padding-top: 0;
-}
-.page-content .blog-post.blog-summary footer {
-  padding-top: 1em;
-  color: #999999;
-}
-.page-content .blog-post.blog-summary footer p {
-  font-size: 0.8em;
-}
-.page-content .blog-post.blog-summary footer p:last-child {
-  margin-bottom: 0;
 }
 .page-content .blog-post header {
   margin-bottom: 0.7em;
@@ -698,6 +691,16 @@
 .page-content .blog-post header p.date {
   font-size: 0.8em;
   color: #999999;
+}
+.page-content .blog-post footer {
+  padding-top: 1em;
+  color: #999999;
+}
+.page-content .blog-post footer p {
+  font-size: 0.8em;
+}
+.page-content .blog-post footer p:last-child {
+  margin-bottom: 0;
 }
 h1:first-of-type,
 h2:first-of-type,

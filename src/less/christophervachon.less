@@ -21,6 +21,7 @@
 	}
 
 	.blog-post {
+		margin-bottom: 5em;
 		&.blog-summary {
 			margin: 1em 0;
 			border-top: 1px @gray-border solid;
@@ -28,16 +29,6 @@
 			&:first-of-type {
 				border-top: none;
 				padding-top: 0;
-			}
-			footer {
-				padding-top: 1em;
-				color: @breadcrumb-active-color;
-				p {
-					font-size: 0.8em;
-					&:last-child {
-						margin-bottom: 0;
-					}
-				}
 			}
 		}
 		header {
@@ -51,6 +42,16 @@
 				&.date {
 					font-size: 0.8em;
 					color: @breadcrumb-active-color;
+				}
+			}
+		}
+		footer {
+			padding-top: 1em;
+			color: @breadcrumb-active-color;
+			p {
+				font-size: 0.8em;
+				&:last-child {
+					margin-bottom: 0;
 				}
 			}
 		}
