@@ -13,7 +13,7 @@
 
 		<cfcollection action="list" name="collections" engine="solr">
 		<cfif not listFindNoCase(valueList(collections.name), VARIABLES.collectionName)>
-			<cfcollection action="create" collection="#VARIABLES.collectionName#" engine="solr" path="#VARIABLES.collectionName#">
+			<cfcollection action="create" collection="#VARIABLES.collectionName#" engine="solr" path="#expandPath('/collections')#/#VARIABLES.collectionName#">
 		</cfif>
 
 		<cfscript>
