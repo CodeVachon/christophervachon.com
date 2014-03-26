@@ -56,7 +56,7 @@ component extends="frameworks.org.corfield.framework" {
 
 	public void function setupRequest() {
 		if (isFrameworkReloadRequest() || !structKeyExists(APPLICATION,"websiteSettings")) {
-			APPLICATION.blogCollectionName = "blogArticles";
+			APPLICATION.blogCollectionName = "blogPosts";
 			ORMClearSession();
 			ORMReload();
 			try {
@@ -89,8 +89,12 @@ component extends="frameworks.org.corfield.framework" {
 
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Home","/");
-		service( 'articleService.getArticlePublishedBookMarks', 'blogArticleDateCounts');
-		service( 'articleService.getTags', 'mostUsedTags', {page=1,itemsPerPage=5,orderBy="articleCount DESC, name ASC"});
+		var articleService = new services.articleService();
+		var _articleCount = articleService.getArticleCountInTimeSpan(createDate(year(now())-5,1,1),now());
+		if (_articleCount > 0) {
+			RC.blogArticleDateCounts = articleService.getArticlePublishedBookMarks(RC);
+			RC.mostUsedTags = articleService.getTags({page=1,itemsPerPage=5,orderBy="articleCount DESC, name ASC"});
+		}
 	}
 
 
