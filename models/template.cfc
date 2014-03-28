@@ -11,6 +11,7 @@ component output="false" displayname="template" extends="base" {
 	VARIABLES.siteName = "";
 	VARIABLES.pageCrumb = [];
 	VARIABLES.files = {};
+	VARIABLES.metaTags = {};
 
 	public template function init(){
 		return super.init(ARGUMENTS);
@@ -90,6 +91,28 @@ component output="false" displayname="template" extends="base" {
 		} else {
 			throw("no files exists for key [#ARGUMENTS.key#]");
 		}
+	}
+
+
+	public void function addMetaTag() {
+		if ((!structKeyExists(ARGUMENTS,"name")) && (!structKeyExists(ARGUMENTS,"property"))) { throw("META tag requires a NAME and/or PROPERTY"); }
+		var _metaData = structNew();
+		var _key = "";
+		if (structKeyExists(ARGUMENTS,"name")) { _metaData["name"] = trim(ARGUMENTS.name); _key = trim(ARGUMENTS.name); }
+		if (structKeyExists(ARGUMENTS,"property")) { _metaData["property"] = trim(ARGUMENTS.property); _key = trim(ARGUMENTS.property); }
+		if (structKeyExists(ARGUMENTS,"content")) { _metaData["content"] = trim(ARGUMENTS.content); }
+		if (structKeyExists(ARGUMENTS,"href")) { _metaData["href"] = trim(ARGUMENTS.href); }
+
+		VARIABLES.metaTags[_key] = _metaData;
+	}
+
+
+	public array function getMetaTags() {
+		var _tags = [];
+		for (var _key in VARIABLES.metaTags) {
+			arrayAppend(_tags,VARIABLES.metaTags[_key]);
+		}
+		return _tags;
 	}
 
 

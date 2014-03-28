@@ -99,6 +99,8 @@ component output="false" displayname="blog"  {
 		//VARIABLES.fw.service( 'articleService.getArticles', 'relatedArticles', {tags=RC.article.getTagNamesAsList(), page=1, itemsPerPage=3});
 	}
 	public void function view( required struct rc ) {
+		RC.template.addMetaTag(name="keywords",content=RC.article.getTagNamesAsList());
+		RC.template.addMetaTag(name="description",content=RC.article.getSummary());
 	}
 	public void function endView( required struct rc ) {
 		var _url = replace(CGI.PATH_INFO,"/blog/","","one");
