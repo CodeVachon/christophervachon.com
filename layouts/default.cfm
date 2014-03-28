@@ -3,6 +3,16 @@
 	<head>
 		<title>#RC.template.getSiteTitle()#</title>
 		<cfscript> 
+
+			for (_metaTag in RC.template.getMetaTags()) {
+				tag = "<meta ";
+				for (_key in _metaTag) {
+					tag &= '#_key#="#_metaTag[_key]#" ';
+				}
+				tag &= "/>" & chr(10);
+				writeOutput(tag);
+			}
+
 			if (arrayLen(RC.template.getFiles("CSS")) > 0) {
 				writeOutput("<style>" & chr(10));
 				writeOutput("@import url('http://fonts.googleapis.com/css?family=Maven+Pro:400,700');" & chr(10));

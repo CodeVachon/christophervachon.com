@@ -79,6 +79,8 @@ component extends="frameworks.org.corfield.framework" {
 		REQUEST.CONTEXT.template.addFile("//code.jquery.com/jquery-1.10.2.min.js");
 		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
 		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
+
+		REQUEST.CONTEXT.template.addMetaTag(name="description",content=APPLICATION.websiteSettings.getDescription());
 	}
 
 
@@ -89,16 +91,15 @@ component extends="frameworks.org.corfield.framework" {
 
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Home","/");
+	}
+
+
+	public void function after( required struct rc ) {
 		var articleService = new services.articleService();
 		var _articleCount = articleService.getArticleCountInTimeSpan(createDate(year(now())-5,1,1),now());
 		if (_articleCount > 0) {
 			RC.blogArticleDateCounts = articleService.getArticlePublishedBookMarks(RC);
 			RC.mostUsedTags = articleService.getTags({page=1,itemsPerPage=5,orderBy="articleCount DESC, name ASC"});
 		}
-	}
-
-
-	public void function after( required struct rc ) {
-		
 	}
 }
