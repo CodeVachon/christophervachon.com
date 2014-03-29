@@ -79,7 +79,7 @@ component extends="frameworks.org.corfield.framework" {
 		REQUEST.CONTEXT.template.addFile("//code.jquery.com/jquery-1.10.2.min.js");
 		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
 		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
-
+		REQUEST.CONTEXT.template.addFile("/includes/js/globals.js");
 		REQUEST.CONTEXT.template.addMetaTag(name="description",content=APPLICATION.websiteSettings.getDescription());
 	}
 
