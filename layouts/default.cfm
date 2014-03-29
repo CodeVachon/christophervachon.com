@@ -2,8 +2,8 @@
 <html lang="en">
 	<head>
 		<title>#RC.template.getSiteTitle()#</title>
-		<cfscript> 
-
+		<link rel="canonical" href="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
+		<cfscript>
 			for (_metaTag in RC.template.getMetaTags()) {
 				tag = "<meta ";
 				for (_key in _metaTag) {
