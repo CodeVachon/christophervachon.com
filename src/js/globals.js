@@ -16,7 +16,7 @@ $(document).ready(function initDom() {
 			pattern: "(?:(var|new|function|private|if|else|for|in)\\s)"
 		}, {
 			class: 'operator',
-			pattern: "((?:[\\+\\-\\=\\!\\|\\:\\[\\]\\(\\)\\{\\}]|&amp;){1,}|(?:[^\\*\\/]\\/(?!\\/|\\*)))"
+			pattern: "((?:[\\+\\-\\=\\!\\|\\:\\[\\]\\(\\)\\{\\}\\>\\<]|&amp;|&lt;|&gt;){1,}|(?:[^\\*\\/]\\/(?!\\/|\\*)))"
 		}, {
 			class: 'comment',
 			pattern: "\\/\\/[^\\(\\n|\\r)]+|\\/\\*|\\*\\/"
