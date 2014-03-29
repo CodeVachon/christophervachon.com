@@ -1,19 +1,22 @@
 $(document).ready(function initDom() {
-	$('code').each(function eachCodeBlock() {
+	$('pre code').each(function eachCodeBlock() {
+		var _settings = {
+			tab: "&nbsp;&nbsp;&nbsp;&nbsp;"
+		};
 		var _table = $('<table>').addClass('syntax-highlighting').append(
 		$('<tr>')
 			.append($('<td>').addClass('gutter'))
 			.append($('<td>').addClass('code')));
 
-		var _code = $(this).html().split(/\r\n|\r|\n|<br(?:\s\/)?>/g);
-		var _numLines = (_code.length - 1);
-
 		var _patterns = [{
+			class: "string",
+			pattern: "((?:\"|')[^\"']{0,}(?:\"|'))"
+		}, {
 			class: 'const',
-			pattern: "(?:(var|new|function|private|if|else)\\s)"
+			pattern: "(?:(var|new|function|private|if|else|for|in)\\s)"
 		}, {
 			class: 'operator',
-			pattern: "((?:[\\+\\-\\=\\!\\|\\(\\)\\{\\}]|&amp;){1,}|(?:[^\\*\\/]\\/(?!\\/|\\*)))"
+			pattern: "((?:[\\+\\-\\=\\!\\|\\:\\[\\]\\(\\)\\{\\}]|&amp;){1,}|(?:[^\\*\\/]\\/(?!\\/|\\*)))"
 		}, {
 			class: 'comment',
 			pattern: "\\/\\/[^\\(\\n|\\r)]+|\\/\\*|\\*\\/"
@@ -23,8 +26,11 @@ $(document).ready(function initDom() {
 		_computedRegExString = "(" + _computedRegExString.replace(/\|$/, "") + ")";
 		var _computedRegEx = new RegExp(_computedRegExString, "gi");
 
+
+		var _code = $(this).html().split(/\r\n|\r|\n|<br(?:\s\/)?>/g);
+		var _numLines = (_code.length - 1);
 		for (var i = 0; i <= _numLines; i++) {
-			var _hightlightedCode = _code[i];
+			var _hightlightedCode = _code[i].replace(/\t/g,_settings.tab);
 			_hightlightedCode = _hightlightedCode.replace(_computedRegEx, "<span class='found'>$1</span>");
 			_hightlightedCode = $('<div>').html(_hightlightedCode || "&nbsp;");
 			_table.find('td.gutter').append($('<div>').html(i + 1));
@@ -35,17 +41,16 @@ $(document).ready(function initDom() {
 			$(this).removeClass('found').addClass(swapClassesForSyntaxHighlighting($(this),_patterns));
 		});
 
-		$(this).replaceWith(_table);
+		$(this).closest('pre').replaceWith(_table);
 	});
 });
 
 function swapClassesForSyntaxHighlighting(_block,_patterns) {
-	var _className = "";
 	for (var j in _patterns) {
-		var _regEx = new RegExp(_patterns[j].pattern,"i");
+		var _regEx = new RegExp(_patterns[j].pattern,"gi");
 		if (_block.html().match(_regEx)) {
-			_className = _patterns[j].class;
+			return _patterns[j].class;
 		}
 	}
-	return _className;
+	return "found";
 }
