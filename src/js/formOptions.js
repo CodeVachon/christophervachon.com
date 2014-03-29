@@ -31,7 +31,7 @@ $(document).ready(function() {
 			console.log("wysiwyg Found");
 			loadFileForFN("/includes/js/tinymce/jquery.tinymce.min.js","tinymce").done(function() {
 				_form.find("[data-wysiwyg]").each(function() {
-					console.log("Add wysiwyg to: " + $(this).attr("name"));
+					console.log("Add wysiwyg to [" + $(this).attr("data-wysiwyg") + "]: " + $(this).attr("name"));
 					var _options = {
 						script_url: '/includes/js/tinymce/tinymce.min.js',
 						width:      '100%',
@@ -43,9 +43,10 @@ $(document).ready(function() {
 						_options.statusbar = false;
 						_options.toolbar = "bold italic underline | link unlink";
 					} else {
-						_options.plugins = "link, code";
-						_options.statusbar = false;
-						_options.toolbar = "code | undo redo | bold italic underline strikethrough | link unlink | blockquote | bullist numlist ";
+						_options.plugins = "link, code, fullscreen, visualblocks";
+						_options.statusbar = true;
+						_options.toolbar = "fullscreen | visualblocks code | undo redo | bold italic underline strikethrough | link unlink | blockquote | bullist numlist ";
+						_options.content_css = "/includes/css/christophervachon.min.css";
 					}
 					$(this).tinymce(_options);
 				});
