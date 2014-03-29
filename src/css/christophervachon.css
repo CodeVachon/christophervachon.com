@@ -792,6 +792,92 @@ table.syntax-highlighting tr td div {
   white-space: nowrap;
   overflow: hidden;
 }
+body {
+  margin-left: 250px;
+}
+.admin-btn {
+  position: fixed;
+  top: 7px;
+  left: 7px;
+  z-index: 10000;
+  background-color: #333;
+  color: #fff;
+}
+.admin-btn:hover {
+  color: #fff !important;
+}
+.admin-btn:active {
+  color: #fff !important;
+}
+.admin-btn:focus {
+  color: #fff !important;
+}
+body {
+  margin-left: 0;
+  transition: 0.5s;
+}
+body.admin-menu-open {
+  padding-left: 250px;
+}
+.admin-menu {
+  overflow: hidden;
+  background-color: #333;
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  width: 0px;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  transition: 0.5s;
+}
+.admin-menu.open {
+  width: 250px;
+}
+.admin-menu h2 {
+  padding: 0.25em 0.5em;
+}
+.admin-menu .panel-group {
+  white-space: nowrap;
+}
+.admin-menu .panel-group .panel {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top: 1px #666 solid;
+  border-bottom: 1px #000 solid;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.admin-menu .panel-group .panel .panel-heading {
+  margin: 0;
+  padding: 0;
+}
+.admin-menu .panel-group .panel .panel-heading .panel-title a {
+  color: #fff;
+  display: block;
+  margin: 0;
+  padding: 0.3em 0.6em;
+  border-bottom: #000;
+}
+.admin-menu .panel-group .panel .panel-body {
+  margin: 0;
+}
+.admin-menu .panel-group .panel + .panel {
+  margin: 0;
+}
+.admin-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.admin-menu ul li ul {
+  display: none;
+}
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;

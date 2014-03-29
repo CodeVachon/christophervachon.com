@@ -43,6 +43,12 @@ $(document).ready(function initDom() {
 
 		$(this).closest('pre').replaceWith(_table);
 	});
+
+	$('.admin-btn').on("click",function toggleAdminMenu() {
+		$(this).children('.glyphicon').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-left');
+		$('.admin-menu').toggleClass('open');
+		$('body').toggleClass('admin-menu-open');
+	});
 });
 
 function swapClassesForSyntaxHighlighting(_block,_patterns) {
