@@ -12,6 +12,9 @@ $(document).ready(function initDom() {
 			class: "string",
 			pattern: "((?:\"|')[^\"']{0,}(?:\"|'))"
 		}, {
+			class: 'regex',
+			pattern: "(\\/[^\\/]+\\/[gim]{0,})"
+		}, {
 			class: 'const',
 			pattern: "(?:(var|new|function|private|if|else|for|in)\\s)"
 		}, {
