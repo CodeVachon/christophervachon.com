@@ -103,6 +103,9 @@
 							<div id="admin-menu-accordion-articles" class="panel-collapse collapse">
 								<div class="panel-body">
 									<ul>
+										<cfif RC.action EQ "blog.view">
+											<li><a href='#buildURL('admin.editArticle')#/articleId/#RC.article.getID()#'>Edit Article</a></li>
+										</cfif>
 										<li><a href='#buildURL('admin.listArticles')#'>List Articles</a></li>
 										<li><a href='#buildURL('admin.editArticle')#'>Add New Article</a></li>
 										<li><a href='#buildURL('admin.listTags')#'>List Tags</a></li>
