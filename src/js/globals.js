@@ -63,3 +63,12 @@ function swapClassesForSyntaxHighlighting(_block,_patterns) {
 	}
 	return "found";
 }
+
+
+
+(function ( $ ) {
+	$.fn.highlightSyntax = function( options ) {
+		var settings = $.extend({}, options );
+		return this.css();
+	};
+}( jQuery ));
