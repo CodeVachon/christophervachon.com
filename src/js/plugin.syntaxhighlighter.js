@@ -2,7 +2,7 @@
 	$.fn.highlightSyntax = function( options ) {
 		var _settings = $.extend({
 			tab: "&nbsp;&nbsp;&nbsp;&nbsp;",
-			splitLinesRegEx: "\r\n|\r|\n|<br(?:\s\/)?>",
+			splitLinesRegEx: "\\r\\n|\\r|\\n|<br(?:\\s\\/)?>",
 			definitions: {
 				default: [{
 					class: "string",
