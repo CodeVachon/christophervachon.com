@@ -101,6 +101,7 @@ component output="false" displayname="blog"  {
 	public void function view( required struct rc ) {
 		RC.template.addMetaTag(name="keywords",content=RC.article.getTagNamesAsList());
 		RC.template.addMetaTag(name="description",content=RC.article.getSummary());
+		RC.template.addFile("/includes/js/plugin.syntaxhighlighter.js");
 	}
 	public void function endView( required struct rc ) {
 		var _url = replace(CGI.PATH_INFO,"/blog/","","one");
