@@ -1,4 +1,11 @@
 (function ( $ ) {
+	$(window).on("resize",function resizeWindow() {
+		$('table.syntax-highlighting').each(function() {
+			$(this).find('td.code div[data-line]').each(function() {
+				$(this).closest('table').find('td.gutter div[data-line="' + $(this).attr('data-line') + '"]').height($(this).height());
+			});
+		});
+	});
 	$.fn.highlightSyntax = function( options ) {
 		var _settings = $.extend({
 			tab: "&nbsp;&nbsp;&nbsp;&nbsp;",
@@ -42,15 +49,23 @@
 		for (var i = 0; i <= _numLines; i++) {
 			var _hightlightedCode = _code[i].replace(/\t/g,_settings.tab);
 			_hightlightedCode = _hightlightedCode.replace(_computedRegEx, "<span class='found'>$1</span>");
-			_hightlightedCode = $('<div>').html(_hightlightedCode || "&nbsp;");
-			_table.find('td.gutter').append($('<div>').html(i + 1));
+			_hightlightedCode = $('<div>').attr('data-line',i).html(_hightlightedCode || "&nbsp;");
+			_table.find('td.gutter').append($('<div>').attr('data-line',i).html(i + 1));
 			_table.find('td.code').append(_hightlightedCode);
 		}
 		_table.find('td.code .found').each(function applyHighlighting() {
 			$(this).removeClass('found').addClass(swapClassesForSyntaxHighlighting($(this),_definitions));
 		});
 
-		return this.closest('pre').replaceWith(_table);
+		this.closest('pre').replaceWith(_table);
+
+
+		_table.find('td.code div[data-line]').each(function() {
+			$(this).closest('table').find('td.gutter div[data-line="' + $(this).attr('data-line') + '"]').height($(this).height());
+		});
+
+
+		return this;
 	};
 	function swapClassesForSyntaxHighlighting(_block,_patterns) {
 		for (var j in _patterns) {

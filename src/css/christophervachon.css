@@ -790,14 +790,6 @@ table.syntax-highlighting tr td.code .string {
 table.syntax-highlighting tr td.code .regex {
   color: #80f;
 }
-table.syntax-highlighting tr td div {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-body {
-  margin-left: 250px;
-}
 .admin-btn {
   position: fixed;
   top: 7px;
