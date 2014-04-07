@@ -100,6 +100,11 @@ table.syntax-highlighting {
 	margin: 1em 0;
 	tr {
 		vertical-align: top;
+		th {
+			color: #fff;
+			padding: 0.4em 0.8em;
+			border-bottom: 1px @code-gutter-color solid;
+		}
 		td {
 			padding: 1em 0.5em;
 			&.gutter {
@@ -118,6 +123,8 @@ table.syntax-highlighting {
 				.comment { color: #f80; }
 				.string { color: #0c0; }
 				.regex { color: #80f; }
+				.html { color: #f80; }
+				.color { color: #0a0; }
 			}
 			div { 
 				//text-overflow: ellipsis;
