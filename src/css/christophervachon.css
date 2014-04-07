@@ -758,6 +758,11 @@ table.syntax-highlighting:after {
 table.syntax-highlighting tr {
   vertical-align: top;
 }
+table.syntax-highlighting tr th {
+  color: #fff;
+  padding: 0.4em 0.8em;
+  border-bottom: 1px #808080 solid;
+}
 table.syntax-highlighting tr td {
   padding: 1em 0.5em;
 }
@@ -789,6 +794,12 @@ table.syntax-highlighting tr td.code .string {
 }
 table.syntax-highlighting tr td.code .regex {
   color: #80f;
+}
+table.syntax-highlighting tr td.code .html {
+  color: #f80;
+}
+table.syntax-highlighting tr td.code .color {
+  color: #0a0;
 }
 .admin-btn {
   position: fixed;
