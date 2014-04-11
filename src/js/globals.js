@@ -1,5 +1,7 @@
 $(document).ready(function initDom() {
-	$('code').highlightSyntax({definitionsPath: "/includes/js/definitions/"});
+	if ($('code').size() > 0) {
+		$('code').highlightSyntax({definitionsPath: "/includes/js/definitions/"});
+	}
 
 	$('.admin-btn').on("click",function toggleAdminMenu() {
 		$(this).children('.glyphicon').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-left');

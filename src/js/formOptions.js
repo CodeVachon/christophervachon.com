@@ -139,7 +139,7 @@ function loadFileForFN(_src,_fnName) {
 		}).fail(function(e) {
 			console.log("Failed to Laod: " + _src);
 			console.log(e);
-			d.fail();
+			d.reject();
 		});
 	}
 	return d.promise();
