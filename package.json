@@ -9,7 +9,7 @@
   },
   "developer": "Christopher Vachon",
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-less": "~0.9.0",
     "grunt-contrib-jshint": "~0.8.0",

@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	grunt.initConfig({
+	grunt.initConfig({  
 		path: require('path'),
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
