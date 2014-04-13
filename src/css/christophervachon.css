@@ -801,6 +801,24 @@ table.syntax-highlighting tr td.code .html {
 table.syntax-highlighting tr td.code .color {
   color: #0a0;
 }
+.tab-content {
+  padding: 1em 0;
+}
+.static {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#articleForm {
+  overflow: auto;
+  height: 550px;
+}
+#articlePreview {
+  border: 2px #999 solid;
+  border-radius: 0.5em;
+  overflow: auto;
+  height: 550px;
+}
 .admin-btn {
   position: fixed;
   top: 7px;

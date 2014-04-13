@@ -174,6 +174,8 @@ component output="false" displayname=""  {
 		RC.template.addPageCrumb("List Articles","/admin/listArticles");
 		RC.template.addPageCrumb("Edit Article","/admin/editArticle");
 		RC.template.addFile('/includes/js/formOptions.js');
+		RC.template.addFile("/includes/js/jquery.syntaxhighlighter.min.js");
+		RC.template.addFile("/includes/js/editArticle.js");
 	}
 	public void function endEditArticle( required struct rc ) {
 		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
@@ -189,7 +191,17 @@ component output="false" displayname=""  {
 				RC.articleTags = listAppend(RC.articleTags,_tag.getName());
 			}
 		}
+
+		REQUEST.disableSidebar = true;
 	} // close editArticle
+
+
+	public void function previewArticle( required struct rc ) {
+		var articleService = new services.articleService();
+		RC.article = articleService.editArticle(RC);
+		VARIABLES.fw.setView("blog.view");
+		REQUEST.layout = false;
+	} // close previewArticle
 
 
 	public void function listTags( required struct rc ) {

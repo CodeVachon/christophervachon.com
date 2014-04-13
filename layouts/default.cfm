@@ -1,3 +1,4 @@
+<cfparam name="REQUEST.disableSidebar" default="false" />
 <cfcontent reset="true" type="text/html" /><!DOCTYPE html><cfoutput>
 <html lang="en">
 	<head>
@@ -83,19 +84,32 @@
 				<h1>#RC.template.getSiteName()#</h1>
 			</header>
 			<div class='row'>
-				<section class='col-xs-12 col-sm-8 page-content'>
-					<cfif RC.template.getPageCrumbCount() GT 1>
-						<ol class="breadcrumb">
-							<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
-								<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
-							</cfloop>
-						</ol>
-					</cfif>
-					#body#
-				</section>
-				<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
-					#view('blog/articleCountByDate')#
-				</section>
+				<cfif REQUEST.disableSidebar>
+					<section class='col-xs-12 page-content'>
+						<cfif RC.template.getPageCrumbCount() GT 1>
+							<ol class="breadcrumb">
+								<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
+									<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+								</cfloop>
+							</ol>
+						</cfif>
+						#body#
+					</section>
+				<cfelse>
+					<section class='col-xs-12 col-sm-8 page-content'>
+						<cfif RC.template.getPageCrumbCount() GT 1>
+							<ol class="breadcrumb">
+								<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
+									<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+								</cfloop>
+							</ol>
+						</cfif>
+						#body#
+					</section>
+					<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
+						#view('blog/articleCountByDate')#
+					</section>
+				</cfif>
 			</div>
 			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>

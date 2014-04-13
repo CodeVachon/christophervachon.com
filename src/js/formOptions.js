@@ -46,7 +46,6 @@ $(document).ready(function() {
 						_options.plugins = "link, code, fullscreen, visualblocks";
 						_options.statusbar = true;
 						_options.toolbar = "fullscreen | visualblocks code | undo redo | bold italic underline strikethrough | link unlink | blockquote | bullist numlist ";
-						_options.content_css = "/includes/css/christophervachon.min.css";
 					}
 					$(this).tinymce(_options);
 				});
@@ -139,7 +138,7 @@ function loadFileForFN(_src,_fnName) {
 		}).fail(function(e) {
 			console.log("Failed to Laod: " + _src);
 			console.log(e);
-			d.fail();
+			d.reject();
 		});
 	}
 	return d.promise();
