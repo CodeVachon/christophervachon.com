@@ -46,7 +46,6 @@ $(document).ready(function() {
 						_options.plugins = "link, code, fullscreen, visualblocks";
 						_options.statusbar = true;
 						_options.toolbar = "fullscreen | visualblocks code | undo redo | bold italic underline strikethrough | link unlink | blockquote | bullist numlist ";
-						_options.content_css = "/includes/css/christophervachon.min.css";
 					}
 					$(this).tinymce(_options);
 				});
