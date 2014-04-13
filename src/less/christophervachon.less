@@ -134,6 +134,26 @@ table.syntax-highlighting {
 		}
 	}
 }
+
+
+.tab-content { padding: 1em 0; }
+.static { 
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+@articleEditorHeight: 550px;
+#articleForm {
+	overflow: auto;
+	height: @articleEditorHeight;
+}
+#articlePreview {
+	border: 2px #999 solid;
+	border-radius: 0.5em;
+	overflow: auto;
+	height: @articleEditorHeight;
+}
+
 .admin-btn {
 	position: fixed;
 	top: 7px;
