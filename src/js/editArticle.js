@@ -24,4 +24,10 @@ $(document).ready(function() {
 
 function fnUpdatePreview() {
 	$('#articlePreview').prepend($('<div>').addClass('alert alert-info static').html('updating'));
+	$.post('/admin/previewArticle',$('form[name="articleForm"]').serialize(),function donePost(_data) {
+		$('#articlePreview').html(_data);
+		if ($('code').size() > 0) {
+			$('code').highlightSyntax({definitionsPath: "/includes/js/definitions/"});
+		}
+	});
 }
