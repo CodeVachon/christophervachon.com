@@ -174,6 +174,7 @@ component output="false" displayname=""  {
 		RC.template.addPageCrumb("List Articles","/admin/listArticles");
 		RC.template.addPageCrumb("Edit Article","/admin/editArticle");
 		RC.template.addFile('/includes/js/formOptions.js');
+		RC.template.addFile("/includes/js/jquery.syntaxhighlighter.min.js");
 	}
 	public void function endEditArticle( required struct rc ) {
 		if (structKeyExists(RC,"btnSave") && (!structKeyExists(RC,"validationError"))) {
@@ -189,6 +190,7 @@ component output="false" displayname=""  {
 				RC.articleTags = listAppend(RC.articleTags,_tag.getName());
 			}
 		}
+		REQUEST.disableSidebar = true;
 	} // close editArticle
 
 
