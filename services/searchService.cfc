@@ -11,8 +11,13 @@
 			}
 		</cfscript>
 
+		<!---
 		<cfcollection action="list" name="collections" engine="solr">
 		<cfif not listFindNoCase(valueList(collections.name), VARIABLES.collectionName)>
+			<cfcollection action="create" collection="#VARIABLES.collectionName#" engine="solr" path="#expandPath('/collections')#/#VARIABLES.collectionName#">
+		</cfif>
+		--->
+		<cfif not this.collectionExists(VARIABLES.collectionName)>
 			<cfcollection action="create" collection="#VARIABLES.collectionName#" engine="solr" path="#expandPath('/collections')#/#VARIABLES.collectionName#">
 		</cfif>
 
@@ -70,5 +75,46 @@
 		<cfargument name="searchTerm">
 		<cfsearch collection="#VARIABLES.collectionName#" criteria="#ARGUMENTS.searchTerm#" name="results" status="r" suggestions="always" contextPassages="2">
 		<cfreturn results />
+	</cffunction>
+
+
+	<!---
+	SOURCE: http://www.cflib.org/udf/collectionExists
+
+	 Call this function, passing in a collection name, to see if that named Verity colleciton exists.
+	 Version 1 by Pete Ruckelshaus, &#112;&#114;&#117;&#99;&#107;&#101;&#108;&#115;&#104;&#97;&#117;&#115;&#64;&#121;&#97;&#104;&#111;&#111;&#46;&#99;&#111;&#109;
+	 Raymond Camden modified version 2 a bit.
+	 
+	 @param collection 	 Name of collection (Required)
+	 @return Returns a boolean. 
+	 @author Dan G. Switzer, II (&#112;&#114;&#117;&#99;&#107;&#101;&#108;&#115;&#104;&#97;&#117;&#115;&#64;&#121;&#97;&#104;&#111;&#111;&#46;&#99;&#111;&#109;&#100;&#115;&#119;&#105;&#116;&#122;&#101;&#114;&#64;&#112;&#101;&#110;&#103;&#111;&#119;&#111;&#114;&#107;&#115;&#46;&#99;&#111;&#109;) 
+	 @version 2, March 10, 2006 
+	--->
+	<cffunction name="collectionExists" returnType="boolean" output="false" hint="This returns a yes/no value that checks for the existence of a named collection.">
+		<cfargument name="collection" type="string" required="yes">
+
+		<!---// by default return true //--->
+		<cfset var bExists = true />
+		<cfset var searchItems = "">
+		
+		<!---// if you can't search the collection, then assume it doesn't exist //--->
+		<cftry>
+			<cfsearch
+				name="searchItems"
+				collection="#ARGUMENTS.collection#"
+				criteria="#createUUID()#"
+			/>
+			<cfcatch type="any">
+				<!---// if the message contains the string "does not exist", then the collection can't be found //--->
+				<cfif cfcatch.message contains "does not exist">
+					<cfset bExists = false />
+				<cfelse>
+					<cfrethrow>
+				</cfif>
+			</cfcatch>
+		</cftry>
+
+		<!---// returns true if search was successful and false if an error occurred //--->
+		<cfreturn bExists />
 	</cffunction>
 </cfcomponent>
