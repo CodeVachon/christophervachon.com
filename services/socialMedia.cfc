@@ -9,13 +9,14 @@
 component output="false" displayname=""  {
 
 	VARIABLES.websiteSettings = javaCast("Null","");
+	VARIABLES.twitter = javaCast("Null","");
 
 	public function init() { 
 
 		if (structKeyExists(ARGUMENTS,"websiteSettings")) { this.setWebsiteSettings(ARGUMENTS.websiteSettings); }
 
 		return this; 
-	}
+	} // close init
 
 
 	public boolean function canConnectToTwitter() {
@@ -29,10 +30,37 @@ component output="false" displayname=""  {
 			) {
 				return true;
 			}
-
 		}
 		return false;
+	} // close canConnectToTwitter
+
+
+	public void function connectToTwitter() {
+		if (this.canConnectToTwitter()) {
+			VARIABLES.twitter = createObject('component','services.coldfumonkeh.monkehTweet').init(
+				consumerKey			= this.getWebsiteSettings().getTW_ConsumerKey(),
+				consumerSecret		= this.getWebsiteSettings().getTW_ConsumerSecret(),
+				oauthToken			= this.getWebsiteSettings().getTW_AccessToken(),
+				oauthTokenSecret 	= this.getWebsiteSettings().getTW_AccessTokenSecret(),
+				userAccountName		= this.getWebsiteSettings().getTW_UserName(),
+				parseResults		= true
+			);
+		} else {
+			throw("Can Not Connect to Twitter");
+		}
+	} // close connectToTwitter
+
+
+	public struct function getTwitterUserDetails(string screenName = this.getWebsiteSettings().getTW_UserName()) {
+		var _details = this.getTwitter().getUserDetails(screen_name=ARGUMENTS.screenName);
+		return _details;
 	}
+
+
+	public services.coldfumonkeh.monkehTweet function getTwitter() {
+		if (isNull(VARIABLES.twitter)) { throw("Twitter is Not Connected"); }
+		return VARIABLES.twitter;
+	} // close getTwitter
 
 
 	public void function setWebsiteSettings(required models.websiteSettings websiteSettings) {
