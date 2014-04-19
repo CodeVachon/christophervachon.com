@@ -73,6 +73,7 @@
 			</ul>
 			<div class="tab-content col-sm-9">
 				<div class="tab-pane active" id="Twitter">
+					<h3>Twitter API Settings</h3>
 					<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
 						<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
 						<div class="form-group">
