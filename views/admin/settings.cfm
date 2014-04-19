@@ -4,10 +4,11 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="##SiteDetails" data-toggle="tab">Site Details</a></li>
 		<li><a href="##MailSettings" data-toggle="tab">Mail Settings</a></li>
+		<li><a href="##SocialMedia" data-toggle="tab">Social Media</a></li>
 	</ul>
 
 	<div class="tab-content">
-	 	<div class="tab-pane active" id="SiteDetails">
+		<div class="tab-pane active" id="SiteDetails">
 			<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
 				<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
 				<div class="form-group">
@@ -65,6 +66,39 @@
 				</div>
 				<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
 			</form>
+		</div>
+		<div class="tab-pane" id="SocialMedia">
+			<ul class="nav nav-pills nav-stacked col-sm-3">
+				<li class="active"><a href="##Twitter">Twitter</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active col-sm-9" id="Twitter">
+					<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
+						<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
+						<div class="form-group">
+							<label for="TW_UserName">User Name</label>
+							<input type="text" class="form-control" id="TW_UserName" name="TW_UserName" placeholder="Site Name" value="#((structKeyExists(RC,"TW_UserName"))?RC.TW_UserName:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_ConsumerKey">Consumer Key</label>
+							<input type="text" class="form-control" id="TW_ConsumerKey" name="TW_ConsumerKey" placeholder="Site Name" value="#((structKeyExists(RC,"TW_ConsumerKey"))?RC.TW_ConsumerKey:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_ConsumerSecret">Consumer Secret</label>
+							<input type="text" class="form-control" id="TW_ConsumerSecret" name="TW_ConsumerSecret" placeholder="Site Name" value="#((structKeyExists(RC,"TW_ConsumerSecret"))?RC.TW_ConsumerSecret:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_AccessToken">Access Token</label>
+							<input type="text" class="form-control" id="TW_AccessToken" name="TW_AccessToken" placeholder="Site Name" value="#((structKeyExists(RC,"TW_AccessToken"))?RC.TW_AccessToken:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_AccessTokenSecret">Access Token Secret</label>
+							<input type="text" class="form-control" id="TW_AccessTokenSecret" name="TW_AccessTokenSecret" placeholder="Site Name" value="#((structKeyExists(RC,"TW_AccessTokenSecret"))?RC.TW_AccessTokenSecret:"")#" />
+						</div>
+						<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
