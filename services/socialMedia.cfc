@@ -11,6 +11,8 @@ component output="false" displayname=""  {
 	VARIABLES.websiteSettings = javaCast("Null","");
 	VARIABLES.twitter = javaCast("Null","");
 
+	VARIABLES.cache = {};
+
 	public function init() { 
 
 		if (structKeyExists(ARGUMENTS,"websiteSettings")) { this.setWebsiteSettings(ARGUMENTS.websiteSettings); }
@@ -52,8 +54,21 @@ component output="false" displayname=""  {
 
 
 	public struct function getTwitterUserDetails(string screenName = this.getWebsiteSettings().getTW_UserName()) {
-		var _details = this.getTwitter().getUserDetails(screen_name=ARGUMENTS.screenName);
-		return _details;
+		if (this.isConnectedToTwitter()) {
+			if (!structKeyExists(VARIABLES.cache,"twitter")) { VARIABLES.cache.twitter = {}; }
+			if (!structKeyExists(VARIABLES.cache.twitter,"userDetails")) { VARIABLES.cache.twitter.userDetails = {}; }
+			if (!structKeyExists(VARIABLES.cache.twitter.userDetails, ARGUMENTS.screenName)) {
+				VARIABLES.cache.twitter.userDetails[ARGUMENTS.screenName] = this.getTwitter().getUserDetails(screen_name=ARGUMENTS.screenName);
+			}
+			return VARIABLES.cache.twitter.userDetails[ARGUMENTS.screenName];
+		}
+	}
+
+
+	public array function getTwitterUserFeed(string screenName = this.getWebsiteSettings().getTW_UserName(), numeric itemCount = 5) {
+		if (this.isConnectedToTwitter()) {
+			return this.getTwitter().getUserTimeline(screen_name=ARGUMENTS.screenName,count=ARGUMENTS.itemCount);
+		}
 	}
 
 
