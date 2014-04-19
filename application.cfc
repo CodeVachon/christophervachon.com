@@ -62,6 +62,7 @@ component extends="frameworks.org.corfield.framework" {
 			try {
 				var websiteSettingsService = new services.websiteSettingsService();
 				APPLICATION.websiteSettings = websiteSettingsService.editWebsiteSettingsAndSave({domain=CGI.SERVER_NAME});
+				APPLICATION.socialMedia = new services.socialMedia(websiteSettings=APPLICATION.websiteSettings);
 			} catch (any e) {
 				writeDump(e); abort;
 			}
