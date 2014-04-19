@@ -17,6 +17,8 @@ component output="false" displayname=""  {
 
 		if (structKeyExists(ARGUMENTS,"websiteSettings")) { this.setWebsiteSettings(ARGUMENTS.websiteSettings); }
 
+		if (this.canConnectToTwitter()) { this.connectToTwitter(); }
+
 		return this; 
 	} // close init
 
