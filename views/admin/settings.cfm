@@ -71,8 +71,8 @@
 			<ul class="nav nav-pills nav-stacked col-sm-3">
 				<li class="active"><a href="##Twitter" data-toggle="tab">Twitter</a></li>
 			</ul>
-			<div class="tab-content">
-				<div class="tab-pane active col-sm-9" id="Twitter">
+			<div class="tab-content col-sm-9">
+				<div class="tab-pane active" id="Twitter">
 					<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
 						<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
 						<div class="form-group">
