@@ -78,23 +78,23 @@
 						<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
 						<div class="form-group">
 							<label for="TW_UserName">User Name</label>
-							<input type="text" class="form-control" id="TW_UserName" name="TW_UserName" placeholder="Site Name" value="#((structKeyExists(RC,"TW_UserName"))?RC.TW_UserName:"")#" />
+							<input type="text" class="form-control" id="TW_UserName" name="TW_UserName" placeholder="" value="#((structKeyExists(RC,"TW_UserName"))?RC.TW_UserName:"")#" />
 						</div>
 						<div class="form-group">
-							<label for="TW_ConsumerKey">Consumer Key</label>
-							<input type="text" class="form-control" id="TW_ConsumerKey" name="TW_ConsumerKey" placeholder="Site Name" value="#((structKeyExists(RC,"TW_ConsumerKey"))?RC.TW_ConsumerKey:"")#" />
+							<label for="TW_ConsumerKey">API Key</label>
+							<input type="text" class="form-control" id="TW_ConsumerKey" name="TW_ConsumerKey" placeholder="" value="#((structKeyExists(RC,"TW_ConsumerKey"))?RC.TW_ConsumerKey:"")#" />
 						</div>
 						<div class="form-group">
-							<label for="TW_ConsumerSecret">Consumer Secret</label>
-							<input type="text" class="form-control" id="TW_ConsumerSecret" name="TW_ConsumerSecret" placeholder="Site Name" value="#((structKeyExists(RC,"TW_ConsumerSecret"))?RC.TW_ConsumerSecret:"")#" />
+							<label for="TW_ConsumerSecret">API Secret</label>
+							<input type="text" class="form-control" id="TW_ConsumerSecret" name="TW_ConsumerSecret" placeholder="" value="#((structKeyExists(RC,"TW_ConsumerSecret"))?RC.TW_ConsumerSecret:"")#" />
 						</div>
 						<div class="form-group">
 							<label for="TW_AccessToken">Access Token</label>
-							<input type="text" class="form-control" id="TW_AccessToken" name="TW_AccessToken" placeholder="Site Name" value="#((structKeyExists(RC,"TW_AccessToken"))?RC.TW_AccessToken:"")#" />
+							<input type="text" class="form-control" id="TW_AccessToken" name="TW_AccessToken" placeholder="" value="#((structKeyExists(RC,"TW_AccessToken"))?RC.TW_AccessToken:"")#" />
 						</div>
 						<div class="form-group">
 							<label for="TW_AccessTokenSecret">Access Token Secret</label>
-							<input type="text" class="form-control" id="TW_AccessTokenSecret" name="TW_AccessTokenSecret" placeholder="Site Name" value="#((structKeyExists(RC,"TW_AccessTokenSecret"))?RC.TW_AccessTokenSecret:"")#" />
+							<input type="text" class="form-control" id="TW_AccessTokenSecret" name="TW_AccessTokenSecret" placeholder="" value="#((structKeyExists(RC,"TW_AccessTokenSecret"))?RC.TW_AccessTokenSecret:"")#" />
 						</div>
 						<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
 					</form>
