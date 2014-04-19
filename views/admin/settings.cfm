@@ -69,7 +69,7 @@
 		</div>
 		<div class="tab-pane" id="SocialMedia">
 			<ul class="nav nav-pills nav-stacked col-sm-3">
-				<li class="active"><a href="##Twitter">Twitter</a></li>
+				<li class="active"><a href="##Twitter" data-toggle="tab">Twitter</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active col-sm-9" id="Twitter">
