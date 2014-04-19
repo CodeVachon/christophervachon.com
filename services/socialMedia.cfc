@@ -18,6 +18,23 @@ component output="false" displayname=""  {
 	}
 
 
+	public boolean function canConnectToTwitter() {
+		if (this.hasWebsiteSettings()) {
+			if (
+				(len(this.getWebsiteSettings().getProperty("TW_UserName")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("TW_ConsumerKey")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("TW_ConsumerSecret")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("TW_AccessToken")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("TW_AccessTokenSecret")) > 3)
+			) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+
 	public void function setWebsiteSettings(required models.websiteSettings websiteSettings) {
 		VARIABLES.websiteSettings = ARGUMENTS.websiteSettings;
 	} // close setWebsiteSettings
