@@ -58,9 +58,14 @@ component output="false" displayname=""  {
 
 
 	public services.coldfumonkeh.monkehTweet function getTwitter() {
-		if (isNull(VARIABLES.twitter)) { throw("Twitter is Not Connected"); }
+		if (!this.isConnectedToTwitter()) { throw("Twitter is Not Connected"); }
 		return VARIABLES.twitter;
 	} // close getTwitter
+
+
+	public boolean function isConnectedToTwitter() {
+		return (!isNull(VARIABLES.twitter));
+	}
 
 
 	public void function setWebsiteSettings(required models.websiteSettings websiteSettings) {
