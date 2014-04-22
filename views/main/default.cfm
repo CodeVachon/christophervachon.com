@@ -1,19 +1,24 @@
 <cfoutput>
 	<h2>#APPLICATION.websiteSettings.getSiteName()#</h2>
-
+</cfoutput>
 
 <cfscript>
+	LOCAL.feed = {};
+
+	for (RC.article IN RC.articles) {
+		LOCAL.feed[  RC.article.getPublicationDate().getTime()  ] = view("blog/summary");
+	}
+
 	for (RC.post in APPLICATION.socialMedia.getTwitterUserFeed()) {
-		writeOutput("<p class='title'>Twitter Post</p>");
-		writeOutput(view("main/socialMedia/twitter/post"));
+		LOCAL.dateTime = APPLICATION.socialMedia.convertTimeStampToDateTime(RC.post.created_at);
+		LOCAL.feed[  LOCAL.dateTime.getTime() + 1 ] = "<p class='title'>Twitter Post</p>" & view("main/socialMedia/twitter/post");
+	}
+
+	LOCAL.keys = StructKeyArray(LOCAL.feed);
+	ArraySort(LOCAL.keys,"numeric","DESC");
+	//writeDump(LOCAL.keys);
+
+	for (LOCAL.i=1;LOCAL.i<=10;LOCAL.i++) {
+		writeOutput(  "<div class='social-media-item'>" & LOCAL.feed[LOCAL.keys[LOCAL.i]] & "</div>"  );
 	}
 </cfscript>
-
-
-
-	<cfif arrayLen(RC.articles) GT 0>
-		<cfloop array="#RC.articles#" index="RC.article">
-			#view("blog/summary")#
-		</cfloop>
-	</cfif>
-</cfoutput>
