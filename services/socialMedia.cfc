@@ -10,6 +10,7 @@ component output="false" displayname=""  {
 
 	VARIABLES.websiteSettings = javaCast("Null","");
 	VARIABLES.twitter = javaCast("Null","");
+	VARIABLES.facebook = javaCast("Null","");
 
 	VARIABLES.cache = {};
 
@@ -18,9 +19,49 @@ component output="false" displayname=""  {
 		if (structKeyExists(ARGUMENTS,"websiteSettings")) { this.setWebsiteSettings(ARGUMENTS.websiteSettings); }
 
 		if (this.canConnectToTwitter()) { this.connectToTwitter(); }
+		if (this.canConnectToFacebook()) { this.connectToFacebook(); }
 
 		return this; 
 	} // close init
+
+
+	public boolean function canConnectToFacebook() {
+		if (this.hasWebsiteSettings()) {
+			if (
+				(len(this.getWebsiteSettings().getProperty("FB_appID")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("FB_appSecret")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("FB_objectID")) > 3)
+			) {
+				return true;
+			}
+		}
+		return false;
+	} // close canConnectToFacebook
+
+
+	public void function connectToFacebook() {
+		if (this.canConnectToFacebook()) {
+			var _appID = this.getWebsiteSettings().getProperty("FB_appID");
+			var _accessToken = "#_appID#|#this.getWebsiteSettings().getProperty("FB_appSecret")#";
+			VARIABLES.facebook = new services.facebook.FacebookGraphAPI().init(_accessToken,_appID);
+		} else {
+			throw("Can not connect to Facebook");
+		}
+	}
+
+
+	public services.facebook.FacebookGraphAPI function getFacebook() {
+		if (this.isConnectedToFacebook()) {
+			return VARIABLES.facebook;
+		} else {
+			throw("Facebook is Not Connected");
+		}
+	} // close getFacebook
+
+
+	public boolean function isConnectedToFacebook() {
+		return (!isNull(VARIABLES.facebook));
+	} // close isConnectedToFacebook
 
 
 	public boolean function canConnectToTwitter() {
