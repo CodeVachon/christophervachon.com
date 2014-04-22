@@ -69,7 +69,7 @@ component output="false" displayname=""  {
 
 	public array function getTwitterUserFeed(string screenName = this.getWebsiteSettings().getTW_UserName(), numeric itemCount = 5) {
 		if (this.isConnectedToTwitter()) {
-			return this.getTwitter().getUserTimeline(screen_name=ARGUMENTS.screenName,count=ARGUMENTS.itemCount);
+			return this.getTwitter().getUserTimeline(screen_name=ARGUMENTS.screenName,count=ARGUMENTS.itemCount,exclude_replies=false);
 		}
 	} // close getTwitterUserFeed
 
