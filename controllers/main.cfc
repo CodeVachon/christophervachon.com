@@ -18,7 +18,8 @@ component output="false" displayname=""  {
 
 
 	public void function default( required struct rc ) {
-		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
+		var articleService = new services.articleService();
+		RC.articles = articleService.getArticles(itemsPerPage=5);
 	}
 
 
