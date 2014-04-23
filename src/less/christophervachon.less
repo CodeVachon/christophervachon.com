@@ -20,6 +20,32 @@
 		margin-top: 0;
 	}
 
+	.social-media-item {
+		p.title { font-weight: bold; }
+		margin: 1em 0;
+		border-top: 1px @gray-border solid;
+		padding-top: 1em;
+		&:first-of-type {
+			border-top: none;
+			padding-top: 0;
+		}
+	}
+
+	.wall-item {
+		p.title { font-weight: bold; }
+		a.fb-url-image {
+			.clearfix();
+			margin: 0 1em 0 0;
+		}
+		.website {
+			border-top: 1px @gray-border solid;
+			border-bottom: 1px @gray-border solid;
+			padding: 1em;
+			background-color: #eee;
+			min-height: 200px;
+		}
+	}
+
 	.blog-post {
 		margin-bottom: 5em;
 		&.blog-summary {
@@ -46,6 +72,7 @@
 			}
 		}
 		footer {
+			.clearfix();
 			padding-top: 1em;
 			color: @breadcrumb-active-color;
 			p {
