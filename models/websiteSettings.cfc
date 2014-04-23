@@ -34,6 +34,7 @@ component output="false" displayname="websiteSettings" persistent="true" extends
 	// Facebook Connection Information
 	property name="FB_appID" type="string";
 	property name="FB_appSecret" type="string";
+	property name="FB_AppUserToken" type="string";
 	property name="FB_objectID" type="string";
 
 
@@ -65,6 +66,7 @@ component output="false" displayname="websiteSettings" persistent="true" extends
 
 		if (!structKeyExists(VARIABLES,"FB_appID")) { VARIABLES["FB_appID"] = ""; }
 		if (!structKeyExists(VARIABLES,"FB_appSecret")) { VARIABLES["FB_appSecret"] = ""; }
+		if (!structKeyExists(VARIABLES,"FB_AppUserToken")) { VARIABLES["FB_AppUserToken"] = ""; }
 		if (!structKeyExists(VARIABLES,"FB_objectID")) { VARIABLES["FB_objectID"] = ""; }
 	}
 }

@@ -113,6 +113,10 @@
 							<input type="text" class="form-control" id="FB_appSecret" name="FB_appSecret" placeholder="" value="#((structKeyExists(RC,"FB_appSecret"))?RC.FB_appSecret:"")#" />
 						</div>
 						<div class="form-group">
+							<label for="FB_AppUserToken">App User Token</label>
+							<input type="text" class="form-control" id="FB_AppUserToken" name="FB_AppUserToken" placeholder="" value="#((structKeyExists(RC,"FB_AppUserToken"))?RC.FB_AppUserToken:"")#" />
+						</div>
+						<div class="form-group">
 							<label for="FB_objectID">Object to Connect to ID</label>
 							<input type="text" class="form-control" id="FB_objectID" name="FB_objectID" placeholder="" value="#((structKeyExists(RC,"FB_objectID"))?RC.FB_objectID:"")#" />
 						</div>
