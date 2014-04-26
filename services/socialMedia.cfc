@@ -69,15 +69,27 @@ component output="false" displayname=""  {
 
 	public array function getFacebookPostsForObject(string objectID = this.getWebsiteSettings().getProperty("FB_objectID"), numeric limit = 5) {
 		if (isConnectedToFacebook()) {
-			var _return = this.getFacebook().getObject(
-				id=ARGUMENTS.objectID,
-				fields="feed.limit(#ARGUMENTS.limit#)"
-			);
-			if (structKeyExists(_return,"feed")) {
-				return _return.feed.data;
-			} else {
-				throw("An Error Occured");
+			if (!structKeyExists(VARIABLES.cache,"facebook")) { VARIABLES.cache.facebook = {}; } 
+			if (!structKeyExists(VARIABLES.cache.facebook,"feeds")) { VARIABLES.cache.facebook.feeds = {}; } 
+			if (!structKeyExists(VARIABLES.cache.facebook.feeds,ARGUMENTS.objectID)) { VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID] = {}; } 
+
+			if (
+				(!structKeyExists(VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID],"feed")) ||
+				(!structKeyExists(VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID],"cacheTime")) ||
+				(DateDiff("n",VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID].cacheTime,now()) > 15)
+			) {
+				var _return = this.getFacebook().getObject(
+					id=ARGUMENTS.objectID,
+					fields="feed.limit(#ARGUMENTS.limit#)"
+				);
+				if (structKeyExists(_return,"feed")) {
+					VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID].cacheTime = now();
+					VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID].feed = _return.feed.data;
+				} else {
+					throw("An Error Occured");
+				}
 			}
+			return VARIABLES.cache.facebook.feeds[ARGUMENTS.objectID].feed;
 		}
 	} // close getFacebookPostsForObject
 
@@ -143,7 +155,20 @@ component output="false" displayname=""  {
 
 	public array function getTwitterUserFeed(string screenName = this.getWebsiteSettings().getTW_UserName(), numeric itemCount = 5) {
 		if (this.isConnectedToTwitter()) {
-			return this.getTwitter().getUserTimeline(screen_name=ARGUMENTS.screenName,count=ARGUMENTS.itemCount,exclude_replies=false);
+
+			if (!structKeyExists(VARIABLES.cache,"twitter")) { VARIABLES.cache.twitter = {}; }
+			if (!structKeyExists(VARIABLES.cache.twitter,"feeds")) { VARIABLES.cache.twitter.feeds = {}; }
+			if (!structKeyExists(VARIABLES.cache.twitter.feeds,ARGUMENTS.screenName)) { VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName] = {}; }
+
+			if (
+				(!structKeyExists(VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName],"feed")) ||
+				(!structKeyExists(VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName],"cacheTime")) ||
+				(DateDiff("n",VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName].cacheTime,now()) > 7)
+			) {
+				VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName].cacheTime = now();
+				VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName].feed = this.getTwitter().getUserTimeline(screen_name=ARGUMENTS.screenName,count=ARGUMENTS.itemCount,exclude_replies=false);
+			}
+			return VARIABLES.cache.twitter.feeds[ARGUMENTS.screenName].feed;
 		}
 	} // close getTwitterUserFeed
 
