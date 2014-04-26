@@ -67,7 +67,7 @@ component output="false" displayname=""  {
 	} // close isConnectedToFacebook
 
 
-	public array function getFacebookPostsForObject(string objectID = this.getWebsiteSettings().getProperty("FB_objectID"), numeric limit = 5) {
+	public array function getFacebookPostsForObject(string objectID = this.getWebsiteSettings().getProperty("FB_objectID"), numeric limit = 10) {
 		if (isConnectedToFacebook()) {
 			if (!structKeyExists(VARIABLES.cache,"facebook")) { VARIABLES.cache.facebook = {}; } 
 			if (!structKeyExists(VARIABLES.cache.facebook,"feeds")) { VARIABLES.cache.facebook.feeds = {}; } 
@@ -153,7 +153,7 @@ component output="false" displayname=""  {
 	} // close getTwitterUserDetails
 
 
-	public array function getTwitterUserFeed(string screenName = this.getWebsiteSettings().getTW_UserName(), numeric itemCount = 5) {
+	public array function getTwitterUserFeed(string screenName = this.getWebsiteSettings().getTW_UserName(), numeric itemCount = 15) {
 		if (this.isConnectedToTwitter()) {
 
 			if (!structKeyExists(VARIABLES.cache,"twitter")) { VARIABLES.cache.twitter = {}; }
