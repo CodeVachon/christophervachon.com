@@ -331,7 +331,7 @@ component extends="FacebookBase" {
 	 * @description Get OAuth access token.
 	 * @hint
 	 */
-	public String function getOAuthAccessToken(String clientId = "", String clientSecret = "", String code = "", String exchangeToken = "", String grantType = "", String redirectUri) {
+	public String function getOAuthAccessToken(String clientId = "", String clientSecret = "", String code = "", String exchangeToken = "", String grantType = "", String redirectUri = "") {
 		var accessToken = "";
 		var httpService = new Http(url="https://graph.facebook.com/oauth/access_token", timeout=variables.TIMEOUT);
 		var queryString = "";

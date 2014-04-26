@@ -30,6 +30,7 @@ component output="false" displayname=""  {
 			if (
 				(len(this.getWebsiteSettings().getProperty("FB_appID")) > 3) && 
 				(len(this.getWebsiteSettings().getProperty("FB_appSecret")) > 3) && 
+				(len(this.getWebsiteSettings().getProperty("FB_AppUserToken")) > 3) && 
 				(len(this.getWebsiteSettings().getProperty("FB_objectID")) > 3)
 			) {
 				return true;
@@ -42,12 +43,14 @@ component output="false" displayname=""  {
 	public void function connectToFacebook() {
 		if (this.canConnectToFacebook()) {
 			var _appID = this.getWebsiteSettings().getProperty("FB_appID");
-			var _accessToken = "#_appID#|#this.getWebsiteSettings().getProperty("FB_appSecret")#";
-			VARIABLES.facebook = new services.facebook.FacebookGraphAPI().init(_accessToken,_appID);
+			var _appSecrect = this.getWebsiteSettings().getProperty("FB_appSecret");
+			var _accessToken = "#_appID#|#_appSecrect#";
+
+			VARIABLES.facebook = new services.facebook.FacebookGraphAPI(_accessToken,_appID);
 		} else {
 			throw("Can not connect to Facebook");
 		}
-	}
+	} // close connectToFacebook
 
 
 	public services.facebook.FacebookGraphAPI function getFacebook() {
@@ -62,6 +65,36 @@ component output="false" displayname=""  {
 	public boolean function isConnectedToFacebook() {
 		return (!isNull(VARIABLES.facebook));
 	} // close isConnectedToFacebook
+
+
+	public array function getFacebookPostsForObject(string objectID = this.getWebsiteSettings().getProperty("FB_objectID"), numeric limit = 5) {
+		if (isConnectedToFacebook()) {
+			var _return = this.getFacebook().getObject(
+				id=ARGUMENTS.objectID,
+				fields="feed.limit(#ARGUMENTS.limit#)"
+			);
+			if (structKeyExists(_return,"feed")) {
+				return _return.feed.data;
+			} else {
+				throw("An Error Occured");
+			}
+		}
+	} // close getFacebookPostsForObject
+
+
+	public struct function getFacebookUserDetails(string objectID = this.getWebsiteSettings().getFB_objectID()) {
+		if (this.isConnectedToFacebook()) {
+			if (!structKeyExists(VARIABLES.cache,"facebook")) { VARIABLES.cache.facebook = {}; }
+			if (!structKeyExists(VARIABLES.cache.facebook,"userDetails")) { VARIABLES.cache.facebook.userDetails = {}; }
+			if (!structKeyExists(VARIABLES.cache.facebook.userDetails, ARGUMENTS.objectID)) {
+				VARIABLES.cache.facebook.userDetails[ARGUMENTS.objectID] = this.getFacebook().getObject(
+					id=ARGUMENTS.objectID,
+					fields="name,username,link,cover,picture"
+				);
+			}
+			return VARIABLES.cache.facebook.userDetails[ARGUMENTS.objectID];
+		}
+	} // close getFacebookUserDetails
 
 
 	public boolean function canConnectToTwitter() {
@@ -155,15 +188,31 @@ component output="false" displayname=""  {
 
 
 	public date function convertTimeStampToDateTime(required string timestamp) {
-		var regEx_timestamp = "(\w+)\s(\w+)\s(\d+)\s(\d+)\:(\d+)\:(\d+)\s\+\d+\s(\d+)";
-		var dateParts = {
-			year = reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\7", "one"),
-			month = int(month(reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\2 1 \7", "one"))), // twitter returns Feb instread of 2
-			day = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\3", "one")),
-			hour = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\4", "one")),
-			min = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\5", "one")),
-			sec = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp, "\6", "one"))
-		};
+		var regEx_timestamp_twitter = "(\w+)\s(\w+)\s(\d+)\s(\d+)\:(\d+)\:(\d+)\s\+\d+\s(\d+)";
+		var regEx_timestamp_facebook = "(\d{4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})\+\d{4}";
+
+		if (arrayLen(REMatchNoCase(regEx_timestamp_twitter,ARGUMENTS.timestamp)) > 0) {
+			var dateParts = {
+				year = reReplace(ARGUMENTS.timestamp, regEx_timestamp_twitter, "\7", "one"),
+				month = int(month(reReplace(ARGUMENTS.timestamp, regEx_timestamp_twitter, "\2 1 \7", "one"))), // twitter returns Feb instread of 2
+				day = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_twitter, "\3", "one")),
+				hour = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_twitter, "\4", "one")),
+				min = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_twitter, "\5", "one")),
+				sec = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_twitter, "\6", "one"))
+			};
+		} else if (arrayLen(REMatchNoCase(regEx_timestamp_facebook,ARGUMENTS.timestamp)) > 0) {
+			var dateParts = {
+				year = reReplace(ARGUMENTS.timestamp, regEx_timestamp_facebook, "\1", "one"),
+				month = reReplace(ARGUMENTS.timestamp, regEx_timestamp_facebook, "\2", "one"),
+				day = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_facebook, "\3", "one")),
+				hour = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_facebook, "\4", "one")),
+				min = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_facebook, "\5", "one")),
+				sec = int(reReplace(ARGUMENTS.timestamp, regEx_timestamp_facebook, "\6", "one"))
+			};
+		} else {
+			throw("unrecognized timestamp");
+		}
+
 		var localTimeOffset = -4;
 
 		try {

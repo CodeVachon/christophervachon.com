@@ -14,7 +14,9 @@
 		for (LOCAL.key in RC.post.story_tags) {
 			for (LOCAL.thisTag in RC.post.story_tags[LOCAL.key]) {
 				LOCAL.tagDetails = APPLICATION.socialMedia.getFacebookUserDetails(LOCAL.thisTag.id);
-				LOCAL.body = reReplaceNoCase(LOCAL.body,"(#LOCAL.tagDetails.name#)","<a href='#LOCAL.tagDetails.link#' target='_blank'>\1</a>","ALL");
+				if (structKeyExists(LOCAL.tagDetails,"link")) {
+					LOCAL.body = reReplaceNoCase(LOCAL.body,"(#LOCAL.tagDetails.name#)","<a href='#LOCAL.tagDetails.link#' target='_blank'>\1</a>","ALL");
+				}
 			}
 		}
 	}
@@ -24,11 +26,15 @@
 </cfscript>
 <cfoutput>
 	<article class='wall-item media facebookPost'>
-		<a href='#LOCAL.userDetails.link#' class='pull-left' target='_blank'><img src='#LOCAL.userDetails.picture.data.url#' class='media-object' /></a>
+		<cfif structKeyExists(LOCAL.userDetails,"link")><a href='#LOCAL.userDetails.link#' class='pull-left' target='_blank'></cfif>
+			<img src='#LOCAL.userDetails.picture.data.url#' class='media-object<cfif NOT structKeyExists(LOCAL.userDetails,"link")> pull-left</cfif>' />
+		<cfif structKeyExists(LOCAL.userDetails,"link")></a></cfif>
 		<div class='media-body'>
 			<header class='media-heading'>
 				<span class='pull-right post-date'>#DateFormat(APPLICATION.socialMedia.convertTimeStampToDateTime(RC.post.created_time), "MMM d, YYYY")#</span>
-				<a href='#LOCAL.userDetails.link#' target='_blank'>#LOCAL.userDetails.name#</a>
+				<cfif structKeyExists(LOCAL.userDetails,"link")><a href='#LOCAL.userDetails.link#' target='_blank'></cfif>
+				#LOCAL.userDetails.name#
+				<cfif structKeyExists(LOCAL.userDetails,"link")></a></cfif>
 			</header>
 			<div class='body'>
 				#APPLICATION.socialMedia.formatPostAsHTML(LOCAL.body)#
