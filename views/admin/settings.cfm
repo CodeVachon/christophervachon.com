@@ -4,10 +4,11 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="##SiteDetails" data-toggle="tab">Site Details</a></li>
 		<li><a href="##MailSettings" data-toggle="tab">Mail Settings</a></li>
+		<li><a href="##SocialMedia" data-toggle="tab">Social Media</a></li>
 	</ul>
 
 	<div class="tab-content">
-	 	<div class="tab-pane active" id="SiteDetails">
+		<div class="tab-pane active" id="SiteDetails">
 			<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
 				<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
 				<div class="form-group">
@@ -65,6 +66,64 @@
 				</div>
 				<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
 			</form>
+		</div>
+		<div class="tab-pane" id="SocialMedia">
+			<ul class="nav nav-pills nav-stacked col-sm-3">
+				<li class="active"><a href="##Twitter" data-toggle="tab">Twitter</a></li>
+				<li><a href="##Facebook" data-toggle="tab">Facebook</a></li>
+			</ul>
+			<div class="tab-content col-sm-9">
+				<div class="tab-pane active" id="Twitter">
+					<h3>Twitter API Settings</h3>
+					<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
+						<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
+						<div class="form-group">
+							<label for="TW_UserName">User Name</label>
+							<input type="text" class="form-control" id="TW_UserName" name="TW_UserName" placeholder="" value="#((structKeyExists(RC,"TW_UserName"))?RC.TW_UserName:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_ConsumerKey">API Key</label>
+							<input type="text" class="form-control" id="TW_ConsumerKey" name="TW_ConsumerKey" placeholder="" value="#((structKeyExists(RC,"TW_ConsumerKey"))?RC.TW_ConsumerKey:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_ConsumerSecret">API Secret</label>
+							<input type="text" class="form-control" id="TW_ConsumerSecret" name="TW_ConsumerSecret" placeholder="" value="#((structKeyExists(RC,"TW_ConsumerSecret"))?RC.TW_ConsumerSecret:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_AccessToken">Access Token</label>
+							<input type="text" class="form-control" id="TW_AccessToken" name="TW_AccessToken" placeholder="" value="#((structKeyExists(RC,"TW_AccessToken"))?RC.TW_AccessToken:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="TW_AccessTokenSecret">Access Token Secret</label>
+							<input type="text" class="form-control" id="TW_AccessTokenSecret" name="TW_AccessTokenSecret" placeholder="" value="#((structKeyExists(RC,"TW_AccessTokenSecret"))?RC.TW_AccessTokenSecret:"")#" />
+						</div>
+						<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
+					</form>
+				</div>
+				<div class="tab-pane" id="Facebook">
+					<h3>Facebook API Settings</h3>
+					<form name='editSiteDetails' method='post' action="#buildURL('admin.settings')#">
+						<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
+						<div class="form-group">
+							<label for="FB_appID">App ID</label>
+							<input type="text" class="form-control" id="FB_appID" name="FB_appID" placeholder="" value="#((structKeyExists(RC,"FB_appID"))?RC.FB_appID:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="FB_appSecret">App Secret</label>
+							<input type="text" class="form-control" id="FB_appSecret" name="FB_appSecret" placeholder="" value="#((structKeyExists(RC,"FB_appSecret"))?RC.FB_appSecret:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="FB_AppUserToken">App User Token</label>
+							<input type="text" class="form-control" id="FB_AppUserToken" name="FB_AppUserToken" placeholder="" value="#((structKeyExists(RC,"FB_AppUserToken"))?RC.FB_AppUserToken:"")#" />
+						</div>
+						<div class="form-group">
+							<label for="FB_objectID">Object to Connect to ID</label>
+							<input type="text" class="form-control" id="FB_objectID" name="FB_objectID" placeholder="" value="#((structKeyExists(RC,"FB_objectID"))?RC.FB_objectID:"")#" />
+						</div>
+						<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
