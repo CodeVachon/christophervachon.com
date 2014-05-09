@@ -27,7 +27,9 @@
 					<li><a href="https://twitter.com/intent/retweet?tweet_id=#RC.post.id_str#" class='tw-retweet' title='Retweet this Post'><span class=''>Retweet</span></a></li>
 					<li><a href="https://twitter.com/intent/favorite?tweet_id=#RC.post.id_str#" class='tw-favorite' title='Favorite this Post'><span class=''>Favorite</span></a></li>
 				</ul>
-				<span class='label label-primary'>#RC.post.retweet_count# Retweets</span>
+				<cfif RC.post.retweet_count GT 0>
+					<span class='label label-primary'>#RC.post.retweet_count# Retweets</span>
+				</cfif>
 			</footer>
 		</div>
 	</article>
