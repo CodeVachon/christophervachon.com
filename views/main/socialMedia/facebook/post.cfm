@@ -23,7 +23,6 @@
 		}
 	}
 
-
 	LOCAL.userDetails = APPLICATION.socialMedia.getFacebookUserDetails(RC.post.from.id);
 </cfscript>
 <cfoutput>
@@ -65,6 +64,11 @@
 						</cfloop>
 					</ul>
 				</cfif>
+				<cfif structKeyExists(RC.post,"likes")>
+					<cfset LOCAL.likesCount = arrayLen(RC.post.likes.data) />
+					<span class='label label-primary'>#LOCAL.likesCount# Like<cfif LOCAL.likesCount NEQ 1>s</cfif></span>
+				</cfif>
+				
 			</footer>
 			<cfif structKeyExists(RC.post,"comments")>
 				<section class='comments'>
