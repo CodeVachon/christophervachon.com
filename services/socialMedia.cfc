@@ -180,7 +180,7 @@ component output="false" displayname=""  {
 
 	public string function formatPostAsHTML(required string post) {
 		var _returnPost = "<p>" & reReplace(ARGUMENTS.post,"\n\r|\r\n|\r|\n","<br>","ALL") & "</p>";
-		_returnPost = reReplaceNoCase(_returnPost,"(http\:\/\/[^\s]+)","<a href='\1' target='_blank'>\1</a>","ALL");
+		_returnPost = reReplaceNoCase(_returnPost,"(https?\:\/\/[^\s|\<]+)","<a href='\1' target='_blank'>\1</a>","ALL");
 		_returnPost = reReplaceNoCase(_returnPost,"(\##(\w+))","<a href='https://twitter.com/search?q=%23\2' class='hashtag' target='_blank'>\1</a>","ALL");
 		_returnPost = reReplaceNoCase(_returnPost,"(@([a-zA-Z0-9-_\.]+))","<a href='https://twitter.com/\2' target='_blank' class='twitterUser' data-screenname='\2'>\1</a>","ALL");
 		return _returnPost;
