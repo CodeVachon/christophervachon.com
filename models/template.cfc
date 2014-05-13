@@ -120,4 +120,11 @@ component output="false" displayname="template" extends="base" {
 		if (!structKeyExists(VARIABLES.files, ARGUMENTS.arrayName)) { VARIABLES.files[ARGUMENTS.arrayName] = []; }
 		arrayAppend(VARIABLES.files[ARGUMENTS.arrayName],ARGUMENTS.filepath);
 	}
+
+
+	public void function clearFiles(string type = "") {
+		if (structKeyExists(VARIABLES.files,ARGUMENTS.type)) {
+			VARIABLES.files[ARGUMENTS.type] = [];
+		}
+	}
 }
