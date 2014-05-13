@@ -1,0 +1,48 @@
+body {
+  background-color: #fff;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+.masthead {
+  background-color: #666;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .masthead .navbar-header {
+    display: none;
+  }
+  .masthead .nav {
+    border: 1px #f00 solid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-height: 1.2em;
+  }
+  .masthead .nav li {
+    float: left;
+  }
+  .masthead .nav li a {
+    display: block;
+    color: #eee;
+    line-height: 1.2em;
+    font-size: 0.8em;
+    padding: 0 0.5em;
+  }
+}
+@media (min-width: 768px) {
+  .masthead {
+    width: 45%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+.container {
+  padding: 1em;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 53%;
+  }
+}
