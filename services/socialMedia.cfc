@@ -18,8 +18,10 @@ component output="false" displayname=""  {
 
 		if (structKeyExists(ARGUMENTS,"websiteSettings")) { this.setWebsiteSettings(ARGUMENTS.websiteSettings); }
 
-		if (this.canConnectToTwitter()) { this.connectToTwitter(); }
-		if (this.canConnectToFacebook()) { this.connectToFacebook(); }
+		try {
+			if (this.canConnectToTwitter()) { this.connectToTwitter(); }
+			if (this.canConnectToFacebook()) { this.connectToFacebook(); }
+		} catch (any e) {}
 
 		return this; 
 	} // close init
