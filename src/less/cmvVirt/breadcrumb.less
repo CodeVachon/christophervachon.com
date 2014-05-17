@@ -1,0 +1,28 @@
+@breadcrumb-height: 1.6em;
+.breadcrumb {
+	margin: 1em 0;
+	padding: 0 1em;
+	list-style: none;
+	line-height: @breadcrumb-height;
+	height: @breadcrumb-height;
+	background-color: @background-color-inverse;
+	border-radius: @border-radious;
+	color: @color-inverse;
+	font-size: 0.8em;
+	li {
+		line-height: @breadcrumb-height;
+		padding: 0 0.3em;
+		float: left;
+		a {
+			color: @color-inverse;
+			text-decoration: none;
+			&:hover { text-decoration: underline; }
+		}
+		&:after {
+			content: " > ";
+			&:last-child {
+				content: "";
+			}
+		}
+	}
+}

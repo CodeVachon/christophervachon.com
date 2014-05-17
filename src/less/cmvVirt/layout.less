@@ -1,0 +1,113 @@
+.masthead {
+	.container {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+		box-shadow: 3px 3px 5px #ddd;
+		.navbar-header {
+			float: left;
+			width: 40px;
+			position: relative;
+			.navbar-toggle { display: none; }
+			.navbar-brand {
+				position: absolute;
+				overflow: hidden;
+				top: 5px;
+				left: 5px;
+				display: block;
+				background-image: url('/includes/imgs/cmv1.jpg');
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				width: 35px;
+				height: 35px;
+				border-radius: 0.2em;
+				color: transparent;
+			}
+		}
+		.nav {
+			margin: 0 0 0 45px;
+			padding: 0;
+			list-style: none;
+			min-height: 1.6em;
+			li {
+				float: left;
+				a { 
+					display: block;
+					line-height: 1.6em;
+					font-size: 0.8em;
+					padding: 0.2em 0.5em;
+				}
+				ul { display: none; }
+			}
+			float: left;
+			&.navbar-right {
+				float: right;
+				text-align: right;
+			}
+		}
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+		width: 45%;
+	}
+	@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+		width: @screen-lg-sideColumnWidth;
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-lg-max) {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		.navbar-header {
+			.navbar-toggle { display: none; }
+			.navbar-brand {
+				display: block;
+				background-image: url('/includes/imgs/cmv1.jpg');
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				width: 200px;
+				height: 200px;
+				border-radius: 100px;
+				margin: 2em auto;
+				color: transparent;
+			}
+		}
+		li {
+			text-align: center;
+			ul {
+				display: none;
+			}
+		}
+	}
+	background-color: @background-color-inverse;
+	min-height: 1.6em;
+	.container {
+		padding: 0;
+		.nav {
+			padding: 0;
+			list-style: none;
+			li {
+				a { 
+					color: @color-inverse;
+					text-decoration: none;
+					&:hover { text-decoration: underline; }
+					span:first-child { margin: 0 0.3em 0 0; }
+				}
+			}
+		}
+	}
+}
+.container {
+	padding: 1em;
+	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+		padding: 0 3%;
+		width: 49%;
+	}
+	@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+		padding: 1em;
+		margin: 0 @screen-lg-sideColumnWidth 0 0;
+	}
+}

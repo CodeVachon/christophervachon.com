@@ -1,49 +1,44 @@
+@icon-font-path:          "../fonts/";
+@icon-font-name:          "glyphicons-halflings-regular";
+@icon-font-svg-id:        "glyphicons_halflingsregular";
+
+@import "../cmv/glyphicons.less";
+
 @color: #333;
+@color-inverse: #fff;
+@background-color: #fff;
+@background-color-inverse: #666;
+
+@border-radious: 0.67em;
 
 @screen-sm-min: 0px;
-@screen-sm-max: 768px;
+@screen-sm-max: 668px;
+@screen-md-min: (@screen-sm-max+1);
+@screen-md-max: 1150px;
+@screen-lg-min: (@screen-md-max+1);
+@screen-lg-max: 1600px;
+
+@screen-lg-sideColumnWidth: 515px;
+
+
+@import "layout";
+@import "breadcrumb";
+
 body {
-	background-color: #fff;
+	background-color: @background-color;
+	font-family: 'Maven Pro',"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 18px;
 	color: @color;
 	margin: 0;
 	padding: 0;
 }
 
-.masthead {
-	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-		.navbar-header {
-			display: none;
-		}
-		.nav {
-			border: 1px #f00 solid;
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			min-height: 1.2em;
-			li {
-				float: left;
-				a { 
-					display: block;
-					color: #eee;
-					line-height: 1.2em;
-					font-size: 0.8em;
-					padding: 0 0.5em;
-				}
-			}
-		}
-	}
-	@media (min-width: @screen-sm-max) {
-		width: 45%;
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		right: 0;
-	}
-	background-color: #666;
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+	.hidden-sm { display: none; }
 }
-.container {
-	padding: 1em;
-	@media (min-width: @screen-sm-max) {
-		width: 53%;
-	}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+	.hidden-md { display: none; }
+}
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+	.hidden-lg { display: none; }
 }
