@@ -616,6 +616,9 @@
 }
 .masthead {
   background-color: #666666;
+  background-image: url('/includes/imgs/55blackAlpha.png'), url('/includes/imgs/codebg-right.png'), url('/includes/imgs/codebg-left.png');
+  background-repeat: repeat, repeat-y, repeat-y;
+  background-position: center, top right, top left;
   min-height: 1.6em;
 }
 .masthead .container {
@@ -723,6 +726,7 @@
 .masthead .container .nav li a {
   color: #ffffff;
   text-decoration: none;
+  text-shadow: 2px 2px 2px #333;
 }
 .masthead .container .nav li a:hover {
   text-decoration: underline;
@@ -771,7 +775,7 @@
 .breadcrumb li:after {
   content: " > ";
 }
-.breadcrumb li:after:last-child {
+.breadcrumb li:last-child:after {
   content: "";
 }
 body {

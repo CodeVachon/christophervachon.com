@@ -83,6 +83,9 @@
 		}
 	}
 	background-color: @background-color-inverse;
+	background-image: url('/includes/imgs/55blackAlpha.png'), url('/includes/imgs/codebg-right.png'), url('/includes/imgs/codebg-left.png');
+	background-repeat: repeat, repeat-y, repeat-y;
+	background-position: center, top right, top left;
 	min-height: 1.6em;
 	.container {
 		padding: 0;
@@ -93,6 +96,7 @@
 				a { 
 					color: @color-inverse;
 					text-decoration: none;
+					text-shadow: 2px 2px 2px #333;
 					&:hover { text-decoration: underline; }
 					span:first-child { margin: 0 0.3em 0 0; }
 				}
