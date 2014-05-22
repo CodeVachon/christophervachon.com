@@ -6,47 +6,37 @@
 	}
 	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 		box-shadow: 3px 3px 5px #ddd;
+		padding: 4px 1em;
+		line-height: 35px;
 		.navbar-header {
-			float: left;
-			width: 40px;
-			position: relative;
-			.navbar-toggle { display: none; }
-			.navbar-brand {
-				position: absolute;
-				overflow: hidden;
-				top: 5px;
-				left: 5px;
-				display: block;
-				background-image: url('/includes/imgs/cmv1.jpg');
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: cover;
-				width: 35px;
+			.navbar-toggle {
+				border: 1px @color-inverse solid;
+				border-radius: 5px;
+				background: transparent;
+				line-height: 35px;
 				height: 35px;
-				border-radius: 0.2em;
-				color: transparent;
+				overflow: hidden;
+				width: 45px;
+				float: right;
+				text-shadow: 2px 2px 2px #333;
+				cursor: pointer;
+				outline: none;
+				.icon-bar {
+					display: block;
+					border: 1px @color-inverse solid;
+					border-radius: 3px;
+					margin: 5px 0;
+					line-height: 0px;
+				}
+			}
+			.navbar-brand {
+				color: @color-inverse;
+				text-decoration: none;
+				text-shadow: 2px 2px 2px #333;
 			}
 		}
-		.nav {
-			margin: 0 0 0 45px;
-			padding: 0;
-			list-style: none;
-			min-height: 1.6em;
-			li {
-				float: left;
-				a { 
-					display: block;
-					line-height: 1.6em;
-					font-size: 0.8em;
-					padding: 0.2em 0.5em;
-				}
-				ul { display: none; }
-			}
-			float: left;
-			&.navbar-right {
-				float: right;
-				text-align: right;
-			}
+		.navbar-collapse {
+			display: none;
 		}
 	}
 	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
