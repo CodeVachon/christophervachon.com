@@ -765,6 +765,37 @@
 .breadcrumb li:last-child:after {
   content: "";
 }
+article {
+  margin: 1em 0;
+}
+article header {
+  margin: 0 0 1em 0;
+}
+article header h1,
+article header h2,
+article header h3 {
+  margin: 0;
+  padding: 0;
+}
+article header p {
+  margin: 0;
+  padding: 0;
+}
+article header .title {
+  font-size: 1.5em;
+}
+article header .date {
+  font-size: 0.7em;
+  color: #666666;
+}
+article footer {
+  border: 1px #f00 solid;
+  font-size: 0.7em;
+}
+article footer p {
+  margin: 0;
+  padding: 0;
+}
 body {
   background-color: #ffffff;
   font-family: 'Maven Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -790,4 +821,12 @@ body {
   .hidden-lg {
     display: none;
   }
+}
+.label {
+  display: inline-block;
+  border-radius: 0.3em;
+  line-height: 1.2em;
+  padding: 0 0.4em;
+  color: #ffffff;
+  background-color: #666666;
 }
