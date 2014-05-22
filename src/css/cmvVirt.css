@@ -629,52 +629,36 @@
 @media (min-width: 0px) and (max-width: 668px) {
   .masthead {
     box-shadow: 3px 3px 5px #ddd;
-  }
-  .masthead .navbar-header {
-    float: left;
-    width: 40px;
-    position: relative;
+    padding: 4px 1em;
+    line-height: 35px;
   }
   .masthead .navbar-header .navbar-toggle {
-    display: none;
+    border: 1px #ffffff solid;
+    border-radius: 5px;
+    background: transparent;
+    line-height: 35px;
+    height: 35px;
+    overflow: hidden;
+    width: 45px;
+    float: right;
+    text-shadow: 2px 2px 2px #333;
+    cursor: pointer;
+    outline: none;
+  }
+  .masthead .navbar-header .navbar-toggle .icon-bar {
+    display: block;
+    border: 1px #ffffff solid;
+    border-radius: 3px;
+    margin: 5px 0;
+    line-height: 0px;
   }
   .masthead .navbar-header .navbar-brand {
-    position: absolute;
-    overflow: hidden;
-    top: 5px;
-    left: 5px;
-    display: block;
-    background-image: url('/includes/imgs/cmv1.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 35px;
-    height: 35px;
-    border-radius: 0.2em;
-    color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px #333;
   }
-  .masthead .nav {
-    margin: 0 0 0 45px;
-    padding: 0;
-    list-style: none;
-    min-height: 1.6em;
-    float: left;
-  }
-  .masthead .nav li {
-    float: left;
-  }
-  .masthead .nav li a {
-    display: block;
-    line-height: 1.6em;
-    font-size: 0.8em;
-    padding: 0.2em 0.5em;
-  }
-  .masthead .nav li ul {
+  .masthead .navbar-collapse {
     display: none;
-  }
-  .masthead .nav.navbar-right {
-    float: right;
-    text-align: right;
   }
 }
 @media (min-width: 669px) and (max-width: 1150px) {
@@ -785,6 +769,9 @@ body {
   color: #333333;
   margin: 0;
   padding: 0;
+}
+.sr-only {
+  display: none;
 }
 @media (min-width: 0px) and (max-width: 668px) {
   .hidden-sm {
