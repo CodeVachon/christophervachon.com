@@ -660,6 +660,9 @@
   .masthead .navbar-collapse {
     display: none;
   }
+  .masthead .navbar-collapse.show {
+    display: block;
+  }
 }
 @media (min-width: 669px) and (max-width: 1150px) {
   .masthead {
