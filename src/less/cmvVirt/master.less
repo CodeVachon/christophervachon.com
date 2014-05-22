@@ -20,9 +20,19 @@
 
 @screen-lg-sideColumnWidth: 515px;
 
+.btn-gradient(@color: #555) {
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(lighten(@color,5%)), color-stop(0.33, @color), color-stop(0.67, @color), to(darken(@color,5%)));
+	background: -webkit-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
+	background: -moz-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
+	background: -o-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
+	background: linear-gradient(lighten(@color,5%), @color, darken(@color,5%)); // Safari 5.1-6, Chrome 10+
+	background-repeat: repeat-x;
+}
+
 @import "layout";
 @import "breadcrumb";
 @import "article";
+@import "button";
 
 body {
 	background-color: @background-color;
@@ -48,7 +58,13 @@ body {
 	display: inline-block;
 	border-radius: 0.3em;
 	line-height: 1.2em;
-	padding: 0 0.4em;
+	padding: 0.2em 0.4em;
 	color: @color-inverse;
 	background-color: @background-color-inverse;
+	&:hover {
+		.btn-gradient(@background-color-inverse);
+	}
 }
+.pull-left { float: left; }
+.pull-right { float: right; }
+
