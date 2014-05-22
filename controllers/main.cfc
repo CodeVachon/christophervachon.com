@@ -15,6 +15,7 @@ component output="false" displayname=""  {
 
 	public void function before( required struct rc ) {
 		REQUEST.CONTEXT.template.addFile("cmvVirt.min.css");
+		REQUEST.CONTEXT.template.addFile("cmvVirt.js");
 	}
 
 
