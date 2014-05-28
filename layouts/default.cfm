@@ -93,7 +93,7 @@
 						#body#
 					</section>
 				<cfelse>
-					<section class='col-xs-12 col-sm-8 page-content'>
+					<section class='page-content'>
 						<cfif RC.template.getPageCrumbCount() GT 1>
 							<ol class="breadcrumb">
 								<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
@@ -102,9 +102,6 @@
 							</ol>
 						</cfif>
 						#body#
-					</section>
-					<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
-						#view('blog/articleCountByDate')#
 					</section>
 				</cfif>
 			</div>
