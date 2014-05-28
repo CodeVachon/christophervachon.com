@@ -20,6 +20,14 @@
 
 @screen-lg-sideColumnWidth: 515px;
 
+a {
+	color: #00c;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 .btn-gradient(@color: #555) {
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(lighten(@color,5%)), color-stop(0.33, @color), color-stop(0.67, @color), to(darken(@color,5%)));
 	background: -webkit-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
@@ -67,4 +75,16 @@ body {
 }
 .pull-left { float: left; }
 .pull-right { float: right; }
+
+ul {
+	&.list-unstyled {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&.list-inline {
+		height: 1.2em;
+		li { float: left; }
+	}
+}
 

@@ -614,6 +614,13 @@
 .glyphicon-tree-deciduous:before {
   content: "\e200";
 }
+a {
+  color: #00c;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 .masthead {
   background-color: #666666;
   background-image: url('/includes/imgs/55blackAlpha.png'), url('/includes/imgs/codebg-right.png'), url('/includes/imgs/codebg-left.png');
@@ -797,6 +804,27 @@ article footer p {
   margin: 0;
   padding: 0;
 }
+article.media .media-object {
+  margin: 0 1em 1em 0;
+  display: block;
+}
+article.media .media-body {
+  display: block;
+  margin: 0 0 0 48px;
+  padding: 0 0 0 1em;
+}
+.social-media-item {
+  clear: both;
+}
+.social-media-item .post-date {
+  color: #999;
+}
+.social-media-item footer {
+  font-size: 0.8em;
+}
+.social-media-item footer ul.pull-right li {
+  padding: 0 0 0 1em;
+}
 .btn {
   display: inline-block;
   text-decoration: none;
@@ -884,4 +912,15 @@ body {
 }
 .pull-right {
   float: right;
+}
+ul.list-unstyled {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul.list-inline {
+  height: 1.2em;
+}
+ul.list-inline li {
+  float: left;
 }
