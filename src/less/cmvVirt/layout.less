@@ -108,3 +108,50 @@
 		margin: 0 @screen-lg-sideColumnWidth 0 0;
 	}
 }
+
+.site-footer {
+	margin: 1em 0;
+	padding: 1em 0;
+	border-top: 1px #999 solid;
+	color: #999;
+	font-size: 0.7em;
+}
+
+.admin-menu-group {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #333;
+	color: #fff;
+	a { color: #fff; }
+	.admin-menu {
+		padding: 0;
+		width: 0;
+		transition: 0.5s;
+		opacity: 0;
+		&.open {
+			opacity: 1;
+			width: 250px;
+			padding: 1em;
+		}
+	}
+	.btn.admin-btn {
+		font-size: 1.2em;
+		position: absolute;
+		top: 50px;
+		left: -40px;
+		width: 40px;
+		line-height: 40px;
+		border: none;
+		border-top-right-radius: 0; 
+		border-bottom-right-radius: 0; 
+		background: none;
+		background-color: #333;
+		color: #fff;
+		padding: 0;
+		margin: 0;
+		outline: none;
+		box-shadow: none;
+	}
+}

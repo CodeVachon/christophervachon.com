@@ -43,6 +43,7 @@ a {
 @import "breadcrumb";
 @import "article";
 @import "button";
+@import "form";
 
 body {
 	background-color: @background-color;
@@ -69,10 +70,11 @@ body {
 	border-radius: 0.3em;
 	line-height: 1.2em;
 	padding: 0.2em 0.4em;
-	color: @color-inverse;
-	background-color: @background-color-inverse;
+	color: @color;
+	//background-color: @background-color-inverse;
+	.btn-gradient(#ccc);
 	&:hover {
-		.btn-gradient(@background-color-inverse);
+		.btn-gradient(#ddd);
 	}
 }
 .pull-left { float: left; }

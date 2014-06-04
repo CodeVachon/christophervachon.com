@@ -743,16 +743,69 @@ a:hover {
     margin: 0 515px 0 0;
   }
 }
+.site-footer {
+  margin: 1em 0;
+  padding: 1em 0;
+  border-top: 1px #999 solid;
+  color: #999;
+  font-size: 0.7em;
+}
+.admin-menu-group {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  color: #fff;
+}
+.admin-menu-group a {
+  color: #fff;
+}
+.admin-menu-group .admin-menu {
+  padding: 0;
+  width: 0;
+  transition: 0.5s;
+  opacity: 0;
+}
+.admin-menu-group .admin-menu.open {
+  opacity: 1;
+  width: 250px;
+  padding: 1em;
+}
+.admin-menu-group .btn.admin-btn {
+  font-size: 1.2em;
+  position: absolute;
+  top: 50px;
+  left: -40px;
+  width: 40px;
+  line-height: 40px;
+  border: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background: none;
+  background-color: #333;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+}
 .breadcrumb {
   margin: 1em 0;
-  padding: 0 1em;
+  padding: 0.5em 1em;
   list-style: none;
   line-height: 1.6em;
   height: 1.6em;
-  background-color: #666666;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), color-stop(0.33, #cccccc), color-stop(0.67, #cccccc), to(#bfbfbf));
+  background: -webkit-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: -moz-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: -o-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background-repeat: repeat-x;
   border-radius: 0.67em;
-  color: #ffffff;
+  color: #333333;
   font-size: 0.8em;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 .breadcrumb li {
   line-height: 1.6em;
@@ -760,7 +813,7 @@ a:hover {
   float: left;
 }
 .breadcrumb li a {
-  color: #ffffff;
+  color: #333333;
   text-decoration: none;
 }
 .breadcrumb li a:hover {
@@ -899,6 +952,7 @@ table.syntax-highlighting tr td.code .color {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   background-color: #ccc;
+  cursor: pointer;
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), color-stop(0.33, #cccccc), color-stop(0.67, #cccccc), to(#bfbfbf));
   background: -webkit-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
   background: -moz-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
@@ -928,6 +982,36 @@ table.syntax-highlighting tr td.code .color {
 .btn-group .btn:last-child {
   border-bottom-right-radius: 0.3em;
   border-top-right-radius: 0.3em;
+}
+form {
+  margin: 1em 0;
+}
+form > div {
+  margin: 1em 0;
+}
+form > div:first-child {
+  margin-top: 0;
+}
+form > div:last-child {
+  margin-bottom: 0;
+}
+form label {
+  display: block;
+  padding: 0.2em 0;
+}
+form input,
+form textarea {
+  display: block;
+  line-height: 1.2em;
+  border: 1px #999 solid;
+  border-radius: 6px;
+  font-size: 1em;
+  padding: 0.2em 0.4em;
+  width: 97%;
+}
+form input.btn,
+form textarea.btn {
+  width: auto;
 }
 body {
   background-color: #ffffff;
@@ -960,15 +1044,20 @@ body {
   border-radius: 0.3em;
   line-height: 1.2em;
   padding: 0.2em 0.4em;
-  color: #ffffff;
-  background-color: #666666;
+  color: #333333;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), color-stop(0.33, #cccccc), color-stop(0.67, #cccccc), to(#bfbfbf));
+  background: -webkit-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: -moz-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: -o-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background-repeat: repeat-x;
 }
 .label:hover {
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#737373), color-stop(0.33, #666666), color-stop(0.67, #666666), to(#595959));
-  background: -webkit-linear-gradient(#737373, #666666, #595959);
-  background: -moz-linear-gradient(#737373, #666666, #595959);
-  background: -o-linear-gradient(#737373, #666666, #595959);
-  background: linear-gradient(#737373, #666666, #595959);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#eaeaea), color-stop(0.33, #dddddd), color-stop(0.67, #dddddd), to(#d0d0d0));
+  background: -webkit-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background: -moz-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background: -o-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background: linear-gradient(#eaeaea, #dddddd, #d0d0d0);
   background-repeat: repeat-x;
 }
 .pull-left {
