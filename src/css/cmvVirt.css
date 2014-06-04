@@ -796,14 +796,14 @@ a:hover {
   list-style: none;
   line-height: 1.6em;
   height: 1.6em;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), color-stop(0.33, #cccccc), color-stop(0.67, #cccccc), to(#bfbfbf));
-  background: -webkit-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
-  background: -moz-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
-  background: -o-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
-  background: linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#404040), color-stop(0.33, #333333), color-stop(0.67, #333333), to(#262626));
+  background: -webkit-linear-gradient(#404040, #333333, #262626);
+  background: -moz-linear-gradient(#404040, #333333, #262626);
+  background: -o-linear-gradient(#404040, #333333, #262626);
+  background: linear-gradient(#404040, #333333, #262626);
   background-repeat: repeat-x;
-  border-radius: 0.67em;
-  color: #333333;
+  border-radius: 0.3em;
+  color: #eeeeee;
   font-size: 0.8em;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -813,7 +813,7 @@ a:hover {
   float: left;
 }
 .breadcrumb li a {
-  color: #333333;
+  color: #eeeeee;
   text-decoration: none;
 }
 .breadcrumb li a:hover {
@@ -944,7 +944,7 @@ table.syntax-highlighting tr td.code .color {
 }
 .btn {
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none !important;
   border: 1px #ccc solid;
   border-radius: 0.3em;
   padding: 0.3em 0.6em;
@@ -1013,6 +1013,67 @@ form input.btn,
 form textarea.btn {
   width: auto;
 }
+.pagination {
+  font-size: 0.8em;
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+  height: 1.6em;
+}
+.pagination li {
+  float: left;
+  border-top: 1px #444444 solid;
+  border-right: 1px #444444 solid;
+  border-bottom: 1px #444444 solid;
+  border-left: none;
+  overflow: hidden;
+}
+.pagination li:first-child {
+  border-left: 1px #444444 solid;
+  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
+.pagination li:last-child {
+  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
+}
+.pagination li.active a {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#737373), color-stop(0.33, #666666), color-stop(0.67, #666666), to(#595959));
+  background: -webkit-linear-gradient(#737373, #666666, #595959);
+  background: -moz-linear-gradient(#737373, #666666, #595959);
+  background: -o-linear-gradient(#737373, #666666, #595959);
+  background: linear-gradient(#737373, #666666, #595959);
+  background-repeat: repeat-x;
+}
+.pagination li.active a:hover {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#737373), color-stop(0.33, #666666), color-stop(0.67, #666666), to(#595959));
+  background: -webkit-linear-gradient(#737373, #666666, #595959);
+  background: -moz-linear-gradient(#737373, #666666, #595959);
+  background: -o-linear-gradient(#737373, #666666, #595959);
+  background: linear-gradient(#737373, #666666, #595959);
+  background-repeat: repeat-x;
+}
+.pagination li a {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#404040), color-stop(0.33, #333333), color-stop(0.67, #333333), to(#262626));
+  background: -webkit-linear-gradient(#404040, #333333, #262626);
+  background: -moz-linear-gradient(#404040, #333333, #262626);
+  background: -o-linear-gradient(#404040, #333333, #262626);
+  background: linear-gradient(#404040, #333333, #262626);
+  background-repeat: repeat-x;
+  line-height: 1.6em;
+  display: block;
+  padding: 0 0.6em;
+  color: #eeeeee;
+  text-decoration: none;
+}
+.pagination li a:hover {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#515151), color-stop(0.33, #444444), color-stop(0.67, #444444), to(#373737));
+  background: -webkit-linear-gradient(#515151, #444444, #373737);
+  background: -moz-linear-gradient(#515151, #444444, #373737);
+  background: -o-linear-gradient(#515151, #444444, #373737);
+  background: linear-gradient(#515151, #444444, #373737);
+  background-repeat: repeat-x;
+}
 body {
   background-color: #ffffff;
   font-family: 'Maven Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1044,20 +1105,20 @@ body {
   border-radius: 0.3em;
   line-height: 1.2em;
   padding: 0.2em 0.4em;
-  color: #333333;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), color-stop(0.33, #cccccc), color-stop(0.67, #cccccc), to(#bfbfbf));
-  background: -webkit-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
-  background: -moz-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
-  background: -o-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
-  background: linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  color: #eeeeee;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#404040), color-stop(0.33, #333333), color-stop(0.67, #333333), to(#262626));
+  background: -webkit-linear-gradient(#404040, #333333, #262626);
+  background: -moz-linear-gradient(#404040, #333333, #262626);
+  background: -o-linear-gradient(#404040, #333333, #262626);
+  background: linear-gradient(#404040, #333333, #262626);
   background-repeat: repeat-x;
 }
-.label:hover {
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#eaeaea), color-stop(0.33, #dddddd), color-stop(0.67, #dddddd), to(#d0d0d0));
-  background: -webkit-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
-  background: -moz-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
-  background: -o-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
-  background: linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+a.label:hover {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#515151), color-stop(0.33, #444444), color-stop(0.67, #444444), to(#373737));
+  background: -webkit-linear-gradient(#515151, #444444, #373737);
+  background: -moz-linear-gradient(#515151, #444444, #373737);
+  background: -o-linear-gradient(#515151, #444444, #373737);
+  background: linear-gradient(#515151, #444444, #373737);
   background-repeat: repeat-x;
 }
 .pull-left {

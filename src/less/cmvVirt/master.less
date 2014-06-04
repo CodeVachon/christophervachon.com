@@ -9,9 +9,15 @@
 @background-color: #fff;
 @background-color-inverse: #666;
 
+@elem-text-color: #eee;
+@elem-background-color: #333;
+@elem-background-color-hover: #444;
+@elem-background-color-active: #666;
+@elem-border-color: #444;
+
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 
-@border-radious: 0.67em;
+@border-radious: 0.3em;
 
 @screen-sm-min: 0px;
 @screen-sm-max: 668px;
@@ -44,6 +50,7 @@ a {
 @import "article";
 @import "button";
 @import "form";
+@import "pagination";
 
 body {
 	background-color: @background-color;
@@ -67,14 +74,14 @@ body {
 
 .label {
 	display: inline-block;
-	border-radius: 0.3em;
+	border-radius: @border-radious;
 	line-height: 1.2em;
 	padding: 0.2em 0.4em;
-	color: @color;
+	color: @elem-text-color;
 	//background-color: @background-color-inverse;
-	.btn-gradient(#ccc);
-	&:hover {
-		.btn-gradient(#ddd);
+	.btn-gradient(@elem-background-color);
+	a&:hover {
+		.btn-gradient(@elem-background-color-hover);
 	}
 }
 .pull-left { float: left; }
