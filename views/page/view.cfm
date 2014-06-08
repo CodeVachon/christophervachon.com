@@ -1,6 +1,6 @@
 <cfscript>
 	param name="RC.content" default="";
 
-	writeOutput("<h2>#RC.content.getName()#</h2>");
+	writeOutput("<h1>#RC.content.getName()#</h1>");
 	writeOutput(RC.content.getBody());
 </cfscript>

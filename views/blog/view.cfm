@@ -5,7 +5,7 @@
 <cfoutput>
 	<article class='blog-post'>
 		<header>
-			<h2>#RC.article.getTitle()#</h2>
+			<h1>#RC.article.getTitle()#</h1>
 			<p class='date'>Posted: #dateFormat(RC.article.getPublicationDate(),"mmmm d, yyyy")#</p>
 		</header>
 		<section>

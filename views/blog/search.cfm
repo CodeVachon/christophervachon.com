@@ -3,7 +3,7 @@
 	LOCAL.articleService = new services.articleService();
 </cfscript>
 <cfoutput>
-	<h2>Search: #RC.search_for#</h2>
+	<h1>Search: #RC.search_for#</h1>
 	<cfif RC.searchResults.recordCount GT 0>
 		<cfloop query="RC.searchResults">
 			<cfscript>
