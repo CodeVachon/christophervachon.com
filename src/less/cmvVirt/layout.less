@@ -1,0 +1,164 @@
+.masthead {
+	.container {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+		box-shadow: 3px 3px 5px #ddd;
+		padding: 4px 1em;
+		line-height: 35px;
+		.navbar-header {
+			.navbar-toggle {
+				border: 1px @color-inverse solid;
+				border-radius: 5px;
+				background: transparent;
+				line-height: 35px;
+				height: 35px;
+				overflow: hidden;
+				width: 45px;
+				float: right;
+				text-shadow: 2px 2px 2px #333;
+				cursor: pointer;
+				outline: none;
+				.icon-bar {
+					display: block;
+					border: 1px @color-inverse solid;
+					border-radius: 3px;
+					margin: 5px 0;
+					line-height: 0px;
+				}
+			}
+			.navbar-brand {
+				color: @color-inverse;
+				text-decoration: none;
+				text-shadow: 2px 2px 2px #333;
+			}
+		}
+		.navbar-collapse {
+			display: none;
+			&.show { 
+				display: block;
+			}
+		}
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+		width: 45%;
+	}
+	@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+		width: @screen-lg-sideColumnWidth;
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-lg-max) {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		.navbar-header {
+			.navbar-toggle { display: none; }
+			.navbar-brand {
+				display: block;
+				background-image: url('/includes/imgs/cmv1.jpg');
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				width: 200px;
+				height: 200px;
+				border-radius: 100px;
+				margin: 2em auto;
+				color: transparent;
+			}
+		}
+		li {
+			text-align: center;
+			ul {
+				display: none;
+			}
+		}
+	}
+	background-color: @background-color-inverse;
+	background-image: url('/includes/imgs/55blackAlpha.png'), url('/includes/imgs/codebg-right.png'), url('/includes/imgs/codebg-left.png');
+	background-repeat: repeat, repeat-y, repeat-y;
+	background-position: center, top right, top left;
+	min-height: 1.6em;
+	.container {
+		padding: 0;
+		.nav {
+			padding: 0;
+			list-style: none;
+			li {
+				a { 
+					color: @color-inverse;
+					text-decoration: none;
+					text-shadow: 2px 2px 2px #333;
+					&:hover { text-decoration: underline; }
+					span:first-child { margin: 0 0.3em 0 0; }
+				}
+			}
+		}
+	}
+}
+.container {
+	padding: 1em;
+	& > header {
+		p { margin: 0; }
+		.title { 
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+	}
+	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+		padding: 0 3%;
+		width: 49%;
+	}
+	@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+		padding: 1em;
+		margin: 0 @screen-lg-sideColumnWidth 0 0;
+	}
+}
+
+.site-footer {
+	margin: 1em 0;
+	padding: 1em 0;
+	border-top: 1px #999 solid;
+	color: #999;
+	font-size: 0.7em;
+}
+
+.admin-menu-group {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #333;
+	color: #fff;
+	a { color: #fff; }
+	.admin-menu {
+		padding: 0;
+		width: 0;
+		transition: 0.5s;
+		opacity: 0;
+		&.open {
+			opacity: 1;
+			width: 250px;
+			padding: 1em;
+		}
+	}
+	.btn.admin-btn {
+		font-size: 1.2em;
+		position: absolute;
+		top: 50px;
+		left: -40px;
+		width: 40px;
+		line-height: 40px;
+		border: none;
+		border-top-right-radius: 0; 
+		border-bottom-right-radius: 0; 
+		background: none;
+		background-color: #333;
+		color: #fff;
+		padding: 0;
+		margin: 0;
+		outline: none;
+		box-shadow: none;
+	}
+}

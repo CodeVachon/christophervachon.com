@@ -1,0 +1,28 @@
+form {
+	margin: 1em 0;
+	& > div {
+		margin: 1em 0;
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	label {
+		display: block;
+		padding: 0.2em 0;
+	}
+	input, textarea {
+		display: block;
+		line-height: 1.2em;
+		border: 1px #999 solid;
+		border-radius: 6px;
+		font-size: 1em;
+		padding: 0.2em 0.4em;
+		width: 97%;
+		&.btn {
+			width: auto;
+		}
+	}
+}

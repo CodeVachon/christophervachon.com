@@ -15,6 +15,8 @@ component output="false" displayname="blog"  {
 
 	public void function before( required struct rc ) {
 		RC.template.addPageCrumb("Blog","/blog");
+		REQUEST.CONTEXT.template.addFile("cmvVirt.min.css");
+		REQUEST.CONTEXT.template.addFile("cmvVirt.js");
 	} // close before
 
 
