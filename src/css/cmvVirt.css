@@ -1081,6 +1081,29 @@ form textarea.btn {
   background: linear-gradient(#515151, #444444, #373737);
   background-repeat: repeat-x;
 }
+.social-media-item {
+  margin: 1em 0;
+  padding: 0 0 1em 0;
+}
+.social-media-item:first-of-type {
+  border-top: none;
+}
+.social-media-item > .title {
+  border-radius: 0.3em;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0.3em 0.6em;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#fbfbfb), color-stop(0.33, #eeeeee), color-stop(0.67, #eeeeee), to(#e1e1e1));
+  background: -webkit-linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
+  background: -moz-linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
+  background: -o-linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
+  background: linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
+  background-repeat: repeat-x;
+}
+.social-media-item .media-object {
+  border-radius: 0.3em;
+}
 body {
   background-color: #ffffff;
   font-family: 'Maven Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
