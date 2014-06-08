@@ -18,11 +18,15 @@ module.exports = function(grunt) {
 			}
 		}, // close jshint
 		less: {
-			build: {
-				options: {
-				},
+			options: {},
+			cmvbuild: {
 				files: {
-					"src<%= path.sep %>css<%= path.sep %>christophervachon.css": "src<%= path.sep %>less<%= path.sep %>bootstrap.less"
+					"src<%= path.sep %>css<%= path.sep %>christophervachon.css": "src<%= path.sep %>less<%= path.sep %>cmv<%= path.sep %>bootstrap.less"
+				}
+			},
+			cmvVirt: {
+				files: {
+					"src<%= path.sep %>css<%= path.sep %>cmvVirt.css": "src<%= path.sep %>less<%= path.sep %>cmvVirt<%= path.sep %>master.less"
 				}
 			}
 		}, // close less
@@ -35,9 +39,14 @@ module.exports = function(grunt) {
 			}
 		}, // close csslint
 		cssmin: {
-			minify: {
+			cmvminify: {
 				files: {
-					'includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>*.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
+					'includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>christophervachon.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
+				}
+			},
+			cmvVirtminify: {
+				files: {
+					'includes<%= path.sep %>css<%= path.sep %>cmvVirt.min.css':['src<%= path.sep %>css<%= path.sep %>cmvVirt.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
 				}
 			}
 		}, // close cssmin
@@ -59,13 +68,20 @@ module.exports = function(grunt) {
 					spawn: false
 				}
 			}, // close gruntfile
-			less: {
-				files: ['src<%= path.sep %>less<%= path.sep %>*.less'],
-				tasks: ['less:build','cssmin:minify'], //,'csslint:strict' -- csslint dosnt play well with bootstrap
+			CMVless: {
+				files: ['src<%= path.sep %>less<%= path.sep %>cmv<%= path.sep %>*.less'],
+				tasks: ['less:cmvbuild','cssmin:cmvminify'], //,'csslint:strict' -- csslint dosnt play well with bootstrap
 				options: {
 					spawn: false
 				}
 			}, // close less
+			cmvVirtLess: {
+				files: ['src<%= path.sep %>less<%= path.sep %>cmvVirt<%= path.sep %>*.less'],
+				tasks: ['less:cmvVirt','cssmin:cmvVirtminify'], //,'csslint:strict' -- csslint dosnt play well with bootstrap
+				options: {
+					spawn: false
+				}
+			},
 			jsfiles: {
 				files: ['src<%= path.sep %>js<%= path.sep %>*.js'],
 				tasks: ['jshint:sourceFiles','uglify:sourceFiles'],

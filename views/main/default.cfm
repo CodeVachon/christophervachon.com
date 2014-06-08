@@ -1,6 +1,5 @@
 <cfoutput>
-	<h2>#APPLICATION.websiteSettings.getSiteName()#</h2>
-	<h3>Social Media Feed</h3>
+	<h1>Recent Activity</h1>
 </cfoutput>
 
 <cfscript>

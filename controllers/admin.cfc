@@ -15,10 +15,15 @@ component output="false" displayname=""  {
 
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Admin","/admin");
+		RC.adminScreen = true;
 
 		if ((RC.action != "admin.login") && !RC.security.checkPermission("siteAdmin")) {
 			VARIABLES.fw.redirect(action='admin.login');
 		}
+
+		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
+		REQUEST.CONTEXT.template.addFile("christophervachon.min.css");
+		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
 	} // close before
 
 

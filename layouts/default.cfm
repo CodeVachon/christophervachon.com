@@ -1,4 +1,5 @@
 <cfparam name="REQUEST.disableSidebar" default="false" />
+<cfparam name="RC.adminScreen" default="false" />
 <cfcontent reset="true" type="text/html" /><!DOCTYPE html><cfoutput>
 <html lang="en">
 	<head>
@@ -65,7 +66,7 @@
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
-									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span class='hidden-sm hidden-md hidden-lg'>Settings</span><span class='hidden-xs glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
+									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span>Settings</span><span class='glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<li><a href="#buildURL('admin')#">Admin</a></li>
 										<li><a href="#buildURL('admin.editPerson')#/personID/#SESSION.member.personID#">Edit Details</a></li>
@@ -80,9 +81,12 @@
 			</nav>
 		</div>
 		<div class='container'>
-			<header class='sr-only'>
-				<h1>#RC.template.getSiteName()#</h1>
-			</header>
+			<cfif NOT RC.adminScreen>
+				<header>
+					<p class='title'>Christopher Vachon</p>
+					<p class=''>Web Developer, Musician, and Beer Enthuiest</p>
+				</header>
+			</cfif>
 			<div class='row'>
 				<cfif REQUEST.disableSidebar>
 					<section class='col-xs-12 page-content'>
@@ -96,7 +100,7 @@
 						#body#
 					</section>
 				<cfelse>
-					<section class='col-xs-12 col-sm-8 page-content'>
+					<section class='page-content'>
 						<cfif RC.template.getPageCrumbCount() GT 1>
 							<ol class="breadcrumb">
 								<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
@@ -106,65 +110,64 @@
 						</cfif>
 						#body#
 					</section>
-					<section class='col-xs-12 col-sm-offset-0 col-md-offset-1 col-sm-4 col-md-3'>
-						#view('blog/articleCountByDate')#
-					</section>
 				</cfif>
 			</div>
 			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>
 			</footer>
 			<cfif RC.security.checkPermission("siteAdmin")>
-				<button class='btn admin-btn'><span class="glyphicon glyphicon-chevron-right"></span></button>
-				<div class='admin-menu'>
-					<h2>Admin</h2>
-					<div class="panel-group" id="admin-menu-accordion">
-						<div class="panel">
-							<div class="panel-heading">
-								<h4 class="panel-title"><a data-toggle="collapse" data-parent="##admin-menu-accordion" href="##admin-menu-accordion-articles">Articles</a></h4>
-							</div>
-							<div id="admin-menu-accordion-articles" class="panel-collapse collapse">
-								<div class="panel-body">
-									<ul>
-										<cfif RC.action EQ "blog.view">
-											<li><a href='#buildURL('admin.editArticle')#/articleId/#RC.article.getID()#'>Edit Article</a></li>
-										</cfif>
-										<li><a href='#buildURL('admin.listArticles')#'>List Articles</a></li>
-										<li><a href='#buildURL('admin.editArticle')#'>Add New Article</a></li>
-										<li><a href='#buildURL('admin.listTags')#'>List Tags</a></li>
-										<li><a href='#buildURL('admin.rebuildSearchIndex')#'>Rebuild Search Index</a></li>
-									</ul>
+				<section class='admin-menu-group'>
+					<button class='btn admin-btn'><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<div class='admin-menu'>
+						<h2>Admin</h2>
+						<div class="panel-group" id="admin-menu-accordion">
+							<div class="panel">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a data-toggle="collapse" data-parent="##admin-menu-accordion" href="##admin-menu-accordion-articles">Articles</a></h4>
 								</div>
-							</div>
-						</div><!-- close .panel -->
-						<div class="panel">
-							<div class="panel-heading">
-								<h4 class="panel-title"><a data-toggle="collapse" data-parent="##admin-menu-accordion" href="##admin-menu-accordion-content">Content</a></h4>
-							</div>
-							<div id="admin-menu-accordion-content" class="panel-collapse collapse">
-								<div class="panel-body">
-									<ul>
-										<li><a href="#buildURL('admin.listContentPages')#">List Content Pages</a></li>
-										<li><a href='#buildURL('admin.editContentPage')#'>Add New Content Page</a></li>
-									</ul>
+								<div id="admin-menu-accordion-articles" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<cfif RC.action EQ "blog.view">
+												<li><a href='#buildURL('admin.editArticle')#/articleId/#RC.article.getID()#'>Edit Article</a></li>
+											</cfif>
+											<li><a href='#buildURL('admin.listArticles')#'>List Articles</a></li>
+											<li><a href='#buildURL('admin.editArticle')#'>Add New Article</a></li>
+											<li><a href='#buildURL('admin.listTags')#'>List Tags</a></li>
+											<li><a href='#buildURL('admin.rebuildSearchIndex')#'>Rebuild Search Index</a></li>
+										</ul>
+									</div>
 								</div>
-							</div>
-						</div><!-- close .panel -->
-						<div class="panel">
-							<div class="panel-heading">
-								<h4 class="panel-title"><a data-toggle="collapse" data-parent="##admin-menu-accordion" href="##admin-menu-accordion-settings">Site Settings</a></h4>
-							</div>
-							<div id="admin-menu-accordion-settings" class="panel-collapse collapse">
-								<div class="panel-body">
-									<ul>
-										<li><a href='#buildURL('admin.listPeople')#'>List Users</a></li>
-										<li><a href='#buildURL('admin.settings')#'>Website Settings</a></li>
-									</ul>
+							</div><!-- close .panel -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a data-toggle="collapse" data-parent="##admin-menu-accordion" href="##admin-menu-accordion-content">Content</a></h4>
 								</div>
-							</div>
-						</div><!-- close .panel -->
-					</div><!-- close ##admin-menu-accordion -->
-				</div>
+								<div id="admin-menu-accordion-content" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href="#buildURL('admin.listContentPages')#">List Content Pages</a></li>
+											<li><a href='#buildURL('admin.editContentPage')#'>Add New Content Page</a></li>
+										</ul>
+									</div>
+								</div>
+							</div><!-- close .panel -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a data-toggle="collapse" data-parent="##admin-menu-accordion" href="##admin-menu-accordion-settings">Site Settings</a></h4>
+								</div>
+								<div id="admin-menu-accordion-settings" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href='#buildURL('admin.listPeople')#'>List Users</a></li>
+											<li><a href='#buildURL('admin.settings')#'>Website Settings</a></li>
+										</ul>
+									</div>
+								</div>
+							</div><!-- close .panel -->
+						</div><!-- close ##admin-menu-accordion -->
+					</div>
+				<section>
 			</cfif>
 		</div>
 		<cfscript>

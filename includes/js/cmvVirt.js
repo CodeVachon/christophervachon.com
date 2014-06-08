@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".navbar").on("click",".navbar-toggle",function(){console.log("Navbar Toggle Clicked");var a=$(this).closest(".navbar").find(".navbar-collapse");a.toggleClass("show")})});

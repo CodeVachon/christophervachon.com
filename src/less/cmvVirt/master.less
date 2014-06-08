@@ -1,0 +1,101 @@
+@icon-font-path:          "../fonts/";
+@icon-font-name:          "glyphicons-halflings-regular";
+@icon-font-svg-id:        "glyphicons_halflingsregular";
+
+@import "../cmv/glyphicons.less";
+
+@color: #333;
+@color-inverse: #fff;
+@background-color: #fff;
+@background-color-inverse: #666;
+
+@elem-text-color: #eee;
+@elem-background-color: #333;
+@elem-background-color-hover: #444;
+@elem-background-color-active: #666;
+@elem-border-color: #444;
+
+@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+
+@border-radious: 0.3em;
+
+@screen-sm-min: 0px;
+@screen-sm-max: 668px;
+@screen-md-min: (@screen-sm-max+1);
+@screen-md-max: 1150px;
+@screen-lg-min: (@screen-md-max+1);
+@screen-lg-max: 1600px;
+
+@screen-lg-sideColumnWidth: 515px;
+
+a {
+	color: #00c;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.btn-gradient(@color: #555) {
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(lighten(@color,5%)), color-stop(0.33, @color), color-stop(0.67, @color), to(darken(@color,5%)));
+	background: -webkit-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
+	background: -moz-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
+	background: -o-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
+	background: linear-gradient(lighten(@color,5%), @color, darken(@color,5%)); // Safari 5.1-6, Chrome 10+
+	background-repeat: repeat-x;
+}
+
+@import "layout";
+@import "breadcrumb";
+@import "article";
+@import "button";
+@import "form";
+@import "pagination";
+
+body {
+	background-color: @background-color;
+	font-family: 'Maven Pro',"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	color: @color;
+	margin: 0;
+	padding: 0;
+}
+
+.sr-only { display: none; }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+	.hidden-sm { display: none; }
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+	.hidden-md { display: none; }
+}
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+	.hidden-lg { display: none; }
+}
+
+.label {
+	display: inline-block;
+	border-radius: @border-radious;
+	line-height: 1.2em;
+	padding: 0.2em 0.4em;
+	color: @elem-text-color;
+	//background-color: @background-color-inverse;
+	.btn-gradient(@elem-background-color);
+	a&:hover {
+		.btn-gradient(@elem-background-color-hover);
+	}
+}
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+ul {
+	&.list-unstyled {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&.list-inline {
+		height: 1.2em;
+		li { float: left; }
+	}
+}
+
