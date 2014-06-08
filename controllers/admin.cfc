@@ -15,6 +15,7 @@ component output="false" displayname=""  {
 
 	public void function before( required struct rc) {
 		RC.template.addPageCrumb("Admin","/admin");
+		RC.adminScreen = true;
 
 		if ((RC.action != "admin.login") && !RC.security.checkPermission("siteAdmin")) {
 			VARIABLES.fw.redirect(action='admin.login');

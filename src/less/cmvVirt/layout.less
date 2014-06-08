@@ -99,6 +99,13 @@
 }
 .container {
 	padding: 1em;
+	& > header {
+		p { margin: 0; }
+		.title { 
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+	}
 	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
 		padding: 0 3%;
 		width: 49%;

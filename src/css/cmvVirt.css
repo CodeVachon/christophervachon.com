@@ -731,6 +731,13 @@ a:hover {
 .container {
   padding: 1em;
 }
+.container > header p {
+  margin: 0;
+}
+.container > header .title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
 @media (min-width: 669px) and (max-width: 1150px) {
   .container {
     padding: 0 3%;

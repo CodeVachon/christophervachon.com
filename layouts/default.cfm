@@ -1,4 +1,5 @@
 <cfparam name="REQUEST.disableSidebar" default="false" />
+<cfparam name="RC.adminScreen" default="false" />
 <cfcontent reset="true" type="text/html" /><!DOCTYPE html><cfoutput>
 <html lang="en">
 	<head>
@@ -80,6 +81,12 @@
 			</nav>
 		</div>
 		<div class='container'>
+			<cfif NOT RC.adminScreen>
+				<header>
+					<p class='title'>Christopher Vachon</p>
+					<p class=''>Web Developer, Musician, and Beer Enthuiest</p>
+				</header>
+			</cfif>
 			<div class='row'>
 				<cfif REQUEST.disableSidebar>
 					<section class='col-xs-12 page-content'>
