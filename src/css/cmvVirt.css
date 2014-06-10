@@ -691,6 +691,13 @@ a:hover {
   .masthead .navbar {
     position: relative;
     margin: 2em 0;
+    transition: 1.7s;
+  }
+  .masthead .navbar.scrolldown .navbar-header {
+    left: -10px;
+  }
+  .masthead .navbar.scrolldown .navbar-collapse ul {
+    margin: 0 0 0 90px;
   }
   .masthead .navbar-header {
     border: 1px #fff solid;
@@ -700,6 +707,7 @@ a:hover {
     top: 0;
     left: -50px;
     background-color: #333;
+    transition: 0.7s;
   }
   .masthead .navbar-header .navbar-toggle {
     display: none;
@@ -720,13 +728,16 @@ a:hover {
   }
   .masthead .navbar-collapse ul {
     margin: 0 0 0 50px;
+    transition: 0.7s;
     padding: 0;
     list-style: none;
   }
   .masthead .navbar-collapse ul li a {
+    overflow: hidden;
     cursor: pointer;
     display: block;
     line-height: 41px;
+    height: 41px;
     padding: 0 1em 0 120px;
     text-align: right;
     border-bottom: 1px #fff solid;
@@ -739,6 +750,7 @@ a:hover {
   }
   .masthead .navbar-collapse ul li:nth-child(1) a {
     line-height: 40px;
+    height: 40px;
     border-top: 1px #fff solid;
   }
   .masthead .navbar-collapse ul li.active a {
@@ -758,7 +770,7 @@ a:hover {
     border: none;
   }
   .masthead .navbar-collapse ul.nav-socialmedia {
-    margin: 1em auto;
+    margin: 1em auto !important;
     width: 80%;
     max-width: 250px;
     height: 100px;
@@ -778,6 +790,7 @@ a:hover {
     margin: 0;
     border: 0;
     text-align: center;
+    height: auto;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a span {
     display: none;

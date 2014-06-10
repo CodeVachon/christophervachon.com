@@ -8,4 +8,13 @@ $(document).ready(function initDom() {
 		$('.admin-menu').toggleClass('open');
 		$('body').toggleClass('admin-menu-open');
 	});
+
+	$(window).on("scroll", function(e) {
+		if ($(this).scrollTop() > 60) {
+			$('.navbar').addClass('scrolldown');
+		} else {
+			$('.navbar').removeClass('scrolldown');
+		}
+		console.log();
+	});
 });
