@@ -790,6 +790,12 @@ a:hover {
     color: #fff;
     background-color: transparent;
   }
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.facebook {
+    color: #4c66a4;
+  }
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.twitter {
+    color: #55acee;
+  }
 }
 .masthead .container {
   padding: 0;
