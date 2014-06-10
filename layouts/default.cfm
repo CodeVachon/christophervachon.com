@@ -67,6 +67,7 @@
 							<li><a href='https://github.com/liaodrake' target="_blank" class='github'><i class="fa fa-github-square fa-3x"></i> <span>GitHub</span></a></li>
 							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square fa-3x"></i> <span>facebook</span></a></li>
 							<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square fa-3x"></i> <span>twitter</span></a></li>
+							<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square fa-3x'></i> <span>LinkedIn</span></a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right nav-settings">

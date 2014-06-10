@@ -766,19 +766,29 @@ a:hover {
   .masthead .navbar-collapse ul.nav-settings {
     margin: 1em 0;
   }
-  .masthead .navbar-collapse ul.nav-settings a {
+  .masthead .navbar-collapse ul.nav-settings li:nth-child(1) a {
+    line-height: 40px;
+    height: auto;
+    border-top: none;
+  }
+  .masthead .navbar-collapse ul.nav-settings li a {
     border: none;
+  }
+  .masthead .navbar-collapse ul.nav-settings li a:hover {
+    padding-right: 1em;
+    text-decoration: underline;
+    background-color: transparent;
   }
   .masthead .navbar-collapse ul.nav-socialmedia {
     margin: 1em auto !important;
     width: 80%;
-    max-width: 250px;
+    max-width: 350px;
     height: 100px;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li {
     border: none;
     float: left;
-    width: 33%;
+    width: 25%;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a {
     -webkit-transform: rotate(-45deg);
@@ -808,6 +818,9 @@ a:hover {
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.twitter {
     color: #55acee;
+  }
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.linkedin {
+    color: #1A86BB;
   }
 }
 .masthead .container {

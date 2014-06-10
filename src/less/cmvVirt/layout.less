@@ -138,19 +138,31 @@
 				}
 				&.nav-settings {
 					margin: 1em 0;
-					a {
-						border: none;
+					li {
+						&:nth-child(1) a {
+							line-height: 40px;
+							height: auto;
+							border-top: none;
+						}
+						a {
+							border: none;
+							&:hover {
+								padding-right: 1em;
+								text-decoration: underline;
+								background-color: transparent;
+							}
+						}
 					}
 				}
 				&.nav-socialmedia {
 					margin: 1em auto !important;
 					width: 80%;
-					max-width: 250px;
+					max-width: 350px;
 					height: 100px;
 					li {
 						border: none;
 						float: left;
-						width: 33%;
+						width: 25%;
 						a {
 							.rotateText(-45deg);
 							color: rgba(255,255,255,0.6);
@@ -165,6 +177,7 @@
 								color: #fff;
 								&.facebook { color: #4c66a4; }
 								&.twitter { color: #55acee; }
+								&.linkedin { color: #1A86BB; }
 								background-color: transparent;
 							}
 						}
