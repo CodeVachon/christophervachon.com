@@ -78,6 +78,7 @@ component extends="frameworks.org.corfield.framework" {
 		REQUEST.CONTEXT.template.addFile("/favicon.ico");
 		REQUEST.CONTEXT.template.addFile("//code.jquery.com/jquery-1.10.2.min.js");
 		REQUEST.CONTEXT.template.addFile("/includes/js/globals.js");
+		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 		REQUEST.CONTEXT.template.addMetaTag(name="description",content=APPLICATION.websiteSettings.getDescription());
 	}
 

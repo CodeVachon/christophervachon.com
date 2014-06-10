@@ -1,3 +1,9 @@
+.rotateText(@deg: -45deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+}
 .masthead {
 	.container {
 		margin: 0;
@@ -116,6 +122,34 @@
 				}
 				&.nav-settings {
 					margin: 1em 0;
+					a {
+						border: none;
+					}
+				}
+				&.nav-socialmedia {
+					margin: 1em auto;
+					width: 80%;
+					max-width: 250px;
+					height: 100px;
+					li {
+						border: none;
+						float: left;
+						width: 33%;
+						a {
+							.rotateText(-45deg);
+							color: rgba(255,255,255,0.6);
+							padding: 0;
+							margin: 0;
+							border: 0;
+							text-align: center;
+							span { display: none; }
+							&:hover {
+								.rotateText(0deg);
+								color: #fff;
+								background-color: transparent;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -145,6 +179,7 @@
 .container {
 	padding: 1em;
 	& > header {
+		margin: 1em 0;
 		p { margin: 0; }
 		.title { 
 			font-size: 1.5em;

@@ -63,6 +63,11 @@
 							<li<cfif listGetAt(RC.action,1,".") EQ 'blog'> class="active"</cfif>><a href='#buildURL('blog')#'>Blog</a></li>
 							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>
+						<ul class="nav navbar-nav nav-socialmedia">
+							<li><a href='##'><i class="fa fa-github-square fa-3x"></i> <span>GitHub</span></a></li>
+							<li><a href='##'><i class="fa fa-facebook-square fa-3x"></i> <span>facebook</span></a></li>
+							<li><a href='##'><i class="fa fa-twitter-square fa-3x"></i> <span>twitter</span></a></li>
+						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right nav-settings">
 								<li class="dropdown">
