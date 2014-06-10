@@ -1,3 +1,9 @@
+.rotateText(@deg: -45deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+}
 .masthead {
 	.container {
 		margin: 0;
@@ -53,7 +59,18 @@
 		top: 0;
 		bottom: 0;
 		right: 0;
+		.navbar {
+			position: relative;
+			margin: 2em 0;
+		}
 		.navbar-header {
+			border: 1px #fff solid;
+			padding: 4px;
+			border-radius: 200px;
+			position: absolute;
+			top: 0;
+			left: -50px;
+			background-color: #333;
 			.navbar-toggle { display: none; }
 			.navbar-brand {
 				display: block;
@@ -64,14 +81,76 @@
 				width: 200px;
 				height: 200px;
 				border-radius: 100px;
-				margin: 2em auto;
 				color: transparent;
 			}
 		}
-		li {
-			text-align: center;
+		.navbar-collapse {
+			padding: 0;
 			ul {
-				display: none;
+				margin: 0 0 0 50px;
+				padding: 0;
+				list-style: none;
+				li {
+					a {
+						cursor: pointer;
+						display: block;
+						line-height: 41px;
+						padding: 0 1em 0 120px;
+						text-align: right;
+						border-bottom: 1px #fff solid;
+						transition: 0.7s;
+						&:hover {
+							padding-right: 23%;
+							text-decoration: none !important;
+							background-color: rgba(55,55,99,0.5);
+						}
+					}
+					&:nth-child(1) a {
+						line-height: 40px;
+						border-top: 1px #fff solid;
+					}
+					&.active {
+						a {
+							background-color: rgba(200,200,200,0.7);
+							padding-right: 23%;
+							&:hover {
+								text-decoration: none;
+							}
+						}
+					}
+					ul { display: none;  }
+				}
+				&.nav-settings {
+					margin: 1em 0;
+					a {
+						border: none;
+					}
+				}
+				&.nav-socialmedia {
+					margin: 1em auto;
+					width: 80%;
+					max-width: 250px;
+					height: 100px;
+					li {
+						border: none;
+						float: left;
+						width: 33%;
+						a {
+							.rotateText(-45deg);
+							color: rgba(255,255,255,0.6);
+							padding: 0;
+							margin: 0;
+							border: 0;
+							text-align: center;
+							span { display: none; }
+							&:hover {
+								.rotateText(0deg);
+								color: #fff;
+								background-color: transparent;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -100,6 +179,7 @@
 .container {
 	padding: 1em;
 	& > header {
+		margin: 1em 0;
 		p { margin: 0; }
 		.title { 
 			font-size: 1.5em;

@@ -63,8 +63,13 @@
 							<li<cfif listGetAt(RC.action,1,".") EQ 'blog'> class="active"</cfif>><a href='#buildURL('blog')#'>Blog</a></li>
 							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>
+						<ul class="nav navbar-nav nav-socialmedia">
+							<li><a href='https://github.com/liaodrake' target="_blank"><i class="fa fa-github-square fa-3x"></i> <span>GitHub</span></a></li>
+							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank"><i class="fa fa-facebook-square fa-3x"></i> <span>facebook</span></a></li>
+							<li><a href='https://twitter.com/liaodrake' target="_blank"><i class="fa fa-twitter-square fa-3x"></i> <span>twitter</span></a></li>
+						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
-							<ul class="nav navbar-nav navbar-right">
+							<ul class="nav navbar-nav navbar-right nav-settings">
 								<li class="dropdown">
 									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span>Settings</span><span class='glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
 									<ul class="dropdown-menu">
@@ -84,7 +89,7 @@
 			<cfif NOT RC.adminScreen>
 				<header>
 					<p class='title'>Christopher Vachon</p>
-					<p class=''>Web Developer, Musician, and Beer Enthuiest</p>
+					<p class=''>Web Developer, Musician, and Beer Enthusiast</p>
 				</header>
 			</cfif>
 			<div class='row'>

@@ -20,11 +20,11 @@
 @border-radious: 0.3em;
 
 @screen-sm-min: 0px;
-@screen-sm-max: 668px;
+@screen-sm-max: 685px;
 @screen-md-min: (@screen-sm-max+1);
 @screen-md-max: 1150px;
 @screen-lg-min: (@screen-md-max+1);
-@screen-lg-max: 1600px;
+@screen-lg-max: 2600px;
 
 @screen-lg-sideColumnWidth: 515px;
 
@@ -42,6 +42,7 @@ a {
 	background: -moz-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
 	background: -o-linear-gradient(lighten(@color,5%), @color, darken(@color,5%));
 	background: linear-gradient(lighten(@color,5%), @color, darken(@color,5%)); // Safari 5.1-6, Chrome 10+
+	background-color: @color;
 	background-repeat: repeat-x;
 }
 
@@ -51,6 +52,7 @@ a {
 @import "button";
 @import "form";
 @import "pagination";
+@import "socialMedia";
 
 body {
 	background-color: @background-color;

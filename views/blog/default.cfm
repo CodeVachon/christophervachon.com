@@ -1,6 +1,6 @@
 <cfparam name="RC.tags" default="" />
 <cfoutput>
-	<h2><cfif structKeyExists(RC,"month") && isNumeric(RC.month)>#monthAsString(int(RC.month))# </cfif><cfif structKeyExists(RC,"year")>#RC.year# </cfif>Blog Entries<cfif listLen(RC.tags) GT 0> - Tags: #RC.tags#</cfif><cfif RC.page GT 1>: Page #RC.page#</cfif></h2>
+	<h1><cfif structKeyExists(RC,"month") && isNumeric(RC.month)>#monthAsString(int(RC.month))# </cfif><cfif structKeyExists(RC,"year")>#RC.year# </cfif>Blog Entries<cfif listLen(RC.tags) GT 0> - Tags: #RC.tags#</cfif><cfif RC.page GT 1>: Page #RC.page#</cfif></h1>
 	<cfif arrayLen(RC.articles) GT 0>
 		<cfloop array="#RC.articles#" index="RC.article">
 			#view("blog/summary")#
