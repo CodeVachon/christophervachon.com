@@ -64,7 +64,7 @@
 							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
-							<ul class="nav navbar-nav navbar-right">
+							<ul class="nav navbar-nav navbar-right nav-settings">
 								<li class="dropdown">
 									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span>Settings</span><span class='glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
 									<ul class="dropdown-menu">
@@ -84,7 +84,7 @@
 			<cfif NOT RC.adminScreen>
 				<header>
 					<p class='title'>Christopher Vachon</p>
-					<p class=''>Web Developer, Musician, and Beer Enthuiest</p>
+					<p class=''>Web Developer, Musician, and Beer Enthusiast</p>
 				</header>
 			</cfif>
 			<div class='row'>

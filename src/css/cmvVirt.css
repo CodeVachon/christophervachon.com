@@ -633,7 +633,7 @@ a:hover {
   padding: 0;
   width: 100%;
 }
-@media (min-width: 0px) and (max-width: 668px) {
+@media (min-width: 0px) and (max-width: 685px) {
   .masthead {
     box-shadow: 3px 3px 5px #ddd;
     padding: 4px 1em;
@@ -671,22 +671,35 @@ a:hover {
     display: block;
   }
 }
-@media (min-width: 669px) and (max-width: 1150px) {
+@media (min-width: 686px) and (max-width: 1150px) {
   .masthead {
     width: 45%;
   }
 }
-@media (min-width: 1151px) and (max-width: 1600px) {
+@media (min-width: 1151px) and (max-width: 2600px) {
   .masthead {
     width: 515px;
   }
 }
-@media (min-width: 669px) and (max-width: 1600px) {
+@media (min-width: 686px) and (max-width: 2600px) {
   .masthead {
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
+  }
+  .masthead .navbar {
+    position: relative;
+    margin: 2em 0;
+  }
+  .masthead .navbar-header {
+    border: 1px #fff solid;
+    padding: 4px;
+    border-radius: 200px;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    background-color: #333;
   }
   .masthead .navbar-header .navbar-toggle {
     display: none;
@@ -700,14 +713,46 @@ a:hover {
     width: 200px;
     height: 200px;
     border-radius: 100px;
-    margin: 2em auto;
     color: transparent;
   }
-  .masthead li {
-    text-align: center;
+  .masthead .navbar-collapse {
+    padding: 0;
   }
-  .masthead li ul {
+  .masthead .navbar-collapse ul {
+    margin: 0 0 0 50px;
+    padding: 0;
+    list-style: none;
+  }
+  .masthead .navbar-collapse ul li a {
+    cursor: pointer;
+    display: block;
+    line-height: 41px;
+    padding: 0 1em 0 120px;
+    text-align: right;
+    border-bottom: 1px #fff solid;
+    transition: 0.7s;
+  }
+  .masthead .navbar-collapse ul li a:hover {
+    padding-right: 23%;
+    text-decoration: none !important;
+    background-color: rgba(55, 55, 99, 0.5);
+  }
+  .masthead .navbar-collapse ul li:nth-child(1) a {
+    line-height: 40px;
+    border-top: 1px #fff solid;
+  }
+  .masthead .navbar-collapse ul li.active a {
+    background-color: rgba(200, 200, 200, 0.7);
+    padding-right: 23%;
+  }
+  .masthead .navbar-collapse ul li.active a:hover {
+    text-decoration: none;
+  }
+  .masthead .navbar-collapse ul li ul {
     display: none;
+  }
+  .masthead .navbar-collapse ul.nav-settings {
+    margin: 1em 0;
   }
 }
 .masthead .container {
@@ -738,13 +783,13 @@ a:hover {
   font-size: 1.5em;
   font-weight: bold;
 }
-@media (min-width: 669px) and (max-width: 1150px) {
+@media (min-width: 686px) and (max-width: 1150px) {
   .container {
     padding: 0 3%;
     width: 49%;
   }
 }
-@media (min-width: 1151px) and (max-width: 1600px) {
+@media (min-width: 1151px) and (max-width: 2600px) {
   .container {
     padding: 1em;
     margin: 0 515px 0 0;
@@ -808,6 +853,7 @@ a:hover {
   background: -moz-linear-gradient(#404040, #333333, #262626);
   background: -o-linear-gradient(#404040, #333333, #262626);
   background: linear-gradient(#404040, #333333, #262626);
+  background-color: #333333;
   background-repeat: repeat-x;
   border-radius: 0.3em;
   color: #eeeeee;
@@ -965,6 +1011,7 @@ table.syntax-highlighting tr td.code .color {
   background: -moz-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
   background: -o-linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
   background: linear-gradient(#d9d9d9, #cccccc, #bfbfbf);
+  background-color: #cccccc;
   background-repeat: repeat-x;
 }
 .btn:hover {
@@ -973,6 +1020,7 @@ table.syntax-highlighting tr td.code .color {
   background: -moz-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
   background: -o-linear-gradient(#eaeaea, #dddddd, #d0d0d0);
   background: linear-gradient(#eaeaea, #dddddd, #d0d0d0);
+  background-color: #dddddd;
   background-repeat: repeat-x;
 }
 .btn-group.btn-group-xs .btn,
@@ -1050,6 +1098,7 @@ form textarea.btn {
   background: -moz-linear-gradient(#737373, #666666, #595959);
   background: -o-linear-gradient(#737373, #666666, #595959);
   background: linear-gradient(#737373, #666666, #595959);
+  background-color: #666666;
   background-repeat: repeat-x;
 }
 .pagination li.active a:hover {
@@ -1058,6 +1107,7 @@ form textarea.btn {
   background: -moz-linear-gradient(#737373, #666666, #595959);
   background: -o-linear-gradient(#737373, #666666, #595959);
   background: linear-gradient(#737373, #666666, #595959);
+  background-color: #666666;
   background-repeat: repeat-x;
 }
 .pagination li a {
@@ -1066,6 +1116,7 @@ form textarea.btn {
   background: -moz-linear-gradient(#404040, #333333, #262626);
   background: -o-linear-gradient(#404040, #333333, #262626);
   background: linear-gradient(#404040, #333333, #262626);
+  background-color: #333333;
   background-repeat: repeat-x;
   line-height: 1.6em;
   display: block;
@@ -1079,6 +1130,7 @@ form textarea.btn {
   background: -moz-linear-gradient(#515151, #444444, #373737);
   background: -o-linear-gradient(#515151, #444444, #373737);
   background: linear-gradient(#515151, #444444, #373737);
+  background-color: #444444;
   background-repeat: repeat-x;
 }
 .social-media-item {
@@ -1099,6 +1151,7 @@ form textarea.btn {
   background: -moz-linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
   background: -o-linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
   background: linear-gradient(#fbfbfb, #eeeeee, #e1e1e1);
+  background-color: #eeeeee;
   background-repeat: repeat-x;
 }
 .social-media-item .media-object {
@@ -1115,17 +1168,17 @@ body {
 .sr-only {
   display: none;
 }
-@media (min-width: 0px) and (max-width: 668px) {
+@media (min-width: 0px) and (max-width: 685px) {
   .hidden-sm {
     display: none;
   }
 }
-@media (min-width: 669px) and (max-width: 1150px) {
+@media (min-width: 686px) and (max-width: 1150px) {
   .hidden-md {
     display: none;
   }
 }
-@media (min-width: 1151px) and (max-width: 1600px) {
+@media (min-width: 1151px) and (max-width: 2600px) {
   .hidden-lg {
     display: none;
   }
@@ -1141,6 +1194,7 @@ body {
   background: -moz-linear-gradient(#404040, #333333, #262626);
   background: -o-linear-gradient(#404040, #333333, #262626);
   background: linear-gradient(#404040, #333333, #262626);
+  background-color: #333333;
   background-repeat: repeat-x;
 }
 a.label:hover {
@@ -1149,6 +1203,7 @@ a.label:hover {
   background: -moz-linear-gradient(#515151, #444444, #373737);
   background: -o-linear-gradient(#515151, #444444, #373737);
   background: linear-gradient(#515151, #444444, #373737);
+  background-color: #444444;
   background-repeat: repeat-x;
 }
 .pull-left {
