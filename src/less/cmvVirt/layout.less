@@ -114,8 +114,9 @@
 						text-align: right;
 						border-bottom: 1px #fff solid;
 						transition: 0.7s;
+						background-color: rgba(255,255,255,0.2);
 						&:hover {
-							padding-right: 23%;
+							padding-right: 25%;
 							text-decoration: none !important;
 							background-color: rgba(55,55,99,0.5);
 						}
@@ -128,7 +129,7 @@
 					&.active {
 						a {
 							background-color: rgba(200,200,200,0.7);
-							padding-right: 23%;
+							padding-right: 25%;
 							&:hover {
 								text-decoration: none;
 							}
@@ -145,6 +146,7 @@
 							border-top: none;
 						}
 						a {
+							background-color: transparent;
 							border: none;
 							&:hover {
 								padding-right: 1em;
@@ -165,20 +167,26 @@
 						width: 20%;
 						a {
 							.rotateText(-45deg);
+							background-color: rgba(255,255,255,0);
 							color: rgba(255,255,255,0.6);
 							padding: 0;
 							margin: 0;
 							border: 0;
 							text-align: center;
-							height: auto;
+							height: 35px;
+							line-height: 35px;
+							width: 35px;
+							text-shadow: none;
+							border-radius: 6px;
 							span { display: none; }
 							&:hover {
 								.rotateText(0deg);
 								color: #fff;
-								&.facebook { color: #4c66a4; }
-								&.twitter { color: #55acee; }
-								&.linkedin { color: #1A86BB; }
-								&.googleplus { color: #DD4B39; }
+								background-color: #333;
+								&.facebook { color: #4c66a4; background-color: #fff; }
+								&.twitter { color: #55acee; background-color: #fff; }
+								&.linkedin { color: #1A86BB; background-color: #fff; }
+								&.googleplus { color: #DD4B39; background-color: #000; }
 								background-color: transparent;
 							}
 						}
