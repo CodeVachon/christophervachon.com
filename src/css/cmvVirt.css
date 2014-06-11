@@ -742,9 +742,10 @@ a:hover {
     text-align: right;
     border-bottom: 1px #fff solid;
     transition: 0.7s;
+    background-color: rgba(255, 255, 255, 0.2);
   }
   .masthead .navbar-collapse ul li a:hover {
-    padding-right: 23%;
+    padding-right: 25%;
     text-decoration: none !important;
     background-color: rgba(55, 55, 99, 0.5);
   }
@@ -755,7 +756,7 @@ a:hover {
   }
   .masthead .navbar-collapse ul li.active a {
     background-color: rgba(200, 200, 200, 0.7);
-    padding-right: 23%;
+    padding-right: 25%;
   }
   .masthead .navbar-collapse ul li.active a:hover {
     text-decoration: none;
@@ -772,6 +773,7 @@ a:hover {
     border-top: none;
   }
   .masthead .navbar-collapse ul.nav-settings li a {
+    background-color: transparent;
     border: none;
   }
   .masthead .navbar-collapse ul.nav-settings li a:hover {
@@ -795,12 +797,17 @@ a:hover {
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
+    background-color: rgba(255, 255, 255, 0);
     color: rgba(255, 255, 255, 0.6);
     padding: 0;
     margin: 0;
     border: 0;
     text-align: center;
-    height: auto;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    text-shadow: none;
+    border-radius: 6px;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a span {
     display: none;
@@ -811,19 +818,24 @@ a:hover {
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     color: #fff;
+    background-color: #333;
     background-color: transparent;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.facebook {
     color: #4c66a4;
+    background-color: #fff;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.twitter {
     color: #55acee;
+    background-color: #fff;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.linkedin {
     color: #1A86BB;
+    background-color: #fff;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.googleplus {
     color: #DD4B39;
+    background-color: #000;
   }
 }
 .masthead .container {
