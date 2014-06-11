@@ -782,13 +782,13 @@ a:hover {
   .masthead .navbar-collapse ul.nav-socialmedia {
     margin: 1em auto !important;
     width: 80%;
-    max-width: 350px;
+    max-width: 250px;
     height: 100px;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li {
     border: none;
     float: left;
-    width: 25%;
+    width: 20%;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a {
     -webkit-transform: rotate(-45deg);
@@ -821,6 +821,9 @@ a:hover {
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.linkedin {
     color: #1A86BB;
+  }
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.googleplus {
+    color: #DD4B39;
   }
 }
 .masthead .container {
@@ -872,6 +875,9 @@ a:hover {
   border-top: 1px #999 solid;
   color: #999;
   font-size: 0.7em;
+}
+.site-footer ul {
+  color: #00c;
 }
 .admin-menu-group {
   position: fixed;

@@ -64,10 +64,11 @@
 							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav nav-socialmedia">
-							<li><a href='https://github.com/liaodrake' target="_blank" class='github'><i class="fa fa-github-square fa-3x"></i> <span>GitHub</span></a></li>
-							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square fa-3x"></i> <span>facebook</span></a></li>
-							<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square fa-3x"></i> <span>twitter</span></a></li>
-							<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square fa-3x'></i> <span>LinkedIn</span></a></li>
+							<li><a href='https://github.com/liaodrake' target="_blank" class='github'><i class="fa fa-github-square fa-2x"></i> <span>GitHub</span></a></li>
+							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square fa-2x"></i> <span>facebook</span></a></li>
+							<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square fa-2x"></i> <span>twitter</span></a></li>
+							<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square fa-2x'></i> <span>LinkedIn</span></a></li>
+							<li><a href="https://plus.google.com/+ChristopherVachon/" target="_blank" class='googleplus'><i class='fa fa-google-plus-square fa-2x'></i> <span>on Google+</span></a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right nav-settings">
@@ -120,6 +121,15 @@
 			</div>
 			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>
+				<p><strong>Disclaimer</strong>: the views and opinions expressed on this site a solely my own and do not necessarily reflect those of any person, company, or organization mentioned on this site.</p>
+				<ul class="list-unstyled">
+					<li><a href='https://github.com/liaodrake' target="_blank" class='github'><i class="fa fa-github-square"></i> <span>on GitHub</span></a></li>
+					<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square"></i> <span>on facebook</span></a></li>
+					<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square"></i> <span>on twitter</span></a></li>
+					<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square'></i> <span>on LinkedIn</span></a></li>
+					<li><a href="https://plus.google.com/+ChristopherVachon/" target="_blank" class='googleplus'><i class='fa fa-google-plus-square'></i> <span>on Google+</span></a></li>
+					<li><i class="fa fa-skype"></i> <span>liaodrake on skype</span></li>
+				</ul>
 			</footer>
 			<cfif RC.security.checkPermission("siteAdmin")>
 				<section class='admin-menu-group'>
