@@ -4,7 +4,7 @@ $(document).ready(function initDom() {
 	}
 
 	$('.admin-btn').on("click",function toggleAdminMenu() {
-		$(this).children('.glyphicon').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-left');
+		$(this).children('.fa').toggleClass('fa-caret-left').toggleClass('fa-caret-right');
 		$('.admin-menu').toggleClass('open');
 		$('body').toggleClass('admin-menu-open');
 	});

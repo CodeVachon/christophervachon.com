@@ -144,7 +144,7 @@
 			</footer>
 			<cfif RC.security.checkPermission("siteAdmin")>
 				<section class='admin-menu-group'>
-					<button class='btn admin-btn'><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<button class='btn admin-btn'><i class="fa fa-caret-left"></i></button>
 					<div class='admin-menu'>
 						<h2>Admin</h2>
 						<div class="panel-group" id="admin-menu-accordion">
