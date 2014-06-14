@@ -13,6 +13,10 @@
 				}
 				tag &= "/>" & chr(10);
 				writeOutput(tag);
+
+				if (structKeyExists(_metaTag,"name") && structKeyExists(_metaTag,"content") && (_metaTag["name"] == "description")) {
+					LOCAL[_metaTag["name"]] = _metaTag["content"];
+				}
 			}
 
 			if (arrayLen(RC.template.getFiles("CSS")) > 0) {
@@ -32,6 +36,13 @@
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
+		<meta property="og:title" content="#RC.template.getSiteTitle()#" /> 
+		<meta property="og:type" content="article" /> 
+		<meta property="og:url" content="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
+		<!--- <meta property="og:image" content=" http://example.com/image.jpg" /> --->
+		<meta property="og:description" content="#LOCAL["description"]#" />
+
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -68,7 +79,7 @@
 							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square fa-2x"></i> <span>facebook</span></a></li>
 							<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square fa-2x"></i> <span>twitter</span></a></li>
 							<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square fa-2x'></i> <span>LinkedIn</span></a></li>
-							<li><a href="https://plus.google.com/+ChristopherVachon/" target="_blank" class='googleplus'><i class='fa fa-google-plus-square fa-2x'></i> <span>on Google+</span></a></li>
+							<li><a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus'><i class='fa fa-google-plus-square fa-2x'></i> <span>on Google+</span></a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right nav-settings">
@@ -121,13 +132,13 @@
 			</div>
 			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>
-				<p><strong>Disclaimer</strong>: the views and opinions expressed on this site a solely my own and do not necessarily reflect those of any person, company, or organization mentioned on this site.</p>
+				<p class='pull-right'><strong>Discliamer</strong>: the views and opinions expressed on this site a solely my own and do not nessacarily reflect those of any person, company, or organization mentioned on this site.</p>
 				<ul class="list-unstyled">
 					<li><a href='https://github.com/liaodrake' target="_blank" class='github'><i class="fa fa-github-square"></i> <span>on GitHub</span></a></li>
 					<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square"></i> <span>on facebook</span></a></li>
 					<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square"></i> <span>on twitter</span></a></li>
 					<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square'></i> <span>on LinkedIn</span></a></li>
-					<li><a href="https://plus.google.com/+ChristopherVachon/" target="_blank" class='googleplus'><i class='fa fa-google-plus-square'></i> <span>on Google+</span></a></li>
+					<li><a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus'><i class='fa fa-google-plus-square'></i> <span>on Google+</span></a></li>
 					<li><i class="fa fa-skype"></i> <span>liaodrake on skype</span></li>
 				</ul>
 			</footer>
