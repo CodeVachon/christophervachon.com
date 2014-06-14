@@ -21,9 +21,15 @@ component output="false" displayname=""  {
 			VARIABLES.fw.redirect(action='admin.login');
 		}
 
-		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
-		REQUEST.CONTEXT.template.addFile("christophervachon.min.css");
-		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
+		RC.template.addFile("christophervachon.min.css");
+		if (VARIABLES.fw.getEnvironment() == "dev") {
+			RC.template.addFile("bootstrap.min.js");
+			RC.template.addFile("bootstrap-theme.min.css");
+		} else {
+			RC.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
+			RC.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
+		}
+		
 	} // close before
 
 
