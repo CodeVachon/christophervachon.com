@@ -18,7 +18,6 @@ function fnUpdatePreview() {
 	$('.previewPane article header p.date').html("Posted: " + $('form[name="articleForm"] [name="publicationDate"]').val());
 	$('.previewPane article.blog-summary section').html($('form[name="articleForm"] [name="summary"]').val());
 	$('.previewPane #articlePreview section').html($('form[name="articleForm"] [name="body"]').val());
-
 }
 
 
@@ -60,6 +59,20 @@ function fnConvertMarkDownToHTML(_markdown) {
 			],
 			'map': "<em>$1</em>"
 		},
+		'strike': {
+			'patterns': [
+				"(?:-{1})([^-]+)(?:-{1})"
+			],
+			'map':'<strike>$1</strike>'
+		},
+		'code-block': {
+			'patterns': "(?:`{3})([^(?:\r|\n)]+)?([^`{3}]+)(?:`{3})",
+			'map':"<pre><code class='$1'>$2</code></pre>"
+		},
+		'code': {
+			'patterns': "(?:`)([^`]+)(?:`)",
+			'map':"<code>$1</code>"
+		},
 		'img': {
 			'patterns': "!\\[([^\\]]+)\\]\\(([^\\)]+)\\)",
 			'map':'<img src="$2" alt="$1" title="$1" />'
@@ -81,6 +94,10 @@ function fnConvertMarkDownToHTML(_markdown) {
 			var _depth = _lines[i].match(/^#{1,6}/)[0].length;
 			_tag = "h" + _depth;
 			_lines[i] = _lines[i].replace(/^#{1,6}/, "");
+		} else if (_lines[i].charAt(0) == "-") {
+			_tag = "ul";
+			_lines[i] = "<li>" + _lines[i].replace(/(?:\n|\r)(?:(?:\s|\t){1,})?\-/g,"</li><li>") + "</li>";
+			_lines[i] = _lines[i].replace(/<li>\-{1,}/gi, "<li>");
 		}
 
 		// formatting
