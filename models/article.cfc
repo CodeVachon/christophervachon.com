@@ -11,6 +11,7 @@ component output="false" displayname="article" extends="ormbase" table="articles
 	property name="title" type="string";
 	property name="summary" type="string" length="750";
 	property name="body" type="string" length="50000";
+	property name="markdown" type="string" length="50000";
 	property name="publicationDate" type="datetime" ormtype="timestamp";
 
 	property name="uriStrings" setter="false" fieldtype="collection" type="array" table="articles_uris" fkcolumn="fk_articleID" elementColumn="OGValue" elementtype="string";
@@ -27,6 +28,7 @@ component output="false" displayname="article" extends="ormbase" table="articles
 		if (!structKeyExists(VARIABLES,"title")) { VARIABLES["title"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"summary")) { VARIABLES["summary"] = javaCast("null",""); }
 		if (!structKeyExists(VARIABLES,"body")) { VARIABLES["body"] = javaCast("null",""); }
+		if (!structKeyExists(VARIABLES,"markdown")) { VARIABLES["markdown"] = javaCast("null",""); }
 
 		if (!structKeyExists(VARIABLES,"publicationDate")) { VARIABLES["publicationDate"] = now(); }
 

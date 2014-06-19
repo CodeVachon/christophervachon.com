@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$('form[name="articleForm"]').on('change','input,select',fnUpdatePreview);
-	$('[name="bodyMD"]').on('keyup',function(e) {
+	$('[name="markdown"]').on('keyup',function(e) {
 		$('[name="body"]').val(fnConvertMarkDownToHTML($(this).val()));
 		fnUpdatePreview();
 	});

@@ -43,8 +43,8 @@
 				</div>
 				<div class="tab-pane active" id="articleBody">
 					<div class="form-group">
-						<label for="body">Mark Down</label>
-						<textarea name="bodyMD" id="bodyMD" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
+						<label for="markdown">Mark Down</label>
+						<textarea name="markdown" id="markdown" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
 					</div>
 				</div>
 				<div class="tab-pane" id="articleBodyHTML">
