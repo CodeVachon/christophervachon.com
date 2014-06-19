@@ -5,6 +5,14 @@
 		RC.article.setSummary("New Article Summary");
 		RC.article.setBody("");
 	}
+
+	if (structKeyExists(RC,"title")) {
+		LOCAL.tabMetaDataClass = "";
+		LOCAL.tabMarkDownClass = "active";
+	} else {
+		LOCAL.tabMetaDataClass = "active";
+		LOCAL.tabMarkDownClass = "";
+	}
 </cfscript>
 <cfoutput>
 	<section class='col-sm-6' id='articleForm'>
@@ -17,20 +25,20 @@
 			<input type='hidden' name="articleId" value="#((structKeyExists(RC,"articleId"))?RC.articleId:"")#">
 
 			<ul class="nav nav-tabs">
-				<li><a href="##articleMetaData" data-toggle="tab">Meta Data</a></li>
-				<li class="active"><a href="##articleBody" data-toggle="tab">Mark Down</a></li>
+				<li class="#LOCAL.tabMetaDataClass#"><a href="##articleMetaData" data-toggle="tab">Meta Data</a></li>
+				<li class="#LOCAL.tabMarkDownClass#"><a href="##articleBody" data-toggle="tab">Mark Down</a></li>
 				<li><a href="##articleBodyHTML" data-toggle="tab">HTML</a></li>
 			</ul>
 
 			<div class="tab-content">
-				<div class="tab-pane" id="articleMetaData">
+				<div class="tab-pane #LOCAL.tabMetaDataClass#" id="articleMetaData">
 					<div class="form-group">
 						<label for="title">Title</label>
 						<input type="text" class="form-control" name="title" placeholder="Article Title" value="#((structKeyExists(RC,"title"))?RC.title:"")#" />
 					</div>
 					<div class="form-group">
 						<label for="summary">Summary</label>
-						<textarea name="summary" placeholder="Article Summary" class="form-control" rows="3">#((structKeyExists(RC,"summary"))?RC.summary:"")#</textarea>
+						<textarea name="summary" placeholder="Article Summary" class="form-control frm-summary" rows="3">#((structKeyExists(RC,"summary"))?RC.summary:"")#</textarea>
 					</div>
 					<div class="form-group">
 						<label for="publicationDate">Publication Date</label>
@@ -41,7 +49,7 @@
 						<input type="text" class="form-control" name="articleTags" placeholder="Article Tags" value="#((structKeyExists(RC,"articleTags"))?RC.articleTags:"")#" />
 					</div>
 				</div>
-				<div class="tab-pane active" id="articleBody">
+				<div class="tab-pane #LOCAL.tabMarkDownClass#" id="articleBody">
 					<div class="form-group">
 						<label for="markdown">Mark Down</label>
 						<textarea name="markdown" id="markdown" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
