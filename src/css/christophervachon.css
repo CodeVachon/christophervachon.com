@@ -870,8 +870,13 @@ table.syntax-highlighting tr td.code .color {
   left: 0;
 }
 #articleForm {
-  overflow: auto;
   height: 550px;
+}
+#articleForm textarea {
+  height: 390px;
+}
+#articleForm textarea.frm-summary {
+  height: auto;
 }
 .previewPane {
   border-right: 1px #ddd solid;
