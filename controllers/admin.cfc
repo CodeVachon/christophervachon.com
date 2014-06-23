@@ -186,6 +186,8 @@ component output="false" displayname=""  {
 		RC.template.addPageCrumb("Edit Article","/admin/editArticle");
 		RC.template.addFile('/includes/js/formOptions.js');
 		RC.template.addFile("/includes/js/jquery.syntaxhighlighter.min.js");
+		RC.template.addFile("marked.min.js");
+		RC.template.addFile("vue.min.js");
 		RC.template.addFile("/includes/js/editArticle.js");
 	}
 	public void function endEditArticle( required struct rc ) {

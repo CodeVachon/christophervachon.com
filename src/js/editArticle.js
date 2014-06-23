@@ -1,10 +1,14 @@
 $(document).ready(function() {
+	/*
 	$('form[name="articleForm"]').on('change','input,select',fnUpdatePreview);
 	$('[name="markdown"]').on('keyup',function(e) {
 		$('[name="body"]').val(fnConvertMarkDownToHTML($(this).val()));
 		fnUpdatePreview();
 	});
-
+	*/
+	$('[name="body"]').on('change',function() {
+		fnUpdatePreview();
+	});
 	$('.previewPane').on('click','a',function(e) {
 		e.preventDefault();
 		alert("Click to " + $(this).prop("href") + " Prevented!");
@@ -12,8 +16,21 @@ $(document).ready(function() {
 	$('.previewPane .btn').remove();
 });
 
+new Vue({
+	el: '#editorForm',
+	filters: {
+		marked: marked
+	},
+	methods: {
+		onKeyUp: function (e) {
+			fnUpdatePreview();
+		}
+	}
+});
+
 
 function fnUpdatePreview() {
+	console.log("Update Fired!");
 	$('.previewPane article header h1, .previewPane article header p.title a').html($('form[name="articleForm"] [name="title"]').val());
 	$('.previewPane article header p.date').html("Posted: " + $('form[name="articleForm"] [name="publicationDate"]').val());
 	$('.previewPane article.blog-summary section').html($('form[name="articleForm"] [name="summary"]').val());
@@ -45,6 +62,18 @@ function fnConvertMarkDownToHTML(_markdown) {
 	_lnC = _lines.length;
 
 	var _formats = {
+		'img': {
+			'patterns': "!\\[([^\\]]+)\\]\\(([^\\)]+)\\)",
+			'map':'<img src="$2" alt="$1" title="$1" />'
+		},
+		'a': {
+			'patterns': "\\[([^\\]]+)\\]((?:\\()([^\\s]+)\\s?([^\\)]+?)?(?:\\)))",
+			'map': "<a href='$3' title='$4'>$1</a>"
+		},
+		'a-natural': {
+			'patterns': "\\[([^\\]]+)\\]",
+			'map': "<a href='$1'>$1</a>"
+		},
 		'strong': {
 			'patterns': [
 				"(?:\\_{2})([^_{2}]+)(?:\\_{2})",
@@ -72,18 +101,6 @@ function fnConvertMarkDownToHTML(_markdown) {
 		'code': {
 			'patterns': "(?:`)([^`]+)(?:`)",
 			'map':"<code>$1</code>"
-		},
-		'img': {
-			'patterns': "!\\[([^\\]]+)\\]\\(([^\\)]+)\\)",
-			'map':'<img src="$2" alt="$1" title="$1" />'
-		},
-		'a': {
-			'patterns': "\\[([^\\]]+)\\]((?:\\()([^\\s]+)\\s?([^\\)]+?)?(?:\\)))",
-			'map': "<a href='$3' title='$4'>$1</a>"
-		},
-		'a-natural': {
-			'patterns': "\\[([^\\]]+)\\]",
-			'map': "<a href='$1'>$1</a>"
 		}
 	};
 
@@ -94,7 +111,7 @@ function fnConvertMarkDownToHTML(_markdown) {
 			var _depth = _lines[i].match(/^#{1,6}/)[0].length;
 			_tag = "h" + _depth;
 			_lines[i] = _lines[i].replace(/^#{1,6}/, "");
-		} else if (_lines[i].charAt(0) == "-") {
+		} else if ((_lines[i].charAt(0) == "-") && (_lines[i].charAt(1) == " ")) {
 			_tag = "ul";
 			_lines[i] = "<li>" + _lines[i].replace(/(?:\n|\r)(?:(?:\s|\t){1,})?\-/g,"</li><li>") + "</li>";
 			_lines[i] = _lines[i].replace(/<li>\-{1,}/gi, "<li>");

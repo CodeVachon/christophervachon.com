@@ -21,7 +21,7 @@
 			#view('main/validationError')#
 		</cfif>
 
-		<form role="form" name="articleForm" method="post" action="/admin/editArticle">
+		<form role="form" name="articleForm" method="post" action="/admin/editArticle" id="editorForm">
 			<input type='hidden' name="articleId" value="#((structKeyExists(RC,"articleId"))?RC.articleId:"")#">
 
 			<ul class="nav nav-tabs">
@@ -52,13 +52,13 @@
 				<div class="tab-pane #LOCAL.tabMarkDownClass#" id="articleBody">
 					<div class="form-group">
 						<label for="markdown">Mark Down</label>
-						<textarea name="markdown" id="markdown" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
+						<textarea name="markdown" id="markdown" v-model="input" v-on="keyup: onKeyUp" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
 					</div>
 				</div>
 				<div class="tab-pane" id="articleBodyHTML">
 					<div class="form-group">
 						<label for="body">HTML</label>
-						<textarea name="body" id="body" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
+						<textarea name="body" id="body" v-html="input | marked" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
 					</div>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 			<li><a href="##summaryPreview" data-toggle="tab">Summary Preview</a></li>
 		</ul>
 		<div class="tab-content previewPane">
-			<div class="tab-pane active" id="articlePreview">
+			<div class="tab-pane active" id="articlePreview" v-html="input | marked">
 				#view('blog/view')#
 			</div>
 			<div class="tab-pane" id="summaryPreview">
