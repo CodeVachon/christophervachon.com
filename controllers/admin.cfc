@@ -30,6 +30,7 @@ component output="false" displayname=""  {
 			RC.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
 		}
 		
+		VARIABLES.FW.setLayout("admin");
 	} // close before
 
 
