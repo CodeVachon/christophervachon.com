@@ -21,9 +21,16 @@ component output="false" displayname=""  {
 			VARIABLES.fw.redirect(action='admin.login');
 		}
 
-		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
-		REQUEST.CONTEXT.template.addFile("christophervachon.min.css");
-		REQUEST.CONTEXT.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
+		RC.template.addFile("christophervachon.min.css");
+		if (VARIABLES.fw.getEnvironment() == "dev") {
+			RC.template.addFile("bootstrap.min.js");
+			RC.template.addFile("bootstrap-theme.min.css");
+		} else {
+			RC.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
+			RC.template.addFile("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css");
+		}
+		
+		VARIABLES.FW.setLayout("admin");
 	} // close before
 
 
@@ -180,6 +187,8 @@ component output="false" displayname=""  {
 		RC.template.addPageCrumb("Edit Article","/admin/editArticle");
 		RC.template.addFile('/includes/js/formOptions.js');
 		RC.template.addFile("/includes/js/jquery.syntaxhighlighter.min.js");
+		RC.template.addFile("marked.min.js");
+		RC.template.addFile("vue.min.js");
 		RC.template.addFile("/includes/js/editArticle.js");
 	}
 	public void function endEditArticle( required struct rc ) {
