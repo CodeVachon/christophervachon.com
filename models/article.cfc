@@ -73,4 +73,13 @@ component output="false" displayname="article" extends="ormbase" table="articles
 			arrayAppend(VARIABLES.uriStrings,"#year(VARIABLES.publicationDate)#/#dateFormat(VARIABLES.publicationDate,"mm")#/#dateFormat(VARIABLES.publicationDate,"dd")#/#this.getEncodedTitle()#");
 		}
 	}
+
+	public boolean function isMarkDownArticle() {
+		if ((len(this.getMarkDown()) == 0) && (len(this.getBody()) == 0)) {
+			return true;
+		} else if ((len(this.getMarkDown()) > 0) && (len(this.getBody()) > 0)) {
+			return true;
+		}
+		return false;
+	} // close isMarkDownArticle
 }

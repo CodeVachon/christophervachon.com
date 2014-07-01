@@ -13,6 +13,13 @@
 		LOCAL.tabMetaDataClass = "active";
 		LOCAL.tabMarkDownClass = "";
 	}
+
+	LOCAL.isMarkDown = false;
+	if (!structKeyExists(RC,"article")) {
+		LOCAL.isMarkDown = true;
+	} else if (RC.article.isMarkDownArticle()) {
+		LOCAL.isMarkDown = true;
+	}
 </cfscript>
 <cfoutput>
 	<section class='col-sm-6' id='articleForm'>
@@ -49,16 +56,18 @@
 						<input type="text" class="form-control" name="articleTags" placeholder="Article Tags" value="#((structKeyExists(RC,"articleTags"))?RC.articleTags:"")#" />
 					</div>
 				</div>
-				<div class="tab-pane #LOCAL.tabMarkDownClass#" id="articleBody">
-					<div class="form-group">
-						<label for="markdown">Mark Down</label>
-						<textarea name="markdown" id="markdown" v-model="input" v-on="keyup: onKeyUp" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
+				<cfif LOCAL.isMarkDown>
+					<div class="tab-pane #LOCAL.tabMarkDownClass#" id="articleBody">
+						<div class="form-group">
+							<label for="markdown">Mark Down</label>
+							<textarea name="markdown" id="markdown" v-model="input" v-on="keyup: onKeyUp" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
+						</div>
 					</div>
-				</div>
+				</cfif>
 				<div class="tab-pane" id="articleBodyHTML">
 					<div class="form-group">
 						<label for="body">HTML</label>
-						<textarea name="body" id="body" v-html="input | marked" placeholder="" class="form-control" rows="5">#((structKeyExists(RC,"body"))?RC.body:"")#</textarea>
+						<textarea name="body" id="body" v-html="input | marked" class="form-control" rows="5"><cfif NOT LOCAL.isMarkDown>#((structKeyExists(RC,"body"))?RC.body:"")#</cfif></textarea>
 					</div>
 				</div>
 			</div>
