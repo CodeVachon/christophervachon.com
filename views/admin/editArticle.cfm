@@ -6,19 +6,19 @@
 		RC.article.setBody("");
 	}
 
-	if (structKeyExists(RC,"title")) {
-		LOCAL.tabMetaDataClass = "";
-		LOCAL.tabMarkDownClass = "active";
-	} else {
-		LOCAL.tabMetaDataClass = "active";
-		LOCAL.tabMarkDownClass = "";
-	}
-
 	LOCAL.isMarkDown = false;
 	if (!structKeyExists(RC,"article")) {
 		LOCAL.isMarkDown = true;
 	} else if (RC.article.isMarkDownArticle()) {
 		LOCAL.isMarkDown = true;
+	}
+
+	if (structKeyExists(RC,"title") && LOCAL.isMarkDown) {
+		LOCAL.tabMetaDataClass = "";
+		LOCAL.tabMarkDownClass = "active";
+	} else {
+		LOCAL.tabMetaDataClass = "active";
+		LOCAL.tabMarkDownClass = "";
 	}
 </cfscript>
 <cfoutput>
@@ -33,7 +33,7 @@
 
 			<ul class="nav nav-tabs">
 				<li class="#LOCAL.tabMetaDataClass#"><a href="##articleMetaData" data-toggle="tab">Meta Data</a></li>
-				<li class="#LOCAL.tabMarkDownClass#"><a href="##articleBody" data-toggle="tab">Mark Down</a></li>
+				<cfif LOCAL.isMarkDown><li class="#LOCAL.tabMarkDownClass#"><a href="##articleBody" data-toggle="tab">Mark Down</a></li></cfif>
 				<li><a href="##articleBodyHTML" data-toggle="tab">HTML</a></li>
 			</ul>
 

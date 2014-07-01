@@ -430,6 +430,7 @@ table.syntax-highlighting tr th {
   color: #fff;
   padding: 0.4em 0.8em;
   border-bottom: 1px #808080 solid;
+  text-align: left;
 }
 table.syntax-highlighting tr td {
   padding: 1em 0.5em;
