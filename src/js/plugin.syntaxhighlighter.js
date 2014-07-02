@@ -47,7 +47,7 @@
 		var _numLines = (_code.length - 1);
 		//console.log(_code);
 		for (var i = 0; i <= _numLines; i++) {
-			var _hightlightedCode = _code[i].replace(/\t/g,_settings.tab);
+			var _hightlightedCode = _code[i].replace(/\t|\s{4}/g,_settings.tab);
 			_hightlightedCode = _hightlightedCode.replace(_computedRegEx, "<span class='found'>$1</span>");
 			_hightlightedCode = $('<div>').attr('data-line',i).html(_hightlightedCode || "&nbsp;");
 			_table.find('td.gutter').append($('<div>').attr('data-line',i).html(i + 1));
