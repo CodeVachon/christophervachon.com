@@ -3,7 +3,7 @@
 <cfcontent reset="true" type="text/html" /><!DOCTYPE html><cfoutput>
 <html lang="en">
 	<head>
-		<title>#RC.template.getSiteTitle()#</title>
+		<title>#((structKeyExists(RC,"pageTitle"))?RC.pageTitle:RC.template.getSiteTitle())#</title>
 		<link rel="canonical" href="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
 		<cfscript>
 			for (_metaTag in RC.template.getMetaTags()) {
