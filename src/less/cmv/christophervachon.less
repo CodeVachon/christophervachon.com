@@ -107,6 +107,14 @@ h1,h2,h3,h4,h5,h6 {
 	}
 }
 
+.toggleLibraries {
+	padding: 1em 0 0 0;
+	cursor: pointer;
+	&.active .glyphicon {
+		color: #090;
+	}
+}
+
 @code-background-color: #333;
 @code-block-color: #ccc;
 @code-gutter-color: darken(@code-block-color,30%);
@@ -117,7 +125,6 @@ code {
 	background-color: @code-background-color;
 	color: @code-block-color;
 	width: 100%;
-	display: block;
 }
 table.syntax-highlighting {
 	.clearfix();

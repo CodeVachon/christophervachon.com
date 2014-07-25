@@ -76,6 +76,9 @@
 		</form>
 	</section>
 	<section class='col-sm-6'>
+		<div class='pull-right toggleLibraries'>
+			<span class='glyphicon glyphicon-tasks'></span><span class='hidden-xs hidden-sm'> Libraries</span>
+		</div>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="##articlePreview" data-toggle="tab">Article Preview</a></li>
 			<li><a href="##summaryPreview" data-toggle="tab">Summary Preview</a></li>

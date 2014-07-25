@@ -1,3 +1,5 @@
+var _toggleLibraries = true;
+
 $(document).ready(function() {
 	$('[name="body"]').on('change',function() {
 		fnUpdatePreview();
@@ -6,6 +8,20 @@ $(document).ready(function() {
 		e.preventDefault();
 		alert("Click to " + $(this).prop("href") + " Prevented!");
 	});
+
+	if (_toggleLibraries) { $('.toggleLibraries').addClass('active'); }
+	$('.toggleLibraries').on('click', function(e) {
+		e.preventDefault();
+		if (_toggleLibraries) {
+			_toggleLibraries = false;
+			$(this).removeClass('active');
+		} else {
+			_toggleLibraries = true;
+			$(this).addClass('active');
+		}
+		fnUpdatePreview();
+	});
+
 	$('.previewPane .btn').remove();
 	$('#markdown').on("scroll", function(e) {
 		var _scrollValue = $(this).scrollTop();
@@ -31,11 +47,13 @@ new Vue({
 
 
 function fnUpdatePreview() {
-	console.log("Update Fired!");
 	$('.previewPane article header h1, .previewPane article header p.title a').html($('form[name="articleForm"] [name="title"]').val());
 	$('.previewPane article header p.date').html("Posted: " + $('form[name="articleForm"] [name="publicationDate"]').val());
 	$('.previewPane article.blog-summary section').html($('form[name="articleForm"] [name="summary"]').val());
 	$('.previewPane #articlePreview section').html($('form[name="articleForm"] [name="body"]').val());
+	if (_toggleLibraries) {
+		if ($('.previewPane #articlePreview section').find('pre > code').size() > 0) { $('code').highlightSyntax({definitionsPath: "/includes/js/definitions/"}); }
+	}
 }
 
 function fnGetMaxScrollTopValue(_elem) {

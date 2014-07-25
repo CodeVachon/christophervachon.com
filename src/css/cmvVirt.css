@@ -411,7 +411,6 @@ code {
   background-color: #333333;
   color: #cccccc;
   width: 100%;
-  display: block;
 }
 table.syntax-highlighting {
   clear: both;
