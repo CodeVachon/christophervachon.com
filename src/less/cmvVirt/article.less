@@ -103,3 +103,22 @@ table.syntax-highlighting {
 	}
 }
 
+.related-articles {
+	.blog-summary {
+		header {
+			margin: 0;
+		}
+		&:nth-child(2n) {
+			padding: 2em 0;
+			margin: 2em 0;
+			border-top: 1px @background-color-inverse solid;
+			border-bottom: 1px @background-color-inverse solid;
+			&:last-of-type {
+				padding: 2em 0 0 0;
+				margin: 2em 0 0 0;
+				border-top: 1px @background-color-inverse solid;
+				border-bottom: none;
+			}
+		}
+	}
+}

@@ -472,6 +472,21 @@ table.syntax-highlighting tr td.code .html {
 table.syntax-highlighting tr td.code .color {
   color: #0a0;
 }
+.related-articles .blog-summary header {
+  margin: 0;
+}
+.related-articles .blog-summary:nth-child(2n) {
+  padding: 2em 0;
+  margin: 2em 0;
+  border-top: 1px #dddddd solid;
+  border-bottom: 1px #dddddd solid;
+}
+.related-articles .blog-summary:nth-child(2n):last-of-type {
+  padding: 2em 0 0 0;
+  margin: 2em 0 0 0;
+  border-top: 1px #dddddd solid;
+  border-bottom: none;
+}
 .btn {
   display: inline-block;
   text-decoration: none !important;

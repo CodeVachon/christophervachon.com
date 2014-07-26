@@ -6,7 +6,7 @@
 	<article class='blog-post'>
 		<header>
 			<h1>#RC.article.getTitle()#</h1>
-			<p class='date'>Posted: #dateFormat(RC.article.getPublicationDate(),"mmmm d, yyyy")#</p>
+			<p class='date'>By: <a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus'>Christopher Vachon</a> | Posted: #dateFormat(RC.article.getPublicationDate(),"mmmm d, yyyy")#</p>
 		</header>
 		<section>
 			#RC.article.getBody()#
@@ -24,16 +24,13 @@
 	<div class='divider'></div>
 
 	<cfif arrayLen(RC.relatedArticles) GT 0>
-		<h2>Related Posts</h2>
-		<div class='row'>
-			<cfscript>
-				LOCAL.colspan = int(12/arrayLen(RC.relatedArticles));
-			</cfscript>
-			<cfloop array="#RC.relatedArticles#" index="RC.article">
-				<div class='col-sm-12 col-md-#LOCAL.colspan#'>
+		<section class='related-articles'>
+			<h2>Related Posts</h2>
+			<div class='row'>
+				<cfloop array="#RC.relatedArticles#" index="RC.article">
 					#view("blog/summary")#
-				</div>
-			</cfloop>
-		</div>
+				</cfloop>
+			</div>
+		</section>
 	</cfif>
 </cfoutput>
