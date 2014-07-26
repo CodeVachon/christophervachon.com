@@ -32,6 +32,7 @@ component extends="frameworks.org.corfield.framework" {
 			{"/page/:pageName"="/page/view/nameuri/:pageName"},
 			{"/contact"="/main/contact"},
 			{"/message-sent"="/main/message-sent"},
+			{"/blog/rss"="/blog/rss"},
 			{"/blog/search"="/blog/search"},
 			{"/blog/tags/:tags"="/blog/default/tags/:tags"},
 			{"/blog/:year/:month/:day/:title"="/blog/view/articleDate/:year-:month-:day/title/:title"},

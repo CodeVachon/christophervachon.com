@@ -167,8 +167,7 @@ a:hover {
   }
   .masthead .navbar-collapse ul.nav-socialmedia {
     margin: 1em auto !important;
-    width: 80%;
-    max-width: 250px;
+    width: 250px;
     height: 100px;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li {
@@ -204,6 +203,16 @@ a:hover {
     color: #fff;
     background-color: #333;
     background-color: transparent;
+  }
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.github {
+    color: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#793694), color-stop(0.33, #6a2f81), color-stop(0.67, #6a2f81), to(#5b286e));
+    background: -webkit-linear-gradient(#793694, #6a2f81, #5b286e);
+    background: -moz-linear-gradient(#793694, #6a2f81, #5b286e);
+    background: -o-linear-gradient(#793694, #6a2f81, #5b286e);
+    background: linear-gradient(#793694, #6a2f81, #5b286e);
+    background-color: #6a2f81;
+    background-repeat: repeat-x;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a:hover.facebook {
     color: #4c66a4;

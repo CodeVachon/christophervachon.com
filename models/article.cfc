@@ -74,6 +74,7 @@ component output="false" displayname="article" extends="ormbase" table="articles
 		}
 	}
 
+
 	public boolean function isMarkDownArticle() {
 		if ((len(this.getMarkDown()) == 0) && (len(this.getBody()) == 0)) {
 			return true;
@@ -82,4 +83,11 @@ component output="false" displayname="article" extends="ormbase" table="articles
 		}
 		return false;
 	} // close isMarkDownArticle
+
+
+	public any function getPublicationDateAsCFDateTime() {
+		var _rawDate = this.getPublicationDate();
+		if (isDate(_rawDate)) { return LSParseDateTime(_rawDate); }
+		throw("Publish Date is not a valid date");
+	}
 }

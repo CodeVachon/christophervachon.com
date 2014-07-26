@@ -91,7 +91,12 @@ component output="false" displayname="blog"  {
 				VARIABLES.fw.setView("main.404");
 			}
 		}
-	}// close default
+	} // close default
+
+
+	public void function rss( required struct rc ) {
+		VARIABLES.fw.service( 'articleService.getArticles', 'articles');
+	} // close rss
 
 
 	public void function startView( required struct rc ) {
