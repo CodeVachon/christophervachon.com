@@ -5,6 +5,9 @@
 	<head>
 		<title>#((structKeyExists(RC,"pageTitle"))?RC.pageTitle:RC.template.getSiteTitle())#</title>
 		<link rel="canonical" href="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
+		<link rel="alternate" type="application/rss+xml" title="#RC.template.getSiteName()# Blog RSS Feed" href="/blog/rss?feed=blog.rss">
+		<link rel="author" href=" https://plus.google.com/+ChristopherVachon/posts"/>
+
 		<cfscript>
 			for (_metaTag in RC.template.getMetaTags()) {
 				tag = "<meta ";
@@ -37,11 +40,21 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-		<meta property="og:title" content="#RC.template.getSiteTitle()#" /> 
+		<meta property="og:title" content="#((structKeyExists(RC,"pageTitle"))?RC.pageTitle:RC.template.getSiteTitle())#" /> 
 		<meta property="og:type" content="article" /> 
 		<meta property="og:url" content="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
 		<!--- <meta property="og:image" content=" http://example.com/image.jpg" /> --->
 		<meta property="og:description" content="#LOCAL["description"]#" />
+		<meta property="og:site_name" content="#RC.template.getSiteName()#" />
+
+		<!-- Twitter Card data --> 
+		<meta name="twitter:card" content="summary"> 
+		<meta name="twitter:site" content="@liaodrake"> 
+		<meta name="twitter:title" content="#RC.template.getSiteName()#"> 
+		<meta name="twitter:description" content="The Blog of Chirstopher Vachon"> 
+		<meta name="twitter:creator" content="@liaodrake"> 
+		<!--- Twitter Summary card images must be at least 200x200px ---> 
+		<!--- <meta name="twitter:image" content=" http://www.example.com/image.jpg"> --->
 
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -75,11 +88,12 @@
 							<li<cfif listGetAt(RC.action,2,".") EQ 'contact'> class="active"</cfif>><a href='/contact'>Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav nav-socialmedia">
-							<li><a href='https://github.com/liaodrake' target="_blank" class='github'><i class="fa fa-github-square fa-2x"></i> <span>GitHub</span></a></li>
-							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook'><i class="fa fa-facebook-square fa-2x"></i> <span>facebook</span></a></li>
-							<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter'><i class="fa fa-twitter-square fa-2x"></i> <span>twitter</span></a></li>
-							<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin'><i class='fa fa-linkedin-square fa-2x'></i> <span>LinkedIn</span></a></li>
-							<li><a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus'><i class='fa fa-google-plus-square fa-2x'></i> <span>on Google+</span></a></li>
+							<li><a href='https://github.com/liaodrake' target="_blank" class='github' title="GitHub"><i class="fa fa-github-square fa-2x"></i> <span>GitHub</span></a></li>
+							<li><a href='https://www.facebook.com/c.m.vachon' target="_blank" class='facebook' title="facebook"><i class="fa fa-facebook-square fa-2x"></i> <span>facebook</span></a></li>
+							<li><a href='https://twitter.com/liaodrake' target="_blank" class='twitter' title="twitter"><i class="fa fa-twitter-square fa-2x"></i> <span>twitter</span></a></li>
+							<li><a href='http://www.linkedin.com/in/christophervachon' target="_blank" class='linkedin' title="LinkedIn"><i class='fa fa-linkedin-square fa-2x'></i> <span>LinkedIn</span></a></li>
+							<li><a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus' title="Google+"><i class='fa fa-google-plus-square fa-2x'></i> <span>on Google+</span></a></li>
+							<li><a href="/blog/rss?feed=blog.rss" target="_blank" class='rss'><i class='fa fa-rss-square fa-2x' title="RSS Feed"></i> <span>RSS Feed</span></a></li>
 						</ul>
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right nav-settings">

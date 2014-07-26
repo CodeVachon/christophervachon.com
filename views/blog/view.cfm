@@ -3,12 +3,12 @@
 	param name="RC.relatedArticles" default=arrayNew(1);
 </cfscript>
 <cfoutput>
-	<article class='blog-post'>
+	<article class='blog-post' itemscope itemtype="http://schema.org/Article" >
 		<header>
-			<h1>#RC.article.getTitle()#</h1>
-			<p class='date'>By: <a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus'>Christopher Vachon</a> | Posted: #dateFormat(RC.article.getPublicationDate(),"mmmm d, yyyy")#</p>
+			<h1 itemprop="name">#RC.article.getTitle()#</h1>
+			<p class='date'>By: <a href="https://plus.google.com/+ChristopherVachon/?rel=author" target="_blank" class='googleplus' itemprop="author" itemscope itemtype="http://schema.org/Person" itemprop="name">Christopher Vachon</a> | Posted: <span itemprop="datePublished" content="#dateFormat(RC.article.getPublicationDate(),"yyyy-mm-dd")#">#dateFormat(RC.article.getPublicationDate(),"mmmm d, yyyy")#</span></p>
 		</header>
-		<section>
+		<section itemprop="articleBody">
 			#RC.article.getBody()#
 		</section>
 		<footer>
