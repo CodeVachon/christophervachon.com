@@ -392,6 +392,10 @@ article.media .media-body {
   margin: 0 0 0 48px;
   padding: 0 0 0 1em;
 }
+article ul li,
+article ol li {
+  margin: 1em auto;
+}
 .social-media-item {
   clear: both;
 }
