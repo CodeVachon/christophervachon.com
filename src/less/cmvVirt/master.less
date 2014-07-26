@@ -7,7 +7,7 @@
 @color: #333;
 @color-inverse: #fff;
 @background-color: #fff;
-@background-color-inverse: #666;
+@background-color-inverse: #ddd;
 
 @elem-text-color: #eee;
 @elem-background-color: #333;
@@ -72,6 +72,31 @@ body {
 }
 @media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
 	.hidden-lg { display: none; }
+}
+
+
+.divider {
+	border-top: 1px @background-color-inverse solid;
+	border-bottom: 1px @background-color-inverse solid;
+	height: 4px;
+	margin: 3em 2em;
+	clear: both;
+	text-align: center;
+	position: relative;
+	&:after {
+		content: "CMV";
+		background-color: @background-color-inverse;
+		color: @color-inverse;
+		padding: 0em 2em;
+		border-radius: 50%;
+		border: 3px @background-color solid;
+		position: absolute;
+		margin: -1em 0 0 -3em;
+		line-height: 2em;
+		width: 2em;
+		left: 50%;
+		top: -1px;
+	}
 }
 
 .label {

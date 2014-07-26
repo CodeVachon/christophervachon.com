@@ -21,6 +21,8 @@
 		</footer>
 	</article>
 
+	<div class='divider'></div>
+
 	<cfif arrayLen(RC.relatedArticles) GT 0>
 		<h2>Related Posts</h2>
 		<div class='row'>

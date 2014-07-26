@@ -130,6 +130,7 @@
 					</section>
 				</cfif>
 			</div>
+			<div class='divider'></div>
 			<footer class='site-footer'>
 				<p>&copy; Christopher Vachon #year(now())#</p>
 				<p class='pull-right'><strong>Discliamer</strong>: the views and opinions expressed on this site a solely my own and do not nessacarily reflect those of any person, company, or organization mentioned on this site.</p>

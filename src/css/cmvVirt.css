@@ -6,7 +6,7 @@ a:hover {
   text-decoration: underline;
 }
 .masthead {
-  background-color: #666666;
+  background-color: #dddddd;
   background-image: url('/includes/imgs/55blackAlpha.png'), url('/includes/imgs/codebg-right.png'), url('/includes/imgs/codebg-left.png');
   background-repeat: repeat, repeat-y, repeat-y;
   background-position: center, top right, top left;
@@ -266,9 +266,8 @@ a:hover {
   }
 }
 .site-footer {
-  margin: 1em 0;
-  padding: 1em 0;
-  border-top: 1px #999 solid;
+  margin: 0 0 2em 0;
+  padding: 0;
   color: #999;
   font-size: 0.7em;
 }
@@ -656,6 +655,29 @@ body {
   .hidden-lg {
     display: none;
   }
+}
+.divider {
+  border-top: 1px #dddddd solid;
+  border-bottom: 1px #dddddd solid;
+  height: 4px;
+  margin: 3em 2em;
+  clear: both;
+  text-align: center;
+  position: relative;
+}
+.divider:after {
+  content: "CMV";
+  background-color: #dddddd;
+  color: #ffffff;
+  padding: 0em 2em;
+  border-radius: 50%;
+  border: 3px #ffffff solid;
+  position: absolute;
+  margin: -1em 0 0 -3em;
+  line-height: 2em;
+  width: 2em;
+  left: 50%;
+  top: -1px;
 }
 .label {
   display: inline-block;
