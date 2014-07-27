@@ -41,12 +41,12 @@ module.exports = function(grunt) {
 		cssmin: {
 			cmvminify: {
 				files: {
-					'includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>christophervachon.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
+					'wwwroot<%= path.sep %>includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>christophervachon.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
 				}
 			},
 			cmvVirtminify: {
 				files: {
-					'includes<%= path.sep %>css<%= path.sep %>cmvVirt.min.css':['src<%= path.sep %>css<%= path.sep %>cmvVirt.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
+					'wwwroot<%= path.sep %>includes<%= path.sep %>css<%= path.sep %>cmvVirt.min.css':['src<%= path.sep %>css<%= path.sep %>cmvVirt.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
 				}
 			}
 		}, // close cssmin
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: 'src<%= path.sep %>js<%= path.sep %>',
 					src: '**<%= path.sep %>*.js',
-					dest: 'includes<%= path.sep %>js'
+					dest: 'wwwroot<%= path.sep %>includes<%= path.sep %>js'
 				}]
 			}
 		}, // close uglify
