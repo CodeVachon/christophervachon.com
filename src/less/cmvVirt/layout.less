@@ -160,11 +160,13 @@
 					margin: 1em auto !important;
 					width: 350px;
 					height: 100px;
+					position: relative;
 					li {
 						border: none;
 						float: left;
 						width: 14%;
 						min-width: 38px;
+						text-align: center;
 						a {
 							.rotateText(-45deg);
 							background-color: rgba(255,255,255,0);
@@ -179,7 +181,7 @@
 							text-shadow: none;
 							border-radius: 6px;
 							span { display: none; }
-							&:hover,.active {
+							&:hover,&.active {
 								.rotateText(0deg);
 								color: #fff;
 								background-color: #333;
@@ -194,6 +196,41 @@
 								&.googleplus { color: #DD4B39; background-color: #000; }
 								&.rss { color: #FA9C39; background-color: #fff; }
 								background-color: transparent;
+							}
+						}
+						.inline-search {
+							display: block;
+							position: absolute;
+							top: 0.7em;
+							right: -0.5em;
+							left: -0.5em;
+							padding: 0.2em;
+							background-color: #009;
+							border-radius: 6px;
+							z-index: 2;
+							input {
+								width: 76%;
+								float: left;
+								outline: none;
+								margin: 0;
+								padding: 2%;
+								border-top-left-radius: 6px;
+								border-bottom-left-radius: 6px;
+								border-top-right-radius: 0px;
+								border-bottom-right-radius: 0px;
+							}
+							button {
+								width: 19%;
+								margin: 0;
+								padding: 2% 0;
+								border: none;
+								display: block;
+								line-height: 1.2em;
+								border: 1px #999 solid;
+								border-top-right-radius: 6px;
+								border-bottom-right-radius: 6px;
+								font-size: 1em;
+								cursor: pointer;
 							}
 						}
 					}
