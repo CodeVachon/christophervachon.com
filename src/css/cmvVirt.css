@@ -167,13 +167,13 @@ a:hover {
   }
   .masthead .navbar-collapse ul.nav-socialmedia {
     margin: 1em auto !important;
-    width: 300px;
+    width: 350px;
     height: 100px;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li {
     border: none;
     float: left;
-    width: 15%;
+    width: 14%;
     min-width: 38px;
   }
   .masthead .navbar-collapse ul.nav-socialmedia li a {
@@ -196,7 +196,8 @@ a:hover {
   .masthead .navbar-collapse ul.nav-socialmedia li a span {
     display: none;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -205,7 +206,8 @@ a:hover {
     background-color: #333;
     background-color: transparent;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.github {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.github,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.github {
     color: #fff;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#793694), color-stop(0.33, #6a2f81), color-stop(0.67, #6a2f81), to(#5b286e));
     background: -webkit-linear-gradient(#793694, #6a2f81, #5b286e);
@@ -215,23 +217,39 @@ a:hover {
     background-color: #6a2f81;
     background-repeat: repeat-x;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.facebook {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.search,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.search {
+    color: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0000b3), color-stop(0.33, #000099), color-stop(0.67, #000099), to(#000080));
+    background: -webkit-linear-gradient(#0000b3, #000099, #000080);
+    background: -moz-linear-gradient(#0000b3, #000099, #000080);
+    background: -o-linear-gradient(#0000b3, #000099, #000080);
+    background: linear-gradient(#0000b3, #000099, #000080);
+    background-color: #000099;
+    background-repeat: repeat-x;
+  }
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.facebook,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.facebook {
     color: #4c66a4;
     background-color: #fff;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.twitter {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.twitter,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.twitter {
     color: #55acee;
     background-color: #fff;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.linkedin {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.linkedin,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.linkedin {
     color: #1A86BB;
     background-color: #fff;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.googleplus {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.googleplus,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.googleplus {
     color: #DD4B39;
     background-color: #000;
   }
-  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.rss {
+  .masthead .navbar-collapse ul.nav-socialmedia li a:hover.rss,
+  .masthead .navbar-collapse ul.nav-socialmedia li a .active.rss {
     color: #FA9C39;
     background-color: #fff;
   }

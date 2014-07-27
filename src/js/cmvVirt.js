@@ -4,4 +4,9 @@ $(document).ready(function() {
 		var _collapse = $(this).closest('.navbar').find('.navbar-collapse');
 		_collapse.toggleClass('show');
 	});
+
+	$('.nav-socialmedia').on('click',".search",function(e) {
+		e.preventDefault();
+		alert("Search!");
+	});
 });
