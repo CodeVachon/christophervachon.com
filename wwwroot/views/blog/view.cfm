@@ -23,6 +23,29 @@
 
 	<div class='divider'></div>
 
+	<section class='article-comments'>
+		<h2>Comments</h2>
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+			var disqus_shortname = 'christophervachon'; // required: replace example with your forum shortname
+			var disqus_identifier = '#RC.article.getId()#';
+			var disqus_title = '#RC.pageTitle#';
+			var disqus_url = 'http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#';
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		
+	</section>
+
+	<div class='divider'></div>
+
 	<cfif arrayLen(RC.relatedArticles) GT 0>
 		<section class='related-articles'>
 			<h2>Related Posts</h2>
