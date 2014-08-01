@@ -31,6 +31,9 @@ article {
 			padding: 0 0 0 1em;
 		}
 	}
+	ul,ol {
+		li { margin: 1em auto; }
+	}
 }
 
 .social-media-item {
@@ -57,7 +60,6 @@ code {
 	background-color: @code-background-color;
 	color: @code-block-color;
 	width: 100%;
-	display: block;
 }
 table.syntax-highlighting {
 	clear: both;
@@ -101,3 +103,22 @@ table.syntax-highlighting {
 	}
 }
 
+.related-articles, .article-list {
+	.blog-summary {
+		header {
+			margin: 0;
+		}
+		&:nth-child(2n) {
+			padding: 2em 0;
+			margin: 2em 0;
+			border-top: 1px @background-color-inverse solid;
+			border-bottom: 1px @background-color-inverse solid;
+			&:last-of-type {
+				padding: 2em 0 0 0;
+				margin: 2em 0 0 0;
+				border-top: 1px @background-color-inverse solid;
+				border-bottom: none;
+			}
+		}
+	}
+}

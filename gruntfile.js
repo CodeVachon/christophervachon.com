@@ -41,12 +41,12 @@ module.exports = function(grunt) {
 		cssmin: {
 			cmvminify: {
 				files: {
-					'includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>christophervachon.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
+					'wwwroot<%= path.sep %>includes<%= path.sep %>css<%= path.sep %>christophervachon.min.css':['src<%= path.sep %>css<%= path.sep %>christophervachon.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
 				}
 			},
 			cmvVirtminify: {
 				files: {
-					'includes<%= path.sep %>css<%= path.sep %>cmvVirt.min.css':['src<%= path.sep %>css<%= path.sep %>cmvVirt.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
+					'wwwroot<%= path.sep %>includes<%= path.sep %>css<%= path.sep %>cmvVirt.min.css':['src<%= path.sep %>css<%= path.sep %>cmvVirt.css','!src<%= path.sep %>css<%= path.sep %>*.min.css']
 				}
 			}
 		}, // close cssmin
@@ -56,10 +56,29 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: 'src<%= path.sep %>js<%= path.sep %>',
 					src: '**<%= path.sep %>*.js',
-					dest: 'includes<%= path.sep %>js'
+					dest: 'wwwroot<%= path.sep %>includes<%= path.sep %>js'
 				}]
 			}
 		}, // close uglify
+		'ftp-deploy': {
+			push: {
+				auth: {
+					host: 'ftp.christophervachon.com',
+					port: 21,
+					authKey: 'key1'
+				},
+				src: 'wwwroot/',
+				dest: 'test-ftp/',
+				exclusions: ['wwwroot/**/.DS_Store', 'wwwroot/**/Thumbs.db', 'wwwroot/collections/*', 'wwwroot/includes/js/tinymce/*']
+			}
+		},
+		http: {
+			reload: {
+				options: {
+					url: 'http://christophervachon.com/?reload=true',
+				},
+			}
+		},
 		watch: {
 			gruntfile: {
 				files: ['gruntfile.js'],
@@ -98,4 +117,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-ftp-deploy');
+	grunt.loadNpmTasks('grunt-http');
+
+	grunt.registerTask('deploy', ['ftp-deploy:push','http:reload']);
 }; // close module.exports

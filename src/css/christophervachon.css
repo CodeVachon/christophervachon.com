@@ -779,13 +779,19 @@ h6:first-of-type {
   padding: 0.2em 0;
   border: none;
 }
+.toggleLibraries {
+  padding: 1em 0 0 0;
+  cursor: pointer;
+}
+.toggleLibraries.active .glyphicon {
+  color: #090;
+}
 code {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 0.75em;
   background-color: #333333;
   color: #cccccc;
   width: 100%;
-  display: block;
 }
 table.syntax-highlighting {
   border-top-right-radius: 0.6em;
