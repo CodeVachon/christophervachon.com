@@ -84,14 +84,15 @@ a:hover {
     margin: 0 0 0 90px;
   }
   .masthead .navbar-header {
-    border: 1px #fff solid;
+    border: 2px #fff solid;
     padding: 4px;
-    border-radius: 200px;
+    border-radius: 50%;
     position: absolute;
     top: 0;
     left: -50px;
     background-color: #333;
     transition: 0.7s;
+    overflow: hidden;
   }
   .masthead .navbar-header .navbar-toggle {
     display: none;
@@ -102,9 +103,9 @@ a:hover {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
+    width: 198px;
+    height: 198px;
+    border-radius: 50%;
     color: transparent;
   }
   .masthead .navbar-collapse {
@@ -167,6 +168,7 @@ a:hover {
   }
   .masthead .navbar-collapse ul.nav-socialmedia {
     margin: 1em auto !important;
+    padding: 0 0 0 15px;
     width: 350px;
     height: 100px;
     position: relative;
@@ -720,6 +722,9 @@ form textarea.btn {
 }
 .social-media-item .media-object {
   border-radius: 0.3em;
+}
+.social-media-item .media-body img {
+  max-width: 100%;
 }
 body {
   background-color: #ffffff;

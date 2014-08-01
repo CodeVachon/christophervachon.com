@@ -1,6 +1,6 @@
 <cfoutput>
 	<article class='wall-item media twitterPost'>
-		<a href='https://twitter.com/#RC.post.user.screen_name#' class='pull-left' target='_blank'><img src='#RC.post.user.profile_image_url#' class='media-object' /></a>
+		<a href='https://twitter.com/#RC.post.user.screen_name#' class='pull-left' target='_blank'><img src='#RC.post.user.profile_image_url#' class='media-object' alt='#RC.post.user.screen_name# Twitter Profile Image' /></a>
 		<div class='media-body'>
 			<header class='media-heading'>
 				<span class='pull-right post-date'>#DateFormat(APPLICATION.socialMedia.convertTimeStampToDateTime(RC.post.created_at), "MMM d, YYYY")#</span>

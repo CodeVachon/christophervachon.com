@@ -75,14 +75,15 @@
 			}
 		}
 		.navbar-header {
-			border: 1px #fff solid;
+			border: 2px #fff solid;
 			padding: 4px;
-			border-radius: 200px;
+			border-radius: 50%;
 			position: absolute;
 			top: 0;
 			left: -50px;
 			background-color: #333;
 			transition: 0.7s;
+			overflow: hidden;
 			.navbar-toggle { display: none; }
 			.navbar-brand {
 				display: block;
@@ -90,9 +91,9 @@
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: cover;
-				width: 200px;
-				height: 200px;
-				border-radius: 100px;
+				width: 198px;
+				height: 198px;
+				border-radius: 50%;
 				color: transparent;
 			}
 		}
@@ -158,6 +159,7 @@
 				}
 				&.nav-socialmedia {
 					margin: 1em auto !important;
+					padding: 0 0 0 15px;
 					width: 350px;
 					height: 100px;
 					position: relative;

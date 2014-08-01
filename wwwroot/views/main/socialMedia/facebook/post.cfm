@@ -28,7 +28,7 @@
 <cfoutput>
 	<article class='wall-item media facebookPost'>
 		<cfif structKeyExists(LOCAL.userDetails,"link")><a href='#LOCAL.userDetails.link#' class='pull-left' target='_blank'></cfif>
-			<img src='#LOCAL.userDetails.picture.data.url#' class='media-object<cfif NOT structKeyExists(LOCAL.userDetails,"link")> pull-left</cfif>' />
+			<img src='#LOCAL.userDetails.picture.data.url#' class='media-object<cfif NOT structKeyExists(LOCAL.userDetails,"link")> pull-left</cfif>' alt="#LOCAL.userDetails.name# Facebook Profile Image" />
 		<cfif structKeyExists(LOCAL.userDetails,"link")></a></cfif>
 		<div class='media-body'>
 			<header class='media-heading'>
