@@ -25,7 +25,6 @@ $(document).ready(function() {
 				console.log(err, err.stack); // an error occurred
 				_awsContent.html($('<div>').addClass('alert alert-danger').html("An Error Occured Contacting S3. View Console for Details"));
 			} else { 
-				console.log(data);
 				_s3Data = fnSortAWSKeys(data.Contents);
 
 				var fileExplorer = $("<div>").addClass('file-explorer row')

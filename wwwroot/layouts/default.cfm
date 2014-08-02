@@ -126,7 +126,9 @@
 						<cfif RC.template.getPageCrumbCount() GT 1>
 							<ol class="breadcrumb">
 								<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
-									<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+									<cfif LOCAL.thisIndex LT RC.template.getPageCrumbCount()>
+										<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+									</cfif>
 								</cfloop>
 							</ol>
 						</cfif>
@@ -137,7 +139,9 @@
 						<cfif RC.template.getPageCrumbCount() GT 1>
 							<ol class="breadcrumb">
 								<cfloop from='1' to='#RC.template.getPageCrumbCount()#' index="LOCAL.thisIndex">
-									<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+									<cfif LOCAL.thisIndex LT RC.template.getPageCrumbCount()>
+										<li<cfif LOCAL.thisIndex EQ RC.template.getPageCrumbCount()> class='active'</cfif>><cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()><a href='#RC.template.getPageCrumb(LOCAL.thisIndex).url#'></cfif>#RC.template.getPageCrumb(LOCAL.thisIndex).label#<cfif LOCAL.thisIndex NEQ RC.template.getPageCrumbCount()></a></cfif></li>
+									</cfif>
 								</cfloop>
 							</ol>
 						</cfif>
