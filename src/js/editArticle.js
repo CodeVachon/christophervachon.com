@@ -1,4 +1,7 @@
 var _toggleLibraries = true;
+var _s3Bucket = "christophervachon";
+
+var _s3Data = {};
 
 $(document).ready(function() {
 	$('[name="body"]').on('change',function() {
@@ -14,6 +17,24 @@ $(document).ready(function() {
 		console.log("open  s3");
 
 		var _awsContent = $('<div>').html('Loading...');
+		var s3bucket = new AWS.S3({ params: {Bucket: _s3Bucket} });
+
+		params = {};
+		s3bucket.listObjects(params, function(err, data) {
+			if (err)  {
+				console.log(err, err.stack); // an error occurred
+				_awsContent.html($('<div>').addClass('alert alert-danger').html("An Error Occured Contacting S3. View Console for Details"));
+			} else { 
+				console.log(data);
+				_s3Data = fnSortAWSKeys(data.Contents);
+
+				var fileExplorer = $("<div>").addClass('file-explorer row')
+					.append($('<div>').addClass('file-selector col-xs-8').html(fnDrawFolderList(_s3Data)))
+					.append($('<div>').addClass('file-information col-xs-4').html("Select a File"))
+				;
+				_awsContent.html(fileExplorer);
+			}
+		});
 
 		var _dialog = $('<div>').addClass('modal fade')
 			.append($('<div>').addClass('modal-dialog modal-lg')
@@ -84,4 +105,104 @@ function fnGetMaxScrollTopValue(_elem) {
 	var trueDivHeight = _elem[0].scrollHeight;
 	var divHeight = _elem.height();
 	return trueDivHeight - divHeight;
+}
+
+function fnSortAWSKeys(_awsData) {
+	var _logName = "sortAWSKeys";
+	console.groupCollapsed(_logName);
+	console.log("Sort AWS Keys");
+
+	console.log('Data: ');
+	console.log(_awsData);
+
+	var _tmp = {};
+	var _arrayLen = _awsData.length;
+	for (var i=0;i<_arrayLen;i++) {
+		var _key = _awsData[i].Key;
+		console.log("Parse Key:" + _key);
+		var _splitPath = _key.split("/");
+		console.log(_splitPath);
+		var _splitPathLen = _splitPath.length;
+		var _filePath = "";
+		for (var j=0;j<_splitPathLen;j++) {
+			var _name = _splitPath[j];
+			if (_name.length > 0) {
+				if (fnIsFile(_name)) {
+					console.log(_name + " is a File");
+					_current = deepFind(_tmp,_filePath.replace(/\.$/,""));
+					_current[_name] =_awsData[i];
+				} else {
+					console.log(_name + " is a Folder");
+					_current = deepFind(_tmp,_filePath.replace(/\.$/,""));
+					if (!_current[_name]) _current[_name] = {};
+					_filePath += _name + "." ;
+					console.log("set new path: " + _filePath);
+				}
+			}
+		}
+	}
+	console.groupEnd(_logName);
+	return _tmp;
+}
+
+function deepFind(obj, path) {
+	var paths = path.split('.');
+	var current = obj;
+
+	for (var i = 0; i < paths.length; ++i) {
+		if (!current[paths[i]]) {
+			console.log(current[paths[i]] + " Error");
+			//return ;
+		} else {
+			current = current[paths[i]];
+		}
+	}
+	return current;
+}
+
+function fnIsFile(fileName) {
+	return fileName.match(/\.[a-zA-Z0-9_]{2,5}/gi);
+}
+
+function fnDrawFolderList(_fileStruct) {
+	var _struct = $('<ul>');
+	for (var _key in _fileStruct) {
+		var _anchor = $('<a>').prop({"href":"#"}).html(_key);
+		var _listItem = $('<li>').html(_anchor);
+		if (!fnIsFile(_key)) {
+			_anchor.addClass('folder').prepend($('<span>').addClass('glyphicon glyphicon-folder-close')).on("click",toggleFolders);
+			_listItem.append(fnDrawFolderList(_fileStruct[_key]).addClass('closed').hide());
+		} else {
+			console.log(_fileStruct[_key]);
+			_anchor.addClass('file')
+				.prepend($('<span>').addClass('glyphicon glyphicon-picture'))
+				.attr('data-img-url',"https://s3.amazonaws.com/" + _s3Bucket + "/" + _fileStruct[_key].Key)
+				.on("click",showFileDetails);
+		}
+		_struct.append(_listItem);
+	}
+	return _struct;
+}
+
+function toggleFolders(e) {
+	e.preventDefault();
+	var _ul = $(this).next('ul');
+	if (_ul.hasClass('closed')) {
+		_ul.removeClass('closed').show();
+		$(this).children('.glyphicon').removeClass('glyphicon-folder-close').addClass("glyphicon-folder-open");
+	} else {
+		_ul.addClass('closed').hide();
+		$(this).children('.glyphicon').removeClass('glyphicon-folder-open').addClass("glyphicon-folder-close");
+	}
+}
+
+function showFileDetails(e) {
+	e.preventDefault();
+	console.log("Display Details");
+	var _image = $('<img>').addClass("previewImage").prop({"src":$(this).attr('data-img-url'),"alt":$(this).text()});
+	var _valueBox = $('<input>').addClass("form-control").prop({"type":"text","readonly":true}).val($(this).attr('data-img-url'));
+	$(".file-information").html("")
+		.append($('<p>').html($(this).text()))
+		.append(_image)
+		.append(_valueBox);
 }

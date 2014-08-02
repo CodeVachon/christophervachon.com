@@ -650,6 +650,23 @@
     width: 100%;
   }
 }
+.file-explorer .file-selector {
+  overflow: auto;
+  max-height: 80%;
+}
+.file-explorer .file-selector ul {
+  list-style: none;
+}
+.file-explorer .file-selector ul a .glyphicon {
+  margin: 0 1em 0 0;
+}
+.file-explorer .file-information {
+  overflow: hidden;
+}
+.file-explorer .file-information img {
+  max-width: 90%;
+  margin: 1em auto;
+}
 .site-footer {
   color: #cccccc;
   border-top: 1px solid;
