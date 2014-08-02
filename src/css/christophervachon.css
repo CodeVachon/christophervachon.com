@@ -660,6 +660,9 @@
 .file-explorer .file-selector ul a .glyphicon {
   margin: 0 1em 0 0;
 }
+.file-explorer .file-selector ul a.active {
+  background-color: #ddd;
+}
 .file-explorer .file-information {
   overflow: hidden;
 }

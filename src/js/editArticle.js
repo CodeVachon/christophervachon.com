@@ -198,7 +198,8 @@ function toggleFolders(e) {
 
 function showFileDetails(e) {
 	e.preventDefault();
-	console.log("Display Details");
+	$(this).closest('.file-selector').find('.active').removeClass('active');
+	$(this).addClass('active');
 	var _image = $('<img>').addClass("previewImage").prop({"src":$(this).attr('data-img-url'),"alt":$(this).text()});
 	var _valueBox = $('<input>').addClass("form-control").prop({"type":"text","readonly":true}).val($(this).attr('data-img-url'));
 	$(".file-information").html("")
