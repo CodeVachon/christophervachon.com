@@ -68,9 +68,19 @@ module.exports = function(grunt) {
 					authKey: 'key1'
 				},
 				src: 'wwwroot/',
-				dest: 'test-ftp/',
+				dest: 'wwwroot/',
 				exclusions: ['wwwroot/**/.DS_Store', 'wwwroot/**/Thumbs.db', 'wwwroot/collections/*', 'wwwroot/includes/js/tinymce/*']
-			}
+			},
+			scriptsOnly: {
+				auth: {
+					host: 'ftp.christophervachon.com',
+					port: 21,
+					authKey: 'key1'
+				},
+				src: 'wwwroot/includes/',
+				dest: 'wwwroot/includes/',
+				exclusions: ['wwwroot/**/.DS_Store', 'wwwroot/**/Thumbs.db', 'wwwroot/collections/*', 'wwwroot/includes/js/tinymce/*']
+			},
 		},
 		http: {
 			reload: {
@@ -121,4 +131,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-http');
 
 	grunt.registerTask('deploy', ['ftp-deploy:push','http:reload']);
+	grunt.registerTask('deployScripts',['ftp-deploy:scriptsOnly','http:reload']);
 }; // close module.exports
