@@ -122,6 +122,7 @@ component output="false" displayname="blog"  {
 			RC.template.addPageCrumb(RC.article.getTitle(),"/blog/#RC.article.getURI()#");
 
 			RC.pageTitle = RC.article.getTitle() & " | " & dateFormat(RC.article.getPublicationDate(),"mmmm d yyyy") & " | " & RC.template.getSiteName();
+			RC.displayComments = true;
 		} else {
 			VARIABLES.fw.setView("main.404");
 		}

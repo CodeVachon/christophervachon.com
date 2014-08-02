@@ -59,6 +59,7 @@
 				<cfif LOCAL.isMarkDown>
 					<div class="tab-pane #LOCAL.tabMarkDownClass#" id="articleBody">
 						<div class="form-group">
+							<a href='##' class='pull-right'><span class='glyphicon glyphicon-picture'></span></a>
 							<label for="markdown">Mark Down</label>
 							<textarea name="markdown" id="markdown" v-model="input" v-on="keyup: onKeyUp" class="form-control" rows="5">#((structKeyExists(RC,"markdown"))?RC.markdown:"")#</textarea>
 						</div>
