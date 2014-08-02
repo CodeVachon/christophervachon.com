@@ -9,6 +9,30 @@ $(document).ready(function() {
 		alert("Click to " + $(this).prop("href") + " Prevented!");
 	});
 
+	$('.s3-library').on('click',function(e) {
+		e.preventDefault();
+		console.log("open  s3");
+
+		var _awsContent = $('<div>').html('Loading...');
+
+		var _dialog = $('<div>').addClass('modal fade')
+			.append($('<div>').addClass('modal-dialog modal-lg')
+				.append($('<div>').addClass('modal-content')
+					.append($('<div>').addClass('modal-header')
+						.append($('<button>').addClass('close').attr('data-dismiss','modal').append($('<span>').html('&times;')))
+						.append($('<h4>').addClass('modal-title').html("S3 Library"))
+					) // close modal-header
+					.append($('<div>').addClass('modal-body')
+						.append(_awsContent)
+					) // close modal-body
+					.append($('<div>').addClass('modal-footer')
+						.append($('<button>').addClass('btn btn-primary').attr('data-dismiss','modal').html("Close"))
+					) // close modal-footer
+				)
+			);
+		_dialog.modal('show');
+	});
+
 	if (_toggleLibraries) { $('.toggleLibraries').addClass('active'); }
 	$('.toggleLibraries').on('click', function(e) {
 		e.preventDefault();
