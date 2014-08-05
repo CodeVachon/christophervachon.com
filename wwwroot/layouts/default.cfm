@@ -99,13 +99,7 @@
 						<cfif RC.security.checkPermission("siteAdmin")>
 							<ul class="nav navbar-nav navbar-right nav-settings">
 								<li class="dropdown">
-									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span>Settings</span><span class='glyphicon glyphicon-cog'></span> <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="#buildURL('admin')#">Admin</a></li>
-										<li><a href="#buildURL('admin.editPerson')#/personID/#SESSION.member.personID#">Edit Details</a></li>
-										<li class="divider"></li>
-										<li><a href="#buildURL('admin.logout')#">Logout</a></li>
-									</ul>
+									<a href="##" class="dropdown-toggle" data-toggle="dropdown"><span>Settings</span><span class='glyphicon glyphicon-cog'></span></a>
 								</li>
 							</ul>
 						</cfif>
