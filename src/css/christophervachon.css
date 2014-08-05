@@ -657,6 +657,10 @@
 .file-explorer .file-selector ul {
   list-style: none;
 }
+.file-explorer .file-selector ul a {
+  padding: 0.2em 0.3em;
+  border-radius: 0.3em;
+}
 .file-explorer .file-selector ul a .glyphicon {
   margin: 0 1em 0 0;
 }
