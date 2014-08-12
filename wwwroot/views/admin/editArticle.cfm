@@ -95,4 +95,6 @@
 			</div>
 		</div>
 	</section>
+
+	#view("admin/amazonS3UploadForm")#
 </cfoutput>
