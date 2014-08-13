@@ -1,12 +1,13 @@
 <cfparam name="REQUEST.disableSidebar" default="false" />
 <cfparam name="RC.adminScreen" default="false" />
 <cfscript>
-	
+
 </cfscript>
 <cfcontent reset="true" /><cfoutput><!doctype html>
 <html>
 <head>
 	<title>#RC.template.getSiteTitle()#</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<cfscript>
 			if (arrayLen(RC.template.getFiles("CSS")) > 0) {
 				writeOutput("<style>" & chr(10));

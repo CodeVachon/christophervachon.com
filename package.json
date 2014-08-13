@@ -10,11 +10,13 @@
   "developer": "Christopher Vachon",
   "devDependencies": {
     "grunt": "~0.4.4",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-less": "~0.9.0",
-    "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-csslint": "~0.2.0",
     "grunt-contrib-cssmin": "~0.8.0",
-    "grunt-contrib-uglify": "~0.3.2"
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-ftp-deploy": "^0.1.4",
+    "grunt-http": "~1.0.1"
   }
 }
