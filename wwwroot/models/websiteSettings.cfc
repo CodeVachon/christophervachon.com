@@ -38,6 +38,12 @@ component output="false" displayname="websiteSettings" persistent="true" extends
 	property name="FB_objectID" type="string";
 
 
+	// AWS Connection Information
+	property name="AWS_accessKey" type="string";
+	property name="AWS_secret" type="string";
+	property name="AWS_UserName" type="string";
+
+
 	public function init(){ return super.init(); }
 
 
@@ -68,5 +74,9 @@ component output="false" displayname="websiteSettings" persistent="true" extends
 		if (!structKeyExists(VARIABLES,"FB_appSecret")) { VARIABLES["FB_appSecret"] = ""; }
 		if (!structKeyExists(VARIABLES,"FB_AppUserToken")) { VARIABLES["FB_AppUserToken"] = ""; }
 		if (!structKeyExists(VARIABLES,"FB_objectID")) { VARIABLES["FB_objectID"] = ""; }
+
+		if (!structKeyExists(VARIABLES,"AWS_accessKey")) { VARIABLES["FB_appSecret"] = ""; }
+		if (!structKeyExists(VARIABLES,"AWS_secret")) { VARIABLES["FB_AppUserToken"] = ""; }
+		if (!structKeyExists(VARIABLES,"AWS_UserName")) { VARIABLES["FB_objectID"] = ""; }
 	}
 }

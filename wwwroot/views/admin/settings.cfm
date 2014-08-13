@@ -5,6 +5,7 @@
 		<li class="active"><a href="##SiteDetails" data-toggle="tab">Site Details</a></li>
 		<li><a href="##MailSettings" data-toggle="tab">Mail Settings</a></li>
 		<li><a href="##SocialMedia" data-toggle="tab">Social Media</a></li>
+		<li><a href="##AWS" data-toggle="tab">AWS</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -124,6 +125,24 @@
 					</form>
 				</div>
 			</div>
+		</div>
+		<div class="tab-pane" id="AWS">
+			<form name='editAWSSettings' method='post' action="#buildURL('admin.settings')#">
+				<input type='hidden' name="websiteSettingsID" value="#((structKeyExists(RC,"websiteSettingsID"))?RC.websiteSettingsID:"")#">
+				<div class="form-group">
+					<label for="description">AWS Username</label>
+					<input type="text" class="form-control" id="AWS_UserName" name="AWS_UserName" placeholder="username" value="#((structKeyExists(RC,"AWS_UserName"))?RC.AWS_UserName:"")#" />
+				</div>
+				<div class="form-group">
+					<label for="description">AWS Key</label>
+					<input type="text" class="form-control" id="AWS_accessKey" name="AWS_accessKey" placeholder="AWS Key" value="#((structKeyExists(RC,"AWS_accessKey"))?RC.AWS_accessKey:"")#" />
+				</div>
+				<div class="form-group">
+					<label for="description">AWS Secret</label>
+					<input type="text" class="form-control" id="AWS_secret" name="AWS_secret" placeholder="AWS Secret" value="#((structKeyExists(RC,"AWS_secret"))?RC.AWS_secret:"")#" />
+				</div>
+				<button type="submit" class="btn btn-primary" name='btnSave'>Save</button>
+			</form>
 		</div>
 	</div>
 
