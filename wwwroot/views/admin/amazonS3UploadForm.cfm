@@ -3,7 +3,7 @@
 		bucketName = "christophervachon",
 		acl = "public-read",
 		key = "articles/#year(now())#/#month(now())#/${filename}",
-		success_action_redirect = CGI.SERVER_NAME,
+		success_action_redirect = "http://" & replaceNoCase(CGI.SERVER_NAME,".local",".com","one"),
 		ContentType = "image/jpeg"
 	};
 
@@ -34,16 +34,19 @@
 	);
 </cfscript>
 <cfoutput>
-	<div class='amazonS3-upload-form'>
-		<form action="https://#LOCAL.s3Info.bucketName#.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="AWSAccessKeyId" value="#trim(APPLICATION.websiteSettings.getProperty("AWS_accessKey"))#" />
-			<input type="hidden" name="signature" value="#encodedSignature#" />
-			<input type="hidden" name="acl" value="#LOCAL.s3Info.acl#" />
-			<input type="hidden" name="key" value="#LOCAL.s3Info.key#" />
-			<input type="hidden" name="policy" value="#encodedPolicy#" />
-			<input type="hidden" name="success_action_redirect" value="#LOCAL.s3Info.success_action_redirect#" />
+	<form action="https://#LOCAL.s3Info.bucketName#.s3.amazonaws.com/" method="post" enctype="multipart/form-data" class='amazonS3-upload-form'>
+		<input type="hidden" name="AWSAccessKeyId" value="#trim(APPLICATION.websiteSettings.getProperty("AWS_accessKey"))#" />
+		<input type="hidden" name="signature" value="#encodedSignature#" />
+		<input type="hidden" name="acl" value="#LOCAL.s3Info.acl#" />
+		<input type="hidden" name="key" value="#LOCAL.s3Info.key#" />
+		<input type="hidden" name="policy" value="#encodedPolicy#" />
+		<input type="hidden" name="success_action_redirect" value="#LOCAL.s3Info.success_action_redirect#" />
+
+		<div>
 			<input type="file" name="file" />
-			<input type="submit" value="Upload" class='btn btn-primary' />
-		</form>
-	</div>
+		</div>
+		<div>
+			<button type="submit" class='btn btn-success'>Upload</button>
+		</div>
+	</form>
 </cfoutput>

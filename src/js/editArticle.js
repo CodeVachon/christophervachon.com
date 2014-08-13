@@ -4,6 +4,7 @@ var _s3Bucket = "christophervachon";
 var _s3Data = {};
 
 $(document).ready(function() {
+	$('.amazonS3-upload-form').hide();
 	$('[name="body"]').on('change',function() {
 		fnUpdatePreview();
 	});
@@ -15,25 +16,13 @@ $(document).ready(function() {
 	$('.s3-library').on('click',function(e) {
 		e.preventDefault();
 		console.log("open  s3");
+		var _thisButton = $(this);
+		var _awsContent = loadS3Files();
 
-		var _awsContent = $('<div>').html('Loading...');
-		var s3bucket = new AWS.S3({ params: {Bucket: _s3Bucket} });
+		var _uploadForm = $('.amazonS3-upload-form').addClass('pull-left').show();
+		var _uploadURL = _uploadForm.prop("action");
 
-		params = {};
-		s3bucket.listObjects(params, function(err, data) {
-			if (err)  {
-				console.log(err, err.stack); // an error occurred
-				_awsContent.html($('<div>').addClass('alert alert-danger').html("An Error Occured Contacting S3. View Console for Details"));
-			} else { 
-				_s3Data = fnSortAWSKeys(data.Contents);
-
-				var fileExplorer = $("<div>").addClass('file-explorer row')
-					.append($('<div>').addClass('file-selector col-xs-8').html(fnDrawFolderList(_s3Data)))
-					.append($('<div>').addClass('file-information col-xs-4').html("Select a File"))
-				;
-				_awsContent.html(fileExplorer);
-			}
-		});
+		console.log("upload to: " + _uploadURL);
 
 		var _dialog = $('<div>').addClass('modal fade')
 			.append($('<div>').addClass('modal-dialog modal-lg')
@@ -46,11 +35,36 @@ $(document).ready(function() {
 						.append(_awsContent)
 					) // close modal-body
 					.append($('<div>').addClass('modal-footer')
+						.append(_uploadForm)
 						.append($('<button>').addClass('btn btn-primary').attr('data-dismiss','modal').html("Close"))
 					) // close modal-footer
 				)
 			);
 		_dialog.modal('show');
+
+		_uploadForm.on('submit', function(event){
+			//console.log(this);
+			_awsContent.html("Uploading...");
+			var data = new FormData(this);
+			//console.log(data);
+			var xhr = new XMLHttpRequest();
+			var _btn = _uploadForm.find('button');
+			_btn.addClass('disabled');
+			xhr.upload.addEventListener('progress',function(ev){
+				//console.log(ev);
+			}, false);
+			xhr.onreadystatechange = function(ev){
+				//console.log(ev);
+				if(xhr.readyState == 4){
+					_awsContent.html(loadS3Files());
+					_uploadForm.find('input[name="file"]').val("");
+					_btn.removeClass('disabled');
+				}
+			};
+			xhr.open('POST', _uploadURL, true);
+			xhr.send(data);
+			return false;
+		});
 	});
 
 	if (_toggleLibraries) { $('.toggleLibraries').addClass('active'); }
@@ -205,4 +219,26 @@ function showFileDetails(e) {
 		.append($('<p>').html($(this).text()))
 		.append(_image)
 		.append(_valueBox);
+}
+
+function loadS3Files() {
+	var _body = $('<div>').html('Loading...');
+	var s3bucket = new AWS.S3({ params: {Bucket: _s3Bucket} });
+
+	params = {};
+	s3bucket.listObjects(params, function(err, data) {
+		if (err)  {
+			console.log(err, err.stack); // an error occurred
+			_body.html($('<div>').addClass('alert alert-danger').html("An Error Occured Contacting S3. View Console for Details"));
+		} else {
+			_s3Data = fnSortAWSKeys(data.Contents);
+
+			var fileExplorer = $("<div>").addClass('file-explorer row')
+				.append($('<div>').addClass('file-selector col-xs-8').html(fnDrawFolderList(_s3Data)))
+				.append($('<div>').addClass('file-information col-xs-4').html("Select a File"))
+			;
+			_body.html(fileExplorer);
+		}
+	});
+	return _body;
 }

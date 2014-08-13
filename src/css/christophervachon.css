@@ -674,6 +674,14 @@
   max-width: 90%;
   margin: 1em auto;
 }
+.amazonS3-upload-form div {
+  float: left;
+}
+.amazonS3-upload-form div input {
+  padding: 6px;
+  background-color: #eee;
+  border-radious: 5px;
+}
 .site-footer {
   color: #cccccc;
   border-top: 1px solid;
