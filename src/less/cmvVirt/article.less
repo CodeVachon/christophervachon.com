@@ -13,6 +13,18 @@ article {
 		img { 
 			max-width:  100%; 
 		}
+		blockquote {
+			display: block;
+			border-left: 0.3em #eee solid;
+			margin: 0;
+			padding: 0.6em 1em;
+			font-size: 1.3em;
+			p {
+				margin: 1em;
+				&:first-child { margin-top: 0; }
+				&:last-child { margin-bottom: 0; }
+			}
+		}
 	}
 	footer {
 		margin: 1em 0 0 0;
