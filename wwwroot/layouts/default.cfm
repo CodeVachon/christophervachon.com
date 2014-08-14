@@ -1,12 +1,17 @@
 <cfparam name="REQUEST.disableSidebar" default="false" />
 <cfparam name="RC.adminScreen" default="false" />
+<cfscript>
+	LOCAL.ogImage = " http://christophervachon.com/includes/imgs/me2-300.jpg";
+	LOCAL.canonical = "http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#";
+</cfscript>
 <cfcontent reset="true" type="text/html" /><!DOCTYPE html><cfoutput>
 <html lang="en">
 	<head>
 		<title>#((structKeyExists(RC,"pageTitle"))?RC.pageTitle:RC.template.getSiteTitle())#</title>
-		<link rel="canonical" href="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
+		<link rel="canonical" href="#LOCAL.canonical#" />
 		<link rel="alternate" type="application/rss+xml" title="#RC.template.getSiteName()# Blog RSS Feed" href="/blog/rss?feed=blog.rss">
 		<link rel="author" href=" https://plus.google.com/+ChristopherVachon/posts"/>
+		<link rel="shortcut icon" href="/favicon.ico"/>
 
 		<cfscript>
 			for (_metaTag in RC.template.getMetaTags()) {
@@ -42,8 +47,8 @@
 
 		<meta property="og:title" content="#((structKeyExists(RC,"pageTitle"))?RC.pageTitle:RC.template.getSiteTitle())#" /> 
 		<meta property="og:type" content="article" /> 
-		<meta property="og:url" content="http://#CGI.HTTP_HOST##lcase(reReplace(CGI.PATH_INFO ,"/$","","one"))#" />
-		<!--- <meta property="og:image" content=" http://example.com/image.jpg" /> --->
+		<meta property="og:url" content="#LOCAL.canonical#" />
+		<meta property="og:image" content="#LOCAL.ogImage#" />
 		<meta property="og:description" content="#LOCAL["description"]#" />
 		<meta property="og:site_name" content="#RC.template.getSiteName()#" />
 
@@ -54,7 +59,7 @@
 		<meta name="twitter:description" content="The Blog of Chirstopher Vachon"> 
 		<meta name="twitter:creator" content="@liaodrake"> 
 		<!--- Twitter Summary card images must be at least 200x200px ---> 
-		<!--- <meta name="twitter:image" content=" http://www.example.com/image.jpg"> --->
+		<meta name="twitter:image" content="#LOCAL.ogImage#">
 
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

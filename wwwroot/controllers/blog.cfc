@@ -121,7 +121,7 @@ component output="false" displayname="blog"  {
 			RC.template.addPageCrumb(dateFormat(RC.article.getPublicationDate(),"mmmm"),"/blog/#dateFormat(RC.article.getPublicationDate(),"yyyy")#/#dateFormat(RC.article.getPublicationDate(),"mm")#");
 			RC.template.addPageCrumb(RC.article.getTitle(),"/blog/#RC.article.getURI()#");
 
-			RC.pageTitle = RC.article.getTitle() & " | " & dateFormat(RC.article.getPublicationDate(),"mmmm d yyyy") & " | " & RC.template.getSiteName();
+			RC.pageTitle = RC.article.getTitle() & " | " & dateFormat(RC.article.getPublicationDate(),"mmm yyyy") & " | " & RC.template.getSiteName();
 			RC.displayComments = true;
 		} else {
 			VARIABLES.fw.setView("main.404");
