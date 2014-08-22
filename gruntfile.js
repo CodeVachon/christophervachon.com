@@ -60,6 +60,35 @@ module.exports = function(grunt) {
 				}]
 			}
 		}, // close uglify
+		'ftp-deploy': {
+			push: {
+				auth: {
+					host: 'ftp.christophervachon.com',
+					port: 21,
+					authKey: 'key1'
+				},
+				src: 'wwwroot/',
+				dest: 'wwwroot/',
+				exclusions: ['wwwroot/**/.DS_Store', 'wwwroot/**/Thumbs.db', 'wwwroot/collections/*', 'wwwroot/includes/js/tinymce/*']
+			},
+			scriptsOnly: {
+				auth: {
+					host: 'ftp.christophervachon.com',
+					port: 21,
+					authKey: 'key1'
+				},
+				src: 'wwwroot/includes/',
+				dest: 'wwwroot/includes/',
+				exclusions: ['wwwroot/**/.DS_Store', 'wwwroot/**/Thumbs.db', 'wwwroot/collections/*', 'wwwroot/includes/js/tinymce/*']
+			},
+		},
+		http: {
+			reload: {
+				options: {
+					url: 'http://christophervachon.com/?reload=true',
+				},
+			}
+		},
 		watch: {
 			gruntfile: {
 				files: ['gruntfile.js'],
@@ -98,4 +127,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-ftp-deploy');
+	grunt.loadNpmTasks('grunt-http');
+
+	grunt.registerTask('deploy', ['ftp-deploy:push','http:reload']);
+	grunt.registerTask('deployScripts',['ftp-deploy:scriptsOnly','http:reload']);
 }; // close module.exports

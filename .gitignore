@@ -1,4 +1,5 @@
 .ftppass
 node_modules/*
-collections/*
+wwwroot/collections/*
 npm*
+.ftppass

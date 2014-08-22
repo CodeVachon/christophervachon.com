@@ -650,6 +650,38 @@
     width: 100%;
   }
 }
+.file-explorer .file-selector {
+  overflow: auto;
+  max-height: 80%;
+}
+.file-explorer .file-selector ul {
+  list-style: none;
+}
+.file-explorer .file-selector ul a {
+  padding: 0.2em 0.3em;
+  border-radius: 0.3em;
+}
+.file-explorer .file-selector ul a .glyphicon {
+  margin: 0 1em 0 0;
+}
+.file-explorer .file-selector ul a.active {
+  background-color: #ddd;
+}
+.file-explorer .file-information {
+  overflow: hidden;
+}
+.file-explorer .file-information img {
+  max-width: 90%;
+  margin: 1em auto;
+}
+.amazonS3-upload-form div {
+  float: left;
+}
+.amazonS3-upload-form div input {
+  padding: 6px;
+  background-color: #eee;
+  border-radious: 5px;
+}
 .site-footer {
   color: #cccccc;
   border-top: 1px solid;
