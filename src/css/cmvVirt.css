@@ -482,9 +482,9 @@ article ol li {
 code {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 0.75em;
-  background-color: #333333;
-  color: #cccccc;
-  width: 100%;
+  background-color: #eee;
+  color: #600;
+  padding: 0.1em 0.2em;
 }
 table.syntax-highlighting {
   clear: both;
@@ -492,7 +492,7 @@ table.syntax-highlighting {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 0.75em;
   background-color: #333333;
-  color: #cccccc;
+  color: #eeeeee;
   width: 100%;
   margin: 1em 0;
 }
@@ -502,7 +502,7 @@ table.syntax-highlighting tr {
 table.syntax-highlighting tr th {
   color: #fff;
   padding: 0.4em 0.8em;
-  border-bottom: 1px #808080 solid;
+  border-bottom: 1px #a2a2a2 solid;
   text-align: left;
 }
 table.syntax-highlighting tr td {
@@ -511,7 +511,7 @@ table.syntax-highlighting tr td {
 table.syntax-highlighting tr td.gutter {
   width: 3em;
   text-align: right;
-  color: #808080;
+  color: #a2a2a2;
   padding-right: 0.3em;
 }
 table.syntax-highlighting tr td.code {
