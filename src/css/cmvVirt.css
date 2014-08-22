@@ -448,6 +448,14 @@ article header .date {
 article > section img {
   max-width: 100%;
 }
+article > section pre {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.75em;
+  background-color: #eee;
+  padding: 1em;
+  overflow: auto;
+  border-radius: 1em;
+}
 article footer {
   margin: 1em 0 0 0;
 }
