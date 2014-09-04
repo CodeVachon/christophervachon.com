@@ -2,6 +2,10 @@
 	param name="RC.article" default=entityNew("Article");
 	param name="RC.relatedArticles" default=arrayNew(1);
 	param name="RC.displayComments" default=false;
+
+	if (arrayLen(REMatch("<p[^/>]+class=(?:""|')codepen(?:""|')[^/>]{0,}>",RC.article.getBody())) > 0) {
+			RC.template.addFile("//codepen.io/assets/embed/ei.js");
+	}
 </cfscript>
 <cfoutput>
 	<article class='blog-post' itemscope itemtype="http://schema.org/Article" >
@@ -43,7 +47,7 @@
 				})();
 			</script>
 			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-			
+
 		</section>
 	</cfif>
 
